@@ -1,8 +1,6 @@
-#include "../includes/fdf.h"
-#include <unistd.h>
+#include "./includes/fdf.h"
 
-
-int	count_y(int *fd)
+static int	count_y(int *fd)
 {
 	int		i;
 	char	*line;

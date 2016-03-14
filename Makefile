@@ -6,36 +6,31 @@
 #    By: rabougue <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/10 19:16:51 by rabougue          #+#    #+#              #
-#    Updated: 2016/03/09 13:25:09 by rabougue         ###   ########.fr        #
+#    Updated: 2016/03/14 18:27:28 by rabougue         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-LIBFT_DIR = libft
-
-FLAG = -lmlx -framework OpenGL -framework AppKit
-
 NAME = fdf
-
-SRC = ./sources/main.c
-
-COMPIL_LIB = make
-
-OBJS = $(SRC:.c=.o)
-
-HEAD = ./libft/libft.a
+FLAG = -Wall -Wextra -Werror
+FRAMEWORK = -lmlx -framework OpenGL -framework AppKit
+SRCS = ./main.c
+OBJS = $(SRCS:.c=.o)
+LFT = ./libft/libft.a 
+LMLX = ./includes/libmlx.a
+HEAD = -I ./includes/fdf.h
 
 all: $(NAME)
 
 $(NAME):
 	@echo "\033[33mCompiling libft.a ...\033[0m"
 	@make -s -C ./libft/
-	@echo "\033[36mCompiling libft.a done !\033[0m"
-	@echo "\033[33mCompiling fdf in .o ...\033[0m"
-	@gcc -c $(SRC)
-	@echo "\033[36mCompiling fdf in .o done !\033[0m"
-	@gcc -o $(NAME) $(SRC) $(FLAG) $(HEAD)
+	@echo "\033[32mCompiling libft.a done !\033[0m"
+	@echo "\033[33mCompiling in .o ...\033[0m"
+	@gcc $(HEAD) -c $(SRCS)
+	@echo "\033[32mCompiling in .o done !\033[0m"
 	@echo "\033[33mCompiling fdf ...\033[0m"
-	@echo "\033[36mCompiling fdf done !\033[0m"
+	@gcc -o $(NAME) $(OBJS) $(LMLX) $(LFT) $(FRAMEWORK)
+	@echo "\033[32mCompiling fdf done !\033[0m"
 
 mc: fclean all clean
 
