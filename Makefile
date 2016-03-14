@@ -6,7 +6,7 @@
 #    By: rabougue <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/10 19:16:51 by rabougue          #+#    #+#              #
-#    Updated: 2016/03/14 18:27:28 by rabougue         ###   ########.fr        #
+#    Updated: 2016/03/14 19:23:36 by rabougue         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,6 @@ clean:
 	@rm -f $(OBJS)
 	@echo "\033[32mThe folder is clean !\033[0m"
 
-#fclean ne supprime pas les .o a la racine du dossier
 fclean:
 	@echo "\033[31mDeleting libft.a and all .o ...\033[0m"
 	@rm -f $(NAME) $(OBJS)
