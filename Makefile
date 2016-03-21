@@ -13,7 +13,7 @@
 NAME = fdf
 FLAG = -Wall -Wextra -Werror
 FRAMEWORK = -framework OpenGL -framework AppKit
-SRCS = ./main.c
+SRCS = ./main.c ./parsing.c
 OBJS = $(SRCS:.c=.o)
 LFT = -L./libft/ -lft
 LMLX = -L./minilibx_macos/ -lmlx
@@ -50,3 +50,10 @@ fclean:
 	@make -s clean -C ./minilibx_macos/
 
 re: fclean all
+
+FDF : clean
+	@rm -f $(NAME)
+	@gcc $(HEAD) -c $(SRCS)
+	@gcc -o $(NAME) $(OBJS) $(LMLX) $(LFT) $(FRAMEWORK)
+	@echo "\033[32mCompiled !\033[0m"
+	
