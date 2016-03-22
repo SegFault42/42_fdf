@@ -13,7 +13,7 @@
 NAME = fdf
 FLAG = -Wall -Wextra -Werror
 FRAMEWORK = -framework OpenGL -framework AppKit
-SRCS = ./main.c ./parsing.c
+SRCS = ./main.c ./parsing.c ./print_point.c
 OBJS = $(SRCS:.c=.o)
 LFT = -L./libft/ -lft
 LMLX = -L./minilibx_macos/ -lmlx

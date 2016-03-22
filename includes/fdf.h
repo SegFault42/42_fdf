@@ -22,6 +22,19 @@
 #define white 0xFFFFFF
 #define red 0xFF1616
 
-int	check_arguments(int *argc, char **argv, int *fd);
+typedef struct		s_pixel_to_image
+{
+	unsigned long	img_color;
+	char			*data;
+	int				sizeline;
+	int				bpp;
+	int				x;
+	int				y;
+}					t_pixel_to_image;
+
+int		check_arguments(int *argc, char **argv, int *fd);
+int		count_y(int *fd);
+void	print_point(int *fd, t_pixel_to_image *image);
+void	ft_pixel_put_to_image(t_pixel_to_image *image);
 
 #endif
