@@ -34,6 +34,7 @@ typedef struct		s_pixel_to_image
 
 int		check_arguments(int *argc, char **argv, int *fd);
 int		count_y(int *fd);
+int		count_x(int *fd);
 void	print_point(int *fd, t_pixel_to_image *image);
 void	ft_pixel_put_to_image(t_pixel_to_image *image);
 

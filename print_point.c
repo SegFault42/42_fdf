@@ -1,5 +1,19 @@
 #include "./includes/fdf.h"
 
+int	count_x(int *fd)
+{
+	char	*line;
+	char	**ret;
+	int		i;
+
+	i = 0;
+	get_next_line(*fd, &line);
+	ret = ft_strsplit(line, ' ');
+	while (ret[i])
+		i++;
+	return (i);
+}
+
 int	count_y(int *fd)
 {
 	int		i;
@@ -31,10 +45,23 @@ void	ft_pixel_put_to_image(t_pixel_to_image *image)
 void	print_point(int *fd, t_pixel_to_image *image)
 {
 	int		point_y;
+	int		point_x;
 
+	point_x = count_x(fd);
 	point_y = count_y(fd);
 	while (point_y)
 	{
+		while (point_x)
+		{
+			while (image->x % 20)
+			{
+				image->x++;
+			}
+			ft_pixel_put_to_image(image);
+			point_x--;
+			image->x++;
+		}
+		image->x = 0;
 		while (image->y % 20)
 			image->y++;
 		ft_pixel_put_to_image(image);

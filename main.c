@@ -1,44 +1,18 @@
 #include "./includes/fdf.h"
 
-static int	count_x(int *fd)
-{
-	char *line;
-	char **var;
-	int i = 0;
-	int j = 0;
+/*static int	count_x(int *fd)*/
+/*{*/
+	/*char *line;*/
+	/*char **var;*/
+	/*int i = 0;*/
+	/*int j = 0;*/
 
-	while ((get_next_line(*fd, &line)) > 0)
-	{
-		var = ft_strsplit(line, ' ');
-	}
-	return (i);
-}
-
-
-static void	tracing_horizontal(int *fd, void *mlx, void *win)
-{
-	int	y_pos;
-	int	cmp_y;
-	int	x;
-	int color = red;
-
-	y_pos = 0;
-	cmp_y = (count_y(&(*fd)) * 30);
-	while (cmp_y > 0)
-	{
-		x = 0;
-		if (cmp_y % 30 == 0)
-		{
-			while (x < 600)
-			{
-				mlx_pixel_put(mlx, win, x, y_pos, color);
-				x++;
-			}
-		}
-		y_pos++;
-		cmp_y--;
-	}
-}
+	/*while ((get_next_line(*fd, &line)) > 0)*/
+	/*{*/
+		/*var = ft_strsplit(line, ' ');*/
+	/*}*/
+	/*return (i);*/
+/*}*/
 
 int	main(int argc, char **argv)
 {
