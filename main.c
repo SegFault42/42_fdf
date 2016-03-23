@@ -1,19 +1,5 @@
 #include "./includes/fdf.h"
 
-/*static int	count_x(int *fd)*/
-/*{*/
-	/*char *line;*/
-	/*char **var;*/
-	/*int i = 0;*/
-	/*int j = 0;*/
-
-	/*while ((get_next_line(*fd, &line)) > 0)*/
-	/*{*/
-		/*var = ft_strsplit(line, ' ');*/
-	/*}*/
-	/*return (i);*/
-/*}*/
-
 int	main(int argc, char **argv)
 {
 	void				*mlx_ptr;
