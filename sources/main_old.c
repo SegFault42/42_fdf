@@ -1,4 +1,4 @@
-#include "./includes/fdf.h"
+#include "../includes/fdf.h"
 
 #define blue 0x23c5e3
 #define white 0xFFFFFF

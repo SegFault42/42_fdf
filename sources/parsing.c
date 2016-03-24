@@ -1,4 +1,4 @@
-#include "./includes/fdf.h"
+#include "../includes/fdf.h"
 
 int	check_arguments(int *argc, char **argv, int *fd)
 {

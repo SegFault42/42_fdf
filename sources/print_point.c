@@ -1,4 +1,4 @@
-#include "./includes/fdf.h"
+#include "../includes/fdf.h"
 
 int		count_x(int *fd)
 {
@@ -42,30 +42,6 @@ void	ft_pixel_put_to_image(t_pixel_to_image *image)
 	image->data[image->y * image->sizeline + image->x * image->bpp / 8 + 3] = 0x00;
 }
 
-/*void	print_point(int *fd, t_pixel_to_image *image)*/
-/*{*/
-/*int		point_y;*/
-/*int		point_x;*/
-
-/*point_y = count_y(fd);*/
-/*[>while (point_y)<]*/
-/*[>{<]*/
-/*point_x = count_x(fd);*/
-/*while (point_x)*/
-/*{*/
-/*while (image->x % 20)*/
-/*image->x++;*/
-/*ft_pixel_put_to_image(image);*/
-/*point_x--;*/
-/*image->x++;*/
-/*}*/
-/*[>point_y--;<]*/
-/*[>image->y++;<]*/
-/*[>while (image->y % 20)<]*/
-/*[>image->y++;<]*/
-/*[>}<]*/
-/*}*/
-
 void	print_point(int *fd, t_pixel_to_image *image)
 {
 	int	point_y;
@@ -75,19 +51,11 @@ void	print_point(int *fd, t_pixel_to_image *image)
 	point_x = count_x(fd);
 	point_y = count_y(fd);
 	save_point_x = point_x;
-	while (point_y)
+	while (point_y >= 0)
 	{
-		image->x = 0;
-		point_x = save_point_x;
-		image->y++;
-		while (image->y % 20)
-			image->y++;
-		/*ft_pixel_put_to_image(image);*/
-		point_y--;
-		image->y++;
 		while (point_x)
 		{
-			while (image->x % 20)
+			while (image->x % 10)
 			{
 				image->x++;
 			}
@@ -95,5 +63,12 @@ void	print_point(int *fd, t_pixel_to_image *image)
 			point_x--;
 			image->x++;
 		}
+		image->x = 0;
+		point_x = save_point_x;
+		image->y++;
+		while (image->y % 10)
+			image->y++;
+		image->y++;
+		point_y--;
 	}
 }

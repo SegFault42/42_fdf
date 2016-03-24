@@ -6,15 +6,15 @@
 #    By: rabougue <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/10 19:16:51 by rabougue          #+#    #+#              #
-#    Updated: 2016/03/14 19:24:19 by rabougue         ###   ########.fr        #
+#    Updated: 2016/03/24 18:32:49 by rabougue         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fdf
 FLAG = -Wall -Wextra -Werror
 FRAMEWORK = -framework OpenGL -framework AppKit
-SRCS = ./main.c ./parsing.c ./print_point.c
-OBJS = $(SRCS:.c=.o)
+SRCS = ./sources/main.c ./sources/parsing.c ./sources/print_point.c
+OBJS = ./main.o ./parsing.o ./print_point.o
 LFT = -L./libft/ -lft
 LMLX = -L./minilibx_macos/ -lmlx
 HEAD = -I ./includes/fdf.h
