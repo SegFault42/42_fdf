@@ -6,7 +6,7 @@
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/25 18:02:10 by rabougue          #+#    #+#             */
-/*   Updated: 2016/03/25 18:11:52 by rabougue         ###   ########.fr       */
+/*   Updated: 2016/03/25 20:02:46 by rabougue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	ft_pixel_put_to_image(t_pixel_to_image *img)
 	img->data[img->y * img->sizeline + img->x * img->bpp / 8 + 3] = 0x00;
 }
 
-void	print_point(int *fd, t_pixel_to_image *image)
+void	print_point(int *fd, t_pixel_to_image *image/*, void *img_ptr*/)
 {
 	int	point_y;
 	int	point_x;
@@ -65,8 +65,9 @@ void	print_point(int *fd, t_pixel_to_image *image)
 	{
 		while (point_x)
 		{
-			while (image->x % 5)
+			while (image->x % 1)
 				image->x++;
+			/*image_put_pixel(img_ptr, image->x, image->y, RED);*/
 			ft_pixel_put_to_image(image);
 			point_x--;
 			image->x++;
@@ -74,7 +75,7 @@ void	print_point(int *fd, t_pixel_to_image *image)
 		image->x = 0;
 		point_x = save_point_x;
 		image->y++;
-		while (image->y % 5)
+		while (image->y % 1)
 			image->y++;
 		point_y--;
 	}
