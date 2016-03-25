@@ -55,7 +55,7 @@ void	print_point(int *fd, t_pixel_to_image *image)
 	{
 		while (point_x)
 		{
-			while (image->x % 10)
+			while (image->x % 5)
 			{
 				image->x++;
 			}
@@ -66,9 +66,8 @@ void	print_point(int *fd, t_pixel_to_image *image)
 		image->x = 0;
 		point_x = save_point_x;
 		image->y++;
-		while (image->y % 10)
+		while (image->y % 5)
 			image->y++;
-		image->y++;
 		point_y--;
 	}
 }
