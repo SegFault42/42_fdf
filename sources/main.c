@@ -6,7 +6,7 @@
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/25 18:03:01 by rabougue          #+#    #+#             */
-/*   Updated: 2016/03/25 18:03:03 by rabougue         ###   ########.fr       */
+/*   Updated: 2016/03/25 18:15:41 by rabougue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	main(int argc, char **argv)
 	mlx_ptr = mlx_init();
 	img_ptr = mlx_new_image(mlx_ptr, width, height);
 	im.data = mlx_get_data_addr(img_ptr, &im.bpp, &im.sizeline, &im.endian);
-	im.img_color = mlx_get_color_value(mlx_ptr, RED);
+	im.img_color = mlx_get_color_value(mlx_ptr, GREEN);
 	print_point(&fd, &im);
 	win_ptr = mlx_new_window(mlx_ptr, width, height, "FDF");
 	mlx_put_image_to_window(mlx_ptr, win_ptr, img_ptr, 200, 200);

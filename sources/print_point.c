@@ -6,7 +6,7 @@
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/25 18:02:10 by rabougue          #+#    #+#             */
-/*   Updated: 2016/03/25 18:02:40 by rabougue         ###   ########.fr       */
+/*   Updated: 2016/03/25 18:11:52 by rabougue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ int		count_y(int *fd)
 
 void	ft_pixel_put_to_image(t_pixel_to_image *img)
 {
-	int				i;
 	unsigned char	r;
 	unsigned char	g;
 	unsigned char	b;
