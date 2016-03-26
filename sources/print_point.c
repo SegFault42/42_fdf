@@ -6,7 +6,7 @@
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/25 18:02:10 by rabougue          #+#    #+#             */
-/*   Updated: 2016/03/26 22:31:04 by rabougue         ###   ########.fr       */
+/*   Updated: 2016/03/26 22:41:59 by rabougue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,27 +98,25 @@ void	ft_pixel_put_to_image(t_pixel_to_image *img)
 
 void	print_point(int *fd, t_pixel_to_image *image)
 {
-	int	point_y;
-	int	point_x;
 	int i;
 	int j;
+	int	point_y;
+	int	point_x;
 
-	point_x = count_x(fd);
-	point_y = count_y(fd);
 	i = 0;
 	j = 0;
+	point_x = count_x(fd);
+	point_y = count_y(fd);
 	while (j <= point_y)
 	{
 		while (i < point_x)
 		{
 			image->x = (i * 20) - (j * 20) + 500;
 			image->y = (i * 20) + (j * 20) + 500;
-			printf("i = %d x2: %d y2: %d\n",i , image->x, image->y);
 			ft_pixel_put_to_image(image);
 			i++;
 		}
 		i = 0;
 		j++;
-		printf("y: %d\n", image->y);
 	}
 }
