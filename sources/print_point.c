@@ -6,7 +6,7 @@
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/25 18:02:10 by rabougue          #+#    #+#             */
-/*   Updated: 2016/03/25 20:02:46 by rabougue         ###   ########.fr       */
+/*   Updated: 2016/03/26 22:31:04 by rabougue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,37 +46,79 @@ void	ft_pixel_put_to_image(t_pixel_to_image *img)
 	r = (img->img_color & 0xFF0000) >> 16;
 	g = (img->img_color & 0xFF00) >> 8;
 	b = (img->img_color & 0xFF);
-	img->data[img->y * img->sizeline + img->x * img->bpp / 8 + 2] = r;
-	img->data[img->y * img->sizeline + img->x * img->bpp / 8 + 1] = g;
-	img->data[img->y * img->sizeline + img->x * img->bpp / 8 + 0] = b;
-	img->data[img->y * img->sizeline + img->x * img->bpp / 8 + 3] = 0x00;
+	if (img->endian == 0)
+	{
+		img->data[img->y * img->sizeline + img->x * img->bpp / 8 + 2] = r;
+		img->data[img->y * img->sizeline + img->x * img->bpp / 8 + 1] = g;
+		img->data[img->y * img->sizeline + img->x * img->bpp / 8 + 0] = b;
+		img->data[img->y * img->sizeline + img->x * img->bpp / 8 + 3] = 0x00;
+	}
+	else
+	{
+		img->data[img->y * img->sizeline + img->x * img->bpp / 8 + 2] = b;
+		img->data[img->y * img->sizeline + img->x * img->bpp / 8 + 1] = g;
+		img->data[img->y * img->sizeline + img->x * img->bpp / 8 + 0] = r;
+		img->data[img->y * img->sizeline + img->x * img->bpp / 8 + 3] = 0x00;
+	}
 }
 
-void	print_point(int *fd, t_pixel_to_image *image/*, void *img_ptr*/)
+/*void	print_point(int *fd, t_pixel_to_image *image)*/
+/*{*/
+	/*int	point_y;*/
+	/*int	point_x;*/
+	/*int	save_point_x;*/
+
+	/*point_x = count_x(fd);*/
+	/*point_y = count_y(fd);*/
+	/*save_point_x = point_x;*/
+	/*while (point_y >= 0)*/
+	/*{*/
+		/*while (point_x)*/
+		/*{*/
+			/*while (image->x % 10)*/
+				/*image->x++;*/
+			/*printf("x: %d\n", image->x);*/
+			/*image->x = image->x - image->y;*/
+			/*printf("x2: %d y2: %d\n", image->x, image->y);*/
+			/*ft_pixel_put_to_image(image);*/
+			/*point_x--;*/
+			/*image->x++;*/
+		/*}*/
+		/*image->x = 0;*/
+		/*point_x = save_point_x;*/
+		/*image->y++;*/
+		/*while (image->y % 10)*/
+			/*image->y++;*/
+		/*printf("y: %d\n", image->y);*/
+		/*image->y = image->y + image->x;*/
+		/*point_y--;*/
+	/*}*/
+/*}*/
+
+
+void	print_point(int *fd, t_pixel_to_image *image)
 {
 	int	point_y;
 	int	point_x;
-	int	save_point_x;
+	int i;
+	int j;
 
 	point_x = count_x(fd);
 	point_y = count_y(fd);
-	save_point_x = point_x;
-	while (point_y >= 0)
+	i = 0;
+	j = 0;
+	while (j <= point_y)
 	{
-		while (point_x)
+		while (i < point_x)
 		{
-			while (image->x % 1)
-				image->x++;
-			/*image_put_pixel(img_ptr, image->x, image->y, RED);*/
+			image->x = (i * 20) - (j * 20) + 500;
+			image->y = (i * 20) + (j * 20) + 500;
+			printf("i = %d x2: %d y2: %d\n",i , image->x, image->y);
 			ft_pixel_put_to_image(image);
-			point_x--;
-			image->x++;
+			i++;
 		}
-		image->x = 0;
-		point_x = save_point_x;
-		image->y++;
-		while (image->y % 1)
-			image->y++;
-		point_y--;
+		i = 0;
+		j++;
+		printf("y: %d\n", image->y);
 	}
 }
