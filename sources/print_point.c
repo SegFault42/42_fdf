@@ -6,7 +6,7 @@
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/25 18:02:10 by rabougue          #+#    #+#             */
-/*   Updated: 2016/03/27 00:35:54 by rabougue         ###   ########.fr       */
+/*   Updated: 2016/03/27 18:41:20 by rabougue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,22 @@
 int		count_x(int *fd)
 {
 	char	*line;
-	char	**ret;
+	char	**tab;
 	int		i;
+	int		j;
 
 	i = 0;
-	get_next_line(*fd, &line);
-	ret = ft_strsplit(line, ' ');
-	while (ret[i])
-		i++;
+	j = 0;
+	while ((get_next_line(*fd, &line)) > 0)
+	{
+		tab[j] = *ft_strsplit(line, ' ');
+		while (tab[j])
+		{
+			printf("%s\n", tab[j]);
+			i++;
+		}
+		j++;
+	}
 	return (i);
 }
 
