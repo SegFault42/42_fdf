@@ -6,7 +6,7 @@
 #    By: rabougue <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/10 19:16:51 by rabougue          #+#    #+#              #
-#    Updated: 2016/03/27 17:24:19 by rabougue         ###   ########.fr        #
+#    Updated: 2016/03/27 21:22:15 by rabougue         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,7 +66,6 @@ FDF : clean
 	@make MARIO
 
 MARIO :
-	@echo "$(END)                                      $(END)"
 	@echo "$(END)              $(RED)          $(END)    $(SKIN)      $(END)    $(END)"
 	@echo "$(END)            $(RED)                  $(SKIN)    $(END)    $(END)"
 	@echo "$(END)            $(BROWN)      $(SKIN)    $(END)  $(SKIN)  $(END)  $(RED)      $(END)    $(END)"
@@ -81,4 +80,3 @@ MARIO :
 	@echo "$(END)          $(BROWN)    $(BLUE)                  $(BROWN)    $(END)  $(END)"
 	@echo "$(END)        $(BROWN)      $(BLUE)            $(END)            $(END)"
 	@echo "$(END)        $(BROWN)    $(END)                          $(END)"
-	@echo "$(END)                                      $(END)"
