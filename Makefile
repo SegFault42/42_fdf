@@ -6,17 +6,15 @@
 #    By: rabougue <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/10 19:16:51 by rabougue          #+#    #+#              #
-#    Updated: 2016/03/27 01:56:51 by rabougue         ###   ########.fr        #
+#    Updated: 2016/03/27 17:24:19 by rabougue         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-RED = \033[48;5;1m
-WHITE = \033[0m\033[48;5;15m
-BLACK = \033[0m\033[48;5;0m
+RED = \033[48;5;196m
 SKIN = \033[0m\033[48;5;223m
-BROWN = \033[48;5;52m
-BLUE = 
-YELLOW = 
+BROWN = \033[48;5;88m
+BLUE = \033[48;5;21m
+YELLOW = \033[48;5;226m
 END = \033[0m
 
 NAME = fdf
@@ -61,12 +59,26 @@ fclean:
 re: fclean all
 
 FDF : clean
-	@echo "$(WHITE)        $(END)$(RED)          $(END)$(WHITE)    $(END)$(SKIN)      $(END) "
-	@echo "$(WHITE)      $(END)$(RED)                  $(END)$(SKIN)    $(END)"
-	@echo "$(WHITE)      $(END)$(BROWN)      $(END)$(SKIN)    $(END)$(BLACK)  $(END)$(SKIN)  $(WHITE)  $(RED)      $(END)"
-	@echo "$(WHITE)    $(BROWN)  $(SKIN)  $(BROWN)  $(SKIN)      $(BLACK)  $(SKIN)      $(RED)    $(END)"
 	@rm -f $(NAME)
 	@gcc $(HEAD) -c $(SRCS)
 	@gcc -o $(NAME) $(OBJS) $(LMLX) $(LFT) $(FRAMEWORK)
 	@echo "\033[32mCompiled !\033[0m"
-	
+	@make MARIO
+
+MARIO :
+	@echo "$(END)                                      $(END)"
+	@echo "$(END)              $(RED)          $(END)    $(SKIN)      $(END)    $(END)"
+	@echo "$(END)            $(RED)                  $(SKIN)    $(END)    $(END)"
+	@echo "$(END)            $(BROWN)      $(SKIN)    $(END)  $(SKIN)  $(END)  $(RED)      $(END)    $(END)"
+	@echo "$(END)          $(BROWN)  $(SKIN)  $(BROWN)  $(SKIN)      $(END)  $(SKIN)      $(RED)    $(END)    $(END)"
+	@echo "$(END)          $(BROWN)  $(SKIN)  $(BROWN)    $(SKIN)      $(END)  $(SKIN)      $(RED)  $(END)    $(END)"
+	@echo "$(END)          $(BROWN)    $(SKIN)        $(END)        $(RED)  $(END)      $(END)"
+	@echo "$(END)              $(SKIN)              $(RED)    $(END)      $(END)"
+	@echo "$(END)  $(SKIN)      $(RED)        $(BLUE)  $(RED)      $(BLUE)  $(RED)    $(END)    $(BROWN)  $(END)  $(END)"
+	@echo "$(END)  $(SKIN)      $(RED)          $(BLUE)  $(RED)      $(BLUE)  $(END)    $(BROWN)    $(END)  $(END)"
+	@echo "$(END)    $(SKIN)  $(END)      $(RED)      $(BLUE)        $(YELLOW)  $(BLUE)    $(BROWN)    $(END)  $(END)"
+	@echo "$(END)              $(BLUE)      $(YELLOW)  $(BLUE)          $(BROWN)    $(END)  $(END)"
+	@echo "$(END)          $(BROWN)    $(BLUE)                  $(BROWN)    $(END)  $(END)"
+	@echo "$(END)        $(BROWN)      $(BLUE)            $(END)            $(END)"
+	@echo "$(END)        $(BROWN)    $(END)                          $(END)"
+	@echo "$(END)                                      $(END)"
