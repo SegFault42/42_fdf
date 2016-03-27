@@ -6,9 +6,18 @@
 #    By: rabougue <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/10 19:16:51 by rabougue          #+#    #+#              #
-#    Updated: 2016/03/24 18:32:49 by rabougue         ###   ########.fr        #
+#    Updated: 2016/03/27 01:56:51 by rabougue         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+RED = \033[48;5;1m
+WHITE = \033[0m\033[48;5;15m
+BLACK = \033[0m\033[48;5;0m
+SKIN = \033[0m\033[48;5;223m
+BROWN = \033[48;5;52m
+BLUE = 
+YELLOW = 
+END = \033[0m
 
 NAME = fdf
 FLAG = -Wall -Wextra -Werror
@@ -52,6 +61,10 @@ fclean:
 re: fclean all
 
 FDF : clean
+	@echo "$(WHITE)        $(END)$(RED)          $(END)$(WHITE)    $(END)$(SKIN)      $(END) "
+	@echo "$(WHITE)      $(END)$(RED)                  $(END)$(SKIN)    $(END)"
+	@echo "$(WHITE)      $(END)$(BROWN)      $(END)$(SKIN)    $(END)$(BLACK)  $(END)$(SKIN)  $(WHITE)  $(RED)      $(END)"
+	@echo "$(WHITE)    $(BROWN)  $(SKIN)  $(BROWN)  $(SKIN)      $(BLACK)  $(SKIN)      $(RED)    $(END)"
 	@rm -f $(NAME)
 	@gcc $(HEAD) -c $(SRCS)
 	@gcc -o $(NAME) $(OBJS) $(LMLX) $(LFT) $(FRAMEWORK)

@@ -6,7 +6,7 @@
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/25 18:02:10 by rabougue          #+#    #+#             */
-/*   Updated: 2016/03/26 22:41:59 by rabougue         ###   ########.fr       */
+/*   Updated: 2016/03/27 00:35:54 by rabougue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,6 @@ void	ft_pixel_put_to_image(t_pixel_to_image *img)
 		/*point_y--;*/
 	/*}*/
 /*}*/
-
 
 void	print_point(int *fd, t_pixel_to_image *image)
 {
