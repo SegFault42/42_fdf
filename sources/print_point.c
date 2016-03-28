@@ -6,7 +6,7 @@
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/25 18:02:10 by rabougue          #+#    #+#             */
-/*   Updated: 2016/03/27 21:25:00 by rabougue         ###   ########.fr       */
+/*   Updated: 2016/03/29 00:10:09 by rabougue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,17 @@ int		count_x(int *fd)
 	char	**tab;
 	int		i;
 	int		j;
+	int		*stock;
 
 	i = 0;
 	j = 0;
-	tab = (char **)malloc(sizeof(char) * 11);
+	tab = (char **)malloc(sizeof(char) * count_y(fd));
 	while ((get_next_line(*fd, &line)) > 0)
 	{
-		tab[j] = 
+		tab[j] = *ft_strsplit(line, ' ');
+		j++;
 	}
-	return (i);
+	return (ft_strlen(&tab[j][i]));
 }
 
 int		count_y(int *fd)
