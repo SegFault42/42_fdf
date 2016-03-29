@@ -1,4 +1,4 @@
-PID = pgrep Preview
+PID= pgrep Preview
 
 clear
 echo "\033[35mmake fclean\033[0m"
@@ -28,4 +28,4 @@ git push
 
 open ~/Desktop/bBltMFv3copy.jpg
 sleep 2
-kill all $(PID)
+kill all PID
