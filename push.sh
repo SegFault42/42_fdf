@@ -30,4 +30,4 @@ git push
 
 open ~/Desktop/bBltMFv3copy.jpg
 sleep 2
-kill all $PID
+kill all pgrep Preview
