@@ -21,13 +21,9 @@ echo "\033[41mAppuyer sur Entrée pour git commit...\033[0m"
 read a
 clear
 echo "\033[35mgit commit\033[0m"
-git commit -m "FDF"
+git commit -m "bresenham"
 echo "\033[41mAppuyer sur Entrée pour git push...\033[0m"
 read a
 clear
 echo "\033[35mgit push\033[0m"
 git push
-
-open ~/Desktop/bBltMFv3copy.jpg
-sleep 2
-kill all pgrep Preview

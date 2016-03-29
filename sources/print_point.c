@@ -37,26 +37,6 @@ int		count_y(int *fd)
 	return (i);
 }
 
-/*int		count_x(int *fd)*/
-/*{*/
-	/*char	*line;*/
-	/*char	**tab;*/
-	/*int		i;*/
-	/*int		j;*/
-	/*int		*stock;*/
-
-	/*i = 0;*/
-	/*j = 0;*/
-	/*tab = (char **)malloc(sizeof(char) * count_y(fd));*/
-	/*while ((get_next_line(*fd, &line)) > 0)*/
-	/*{*/
-		/*tab[j] = *ft_strsplit(line, ' ');*/
-		/*j++;*/
-	/*}*/
-	/*return (ft_strlen(&tab[j][i]));*/
-/*}*/
-
-
 void	ft_pixel_put_to_image(t_pixel_to_image *img)
 {
 	unsigned char	r;
@@ -82,39 +62,6 @@ void	ft_pixel_put_to_image(t_pixel_to_image *img)
 	}
 }
 
-/*void	print_point(int *fd, t_pixel_to_image *image)*/
-/*{*/
-	/*int	point_y;*/
-	/*int	point_x;*/
-	/*int	save_point_x;*/
-
-	/*point_x = count_x(fd);*/
-	/*point_y = count_y(fd);*/
-	/*save_point_x = point_x;*/
-	/*while (point_y >= 0)*/
-	/*{*/
-		/*while (point_x)*/
-		/*{*/
-			/*while (image->x % 10)*/
-				/*image->x++;*/
-			/*printf("x: %d\n", image->x);*/
-			/*image->x = image->x - image->y;*/
-			/*printf("x2: %d y2: %d\n", image->x, image->y);*/
-			/*ft_pixel_put_to_image(image);*/
-			/*point_x--;*/
-			/*image->x++;*/
-		/*}*/
-		/*image->x = 0;*/
-		/*point_x = save_point_x;*/
-		/*image->y++;*/
-		/*while (image->y % 10)*/
-			/*image->y++;*/
-		/*printf("y: %d\n", image->y);*/
-		/*image->y = image->y + image->x;*/
-		/*point_y--;*/
-	/*}*/
-/*}*/
-
 void	print_point(int *fd, t_pixel_to_image *image)
 {
 	int i;
@@ -130,10 +77,14 @@ void	print_point(int *fd, t_pixel_to_image *image)
 	{
 		while (i < point_x)
 		{
-	ft_debug();
 			image->x = (i * 20) - (j * 20) + 500;
 			image->y = (i * 20) + (j * 20) + 500;
-			ft_pixel_put_to_image(image);
+			if (i + 1 <= point_x)
+				draw_x_or_y(image->x, image->y, ((i + 1) * 20) - (j * 20) + 500
+				, ((i + 1) * 20) + (j * 20) + 500, image);
+			if (j + 1 <= point_y)
+				draw_x_or_y(image->x, image->y, (i * 20) - ((j + 1) * 20) + 500
+				, (i * 20) + ((j + 1) * 20) + 500, image);
 			i++;
 		}
 		i = 0;

@@ -15,6 +15,7 @@
 
 # include <stdio.h>
 # include <errno.h>
+# include <math.h>
 # include "../minilibx_macos/mlx.h"
 # include "../libft/includes/libft.h"
 
@@ -42,5 +43,7 @@ int					count_y(int *fd);
 int					count_x(int *fd);
 void				print_point(int *fd, t_pixel_to_image *image);
 void				ft_pixel_put_to_image(t_pixel_to_image *image);
+void				draw_x_or_y(int x1, int y1, int x2, int y2, t_pixel_to_image *img);
+
 
 #endif
