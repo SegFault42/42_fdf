@@ -1,3 +1,5 @@
+#!/bin/sh
+
 PID= pgrep Preview
 
 clear
@@ -28,4 +30,4 @@ git push
 
 open ~/Desktop/bBltMFv3copy.jpg
 sleep 2
-kill all PID
+killall $PID
