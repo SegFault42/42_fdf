@@ -25,4 +25,5 @@ echo "\033[35mgit push\033[0m"
 git push
 
 open ~/Desktop/bBltMFv3copy.jpg
+sleep 2
 kill all 17165
