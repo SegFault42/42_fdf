@@ -6,7 +6,7 @@
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/25 18:02:10 by rabougue          #+#    #+#             */
-/*   Updated: 2016/03/29 00:10:09 by rabougue         ###   ########.fr       */
+/*   Updated: 2016/03/29 18:22:04 by rabougue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,15 @@
 int		count_x(int *fd)
 {
 	char	*line;
-	char	**tab;
+	char	**ret;
 	int		i;
-	int		j;
-	int		*stock;
 
 	i = 0;
-	j = 0;
-	tab = (char **)malloc(sizeof(char) * count_y(fd));
-	while ((get_next_line(*fd, &line)) > 0)
-	{
-		tab[j] = *ft_strsplit(line, ' ');
-		j++;
-	}
-	return (ft_strlen(&tab[j][i]));
+	get_next_line(*fd, &line);
+	ret = ft_strsplit(line, ' ');
+	while (ret[i])
+		i++;
+	return (i);
 }
 
 int		count_y(int *fd)
@@ -41,6 +36,26 @@ int		count_y(int *fd)
 		i++;
 	return (i);
 }
+
+/*int		count_x(int *fd)*/
+/*{*/
+	/*char	*line;*/
+	/*char	**tab;*/
+	/*int		i;*/
+	/*int		j;*/
+	/*int		*stock;*/
+
+	/*i = 0;*/
+	/*j = 0;*/
+	/*tab = (char **)malloc(sizeof(char) * count_y(fd));*/
+	/*while ((get_next_line(*fd, &line)) > 0)*/
+	/*{*/
+		/*tab[j] = *ft_strsplit(line, ' ');*/
+		/*j++;*/
+	/*}*/
+	/*return (ft_strlen(&tab[j][i]));*/
+/*}*/
+
 
 void	ft_pixel_put_to_image(t_pixel_to_image *img)
 {
@@ -111,10 +126,11 @@ void	print_point(int *fd, t_pixel_to_image *image)
 	j = 0;
 	point_x = count_x(fd);
 	point_y = count_y(fd);
-	while (j <= point_y)
+	while (j < point_y)
 	{
 		while (i < point_x)
 		{
+	ft_debug();
 			image->x = (i * 20) - (j * 20) + 500;
 			image->y = (i * 20) + (j * 20) + 500;
 			ft_pixel_put_to_image(image);

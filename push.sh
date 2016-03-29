@@ -23,3 +23,4 @@ read a
 clear
 echo "\033[35mgit push\033[0m"
 git push
+open ~/Desktop/bBltMFv3 copy.jpg
