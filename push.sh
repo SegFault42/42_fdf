@@ -1,7 +1,5 @@
 #!/bin/sh
 
-PID= pgrep Preview
-
 clear
 echo "\033[35mmake fclean\033[0m"
 make fclean
@@ -21,7 +19,9 @@ echo "\033[41mAppuyer sur Entrée pour git commit...\033[0m"
 read a
 clear
 echo "\033[35mgit commit\033[0m"
-git commit -m "bresenham"
+echo -n "commit name :"
+read commit
+git commit -m "$commit"
 echo "\033[41mAppuyer sur Entrée pour git push...\033[0m"
 read a
 clear
