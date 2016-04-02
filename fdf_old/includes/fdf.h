@@ -6,7 +6,7 @@
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/09 12:52:14 by rabougue          #+#    #+#             */
-/*   Updated: 2016/04/02 12:40:25 by rabougue         ###   ########.fr       */
+/*   Updated: 2016/04/02 14:43:34 by rabougue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int					count_x(int *fd);
 void				print_point(int *fd, t_pixel_to_image *image);
 void				ft_pixel_put_to_image(t_pixel_to_image *image);
 void				draw_x_or_y(int x1, int y1, int x2, int y2, t_pixel_to_image *img);
-void				count_x_2(int *fd, t_coord *coord);
+void				count_coord(int *fd, t_coord *coord);
 
 
 #endif

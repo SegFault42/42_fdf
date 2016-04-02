@@ -6,7 +6,7 @@
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/25 18:03:01 by rabougue          #+#    #+#             */
-/*   Updated: 2016/04/02 12:45:14 by rabougue         ###   ########.fr       */
+/*   Updated: 2016/04/02 14:43:08 by rabougue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	main(int argc, char **argv)
 	im.x = 0;
 	im.y = 0;
 	check_arguments(&argc, (&(*argv)), &fd);
-	count_x_2(&fd, &coord);
+	count_coord(&fd, &coord);
 	/*mlx_ptr = mlx_init();*/
 	/*img_ptr = mlx_new_image(mlx_ptr, WIDTH, HEIGHT);*/
 	/*im.data = mlx_get_data_addr(img_ptr, &im.bpp, &im.sizeline, &im.endian);*/

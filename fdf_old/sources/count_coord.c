@@ -6,21 +6,19 @@
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/31 13:32:47 by rabougue          #+#    #+#             */
-/*   Updated: 2016/04/02 12:46:57 by rabougue         ###   ########.fr       */
+/*   Updated: 2016/04/02 14:24:17 by rabougue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-void	count_x_2(int *fd, t_coord *coord)
+void	count_coord(int *fd, t_coord *coord)
 {
 	char	*line;
 	char	**ret;
 	int		var;
 	int		x_temp = 0;
 	int		**tab;
-	int		j = 0;
-	int 	i = 0;
 
 	coord->y_point = 1;
 	coord->x_point = 1;
