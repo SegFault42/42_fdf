@@ -32,6 +32,7 @@ typedef struct		s_coord
 	int				x_point;
 	int				y_point;
 	int				z_point;
+	int				x_temp;
 }					t_coord;
 
 typedef struct		s_pixel_to_image
@@ -46,12 +47,14 @@ typedef struct		s_pixel_to_image
 }					t_pixel_to_image;
 
 int					check_arguments(int *argc, char **argv, int *fd);
+void				open_map(int *argc, char **argv, int *fd);
 int					count_y(int *fd);
 int					count_x(int *fd);
 void				print_point(int *fd, t_pixel_to_image *image);
 void				ft_pixel_put_to_image(t_pixel_to_image *image);
 void				draw_x_or_y(int x1, int y1, int x2, int y2, t_pixel_to_image *img);
 void				count_coord(int *fd, t_coord *coord);
+void				stock_coord(int *fd, int *argc, char **argv, t_coord *coord);
 
 
 #endif
