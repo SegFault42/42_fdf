@@ -25,6 +25,8 @@ int	main(int argc, char **argv)
 	im.y = 0;
 	check_arguments(&argc, (&(*argv)), &fd);
 	count_coord(&fd, &coord);
+	RC;
+	stock_coord(&fd, &argc, (&(*argv)), &coord);
 	/*mlx_ptr = mlx_init();*/
 	/*img_ptr = mlx_new_image(mlx_ptr, WIDTH, HEIGHT);*/
 	/*im.data = mlx_get_data_addr(img_ptr, &im.bpp, &im.sizeline, &im.endian);*/

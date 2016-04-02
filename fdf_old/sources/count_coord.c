@@ -19,6 +19,7 @@ void	count_coord(int *fd, t_coord *coord)
 	int		**tab;
 	int		var;
 
+	coord->x_temp = 0;
 	coord->y_point = 0;
 	coord->x_point = 1;
 	while ((var = get_next_line(*fd, &line)) > 0)
@@ -37,14 +38,18 @@ void	count_coord(int *fd, t_coord *coord)
 		coord->x_point = 0;
 	}
 	close(*fd);
-		RC;
-		printf("le fichier contient %d ligne(s)\n", coord->y_point);
-		printf("la ligne la plus grande contient %d int\n", coord->x_temp);
 }
 
 void	stock_coord(int *fd, int *argc, char **argv, t_coord *coord)
 {
+	int var;
+
 	open_map(argc, argv, fd);
 	printf("le fichier contient %d ligne(s)\n", coord->y_point);
 	printf("la ligne la plus grande contient %d int\n", coord->x_temp);
+	coord->map = (coord **)malloc(sizeof(coord **) * coord->y_point);
+	while ((var = get_next_line(*fd, &line)) > 0)
+	{
+		
+	}
 }

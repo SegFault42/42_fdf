@@ -33,6 +33,7 @@ typedef struct		s_coord
 	int				y_point;
 	int				z_point;
 	int				x_temp;
+	int				**map;
 }					t_coord;
 
 typedef struct		s_pixel_to_image
