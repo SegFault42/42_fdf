@@ -21,19 +21,17 @@ int	main(int argc, char **argv)
 	t_pixel_to_image	im;
 	t_coord				coord;
 
-	im.x = 0;
-	im.y = 0;
+	/*im.x = 0;*/
+	/*im.y = 0;*/
 	check_arguments(&argc, (&(*argv)), &fd);
-	count_coord(&fd, &coord);
-	RC;
-	stock_coord(&fd, &argc, (&(*argv)), &coord);
-	/*mlx_ptr = mlx_init();*/
-	/*img_ptr = mlx_new_image(mlx_ptr, WIDTH, HEIGHT);*/
-	/*im.data = mlx_get_data_addr(img_ptr, &im.bpp, &im.sizeline, &im.endian);*/
-	/*im.img_color = mlx_get_color_value(mlx_ptr, WHITE);*/
-	/*print_point(&fd, &im);*/
-	/*win_ptr = mlx_new_window(mlx_ptr, WIDTH, HEIGHT, "FDF");*/
-	/*mlx_put_image_to_window(mlx_ptr, win_ptr, img_ptr, 0, 0);*/
-	/*mlx_loop(mlx_ptr);*/
+	stock_coord(argv[1], &coord);
+	mlx_ptr = mlx_init();
+	img_ptr = mlx_new_image(mlx_ptr, WIDTH, HEIGHT);
+	im.data = mlx_get_data_addr(img_ptr, &im.bpp, &im.sizeline, &im.endian);
+	im.img_color = mlx_get_color_value(mlx_ptr, WHITE);
+	print_point(&coord, &im);
+	win_ptr = mlx_new_window(mlx_ptr, WIDTH, HEIGHT, "FDF");
+	mlx_put_image_to_window(mlx_ptr, win_ptr, img_ptr, 0, 0);
+	mlx_loop(mlx_ptr);
 	return (0);
 }

@@ -22,6 +22,7 @@ FLAG = -Wall -Wextra -Werror
 FRAMEWORK = -framework OpenGL -framework AppKit
 SRCS = ./sources/main.c ./sources/parsing.c ./sources/print_point.c \
 	   ./sources/bresenham.c ./sources/count_coord.c
+
 OBJS = ./main.o ./parsing.o ./print_point.o ./bresenham.o ./count_coord.o
 LFT = -L./libft/ -lft
 LMLX = -L./minilibx_macos/ -lmlx

@@ -12,51 +12,6 @@
 
 #include "../includes/fdf.h"
 
-int		count_x(int *fd)
-{
-	char	*line;
-	char	**ret;
-	int	i;
-
-	i = 0;
-	get_next_line(*fd, &line);
-	ret = ft_strsplit(line, ' ');
-	while (ret[i])
-		i++;
-	return (i);
-}
-
-int		count_y(int *fd)
-{
-	int	i;
-	char	*line;
-
-	i = 0;
-	while ((get_next_line(*fd, &line)) > 0)
-		i++;
-	return (i);
-}
-
-/*intcount_x(int *fd)*/
-/*{*/		
-/*char*line;*/
-/*char**tab;*/
-/*inti;*/
-/*intj;*/
-/*int*s								tock;*/
-
-/*i = 0;*/
-/*j = 0;*/
-/*tab = (char **)malloc(sizeof(char) * count_y(fd));*/
-/*while ((get_next_line(*fd, &line)) > 0)*/
-/*{*/
-/*tab[j] = *ft_strsplit(line, ' ');*/
-/*j++;*/
-/*}*/
-/*return (ft_strlen(&tab[j][i]));*/
-/*}*/
-
-
 void	ft_pixel_put_to_image(t_pixel_to_image *img)
 {
 	unsigned char	r;
@@ -115,28 +70,28 @@ void	ft_pixel_put_to_image(t_pixel_to_image *img)
 /*}*/
 /*}*/
 
-void	print_point(int *fd, t_pixel_to_image *image)
+void	print_point(t_coord *coord, t_pixel_to_image *image)
 {
-	int	i;
-	int	j;
-	int	point_y;
-	int	point_x;
+	int		x;
+	int		y;
+	char	**split_x;
+	int		zoom;
 
-	i = 0;
-	j = 0;
-	point_x = count_x(fd);
-	point_y = count_y(fd);
-	while (j < point_y)
+	zoom = 10;
+	x = 0;
+	y = 0;
+	while (coord->map[y])
 	{
-		while (i < point_x)
+		split_x = ft_strsplit(coord->map[y], ' ');
+		while (split_x[x])
 		{
-			ft_debug();
-			image->x = ((i * 20) - (j * 20)) + 250;
-			image->y = ((i * 20) + (j * 20)) / 2 + 100;
+			image->x = ((x * zoom) - (y * zoom)) + 650;
+			image->y = ((x * zoom) + (y * zoom)) / 2 + 100;
 			ft_pixel_put_to_image(image);
-			i++;
+			x++;
 		}
-		i = 0;
-		j++;
+		tab_free(split_x);
+		x = 0;
+		y++;
 	}
 }

@@ -12,45 +12,51 @@
 
 #include "../includes/fdf.h"
 
-void	count_coord(int *fd, t_coord *coord)
+void	init_coord(char *file_name, t_coord *coord)
 {
-	char	*line;
-	char	**ret;
-	int		**tab;
-	int		var;
-
-	coord->x_temp = 0;
-	coord->y_point = 0;
-	coord->x_point = 1;
-	while ((var = get_next_line(*fd, &line)) > 0)
-	{
-		ret = ft_strsplit(line, ' ');
-		while (ret[coord->x_point])
-		{
-			/*tab[j][i] = ft_atoi(ret[coord->x_point]);*/
-			printf("(ret) ret[%d] = %s\n", coord->x_point, ret[coord->x_point]);
-			/*printf("(tab) tab[j][%d] = %d\n", coord->x_point, tab[j][i]);*/
-			coord->x_point++;
-		}
-		coord->y_point++;
-		if (coord->x_point > coord->x_temp)
-			coord->x_temp = coord->x_point;
-		coord->x_point = 0;
-	}
-	close(*fd);
+	coord->x_point = 0;
+	coord->z_point = 0;
+	coord->y_point = count_line_in_file(file_name);
+	coord->map = NULL;
 }
 
-void	stock_coord(int *fd, int *argc, char **argv, t_coord *coord)
+int		count_line_in_file(char *file_name)
 {
-	int		var;
 	char	*line;
+	int		i;
+	int		fd;
 
-	open_map(argc, argv, fd);
-	printf("le fichier contient %d ligne(s)\n", coord->y_point);
-	printf("la ligne la plus grande contient %d int\n", coord->x_temp);
-	coord->map = (int **)malloc(sizeof(int *) * coord->y_point);
-	while ((var = get_next_line(*fd, &line)) > 0)
+	i = 0;
+	fd = open(file_name, O_RDONLY);
+	while (get_next_line(fd, &line) > 0)
 	{
-		
+		i++;
+		free(line);
 	}
+	close(fd);
+	return (i);
+}
+
+
+void	stock_coord(char *file_name, t_coord *coord)
+{
+	int		fd;
+	char	*line;
+	char	**split;
+	int		i;
+
+	i = 0;
+	init_coord(file_name, coord);
+	fd = open(file_name, O_RDONLY);
+	coord->map = (char **)malloc(sizeof(char *) * coord->y_point + 1);
+	while (get_next_line(fd, &line) > 0)
+	{
+		split = ft_strsplit(line, ' ');
+		coord->map[i++] = ft_strdup(line);
+		tab_free(split);
+	}
+	coord->map[i] = NULL;
+	i = 0;
+	while (coord->map[i])
+		printf("%s\n", coord->map[i++]);
 }

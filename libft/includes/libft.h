@@ -93,5 +93,7 @@ char				*ft_crypt(char *str);
 char				*ft_decrypt(char *str);
 void				ft_debug();
 int					get_next_line(int const fd, char **line);
+int					tab_len(char **tab);
+void				tab_free(char **tab);
 
 #endif
