@@ -28,6 +28,13 @@
 # define WIDTH 1280
 # define HEIGHT 720
 
+typedef struct			s_point
+{
+	int		x;
+	int		y;
+	int		z;
+}						t_point;
+
 typedef struct			s_coord
 {
 	int					x_point;
@@ -51,7 +58,7 @@ int					check_arguments(int *argc, char **argv, int *fd);
 void				open_map(int *argc, char **argv, int *fd);
 int					count_y(int *fd);
 int					count_x(int *fd);
-void				print_point(t_coord *coord, t_pixel_to_image *image);
+void				print_point(t_coord *coord, t_pixel_to_image *img);
 void				ft_pixel_put_to_image(t_pixel_to_image *image);
 void				draw_x_or_y(int x1, int y1, int x2, int y2, t_pixel_to_image *img);
 void				count_coord(int *fd, t_coord *coord);

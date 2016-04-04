@@ -81,9 +81,9 @@ void	print_point(int *fd, t_pixel_to_image *image)
 			image->x = (i * zoom) - (j * zoom);
 			image->y = (i * zoom) + (j * zoom);
 			if (i + 1 <= point_x)
-				draw_x_or_y(image->x, image->y, ((i + 1) * zoom) - (j * zoom) + 				500, ((i + 1) * zoom) + (j * zoom) + 500, image);
+				draw_x_or_y(image->x, image->y, ((i + 1) * zoom) - (j * zoom) + 500, ((i + 1) * zoom) + (j * zoom) + 500, image);
 			if (j + 1 <= point_y)
-				draw_x_or_y(image->x, image->y, (i * zoom) - ((j + 1) * zoom) + 				500, (i * zoom) + ((j + 1) * zoom) + 500, image);
+				draw_x_or_y(image->x, image->y, (i * zoom) - ((j + 1) * zoom) + 500, (i * zoom) + ((j + 1) * zoom) + 500, image);
 			i++;
 		}
 		i = 0;

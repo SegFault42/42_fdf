@@ -37,61 +37,31 @@ void	ft_pixel_put_to_image(t_pixel_to_image *img)
 	}
 }
 
-/*voidprint_point(int *fd, t_pixel_to_image *image)	*/
-/*{*/
-/*intpoint_y;*/
-/*intpoint_x;*/
-/*intsave_point_x;*/
-
-/*point_x = count_x(fd);*/
-/*point_y = count_y(fd);*/
-/*save_point_x = point_x;*/
-/*while (point_y >= 0)*/
-/*{*/
-/*while (point_x)*/
-/*{*/
-/*while (image->x % 10)*/
-/*image->x++;*/
-/*printf("x: %d\n", image->x);*/
-/*image->x = image->x - image->y;*/
-/*printf("x2: %d y2: %d\n", image->x, image->y);*/
-/*ft_pixel_put_to_image(image);*/
-/*point_x--;*/
-/*image->x++;*/
-/*}*/
-/*image->x = 0;*/
-/*point_x = save_point_x;*/
-/*image->y++;*/
-/*while (image->y % 10)*/
-/*image->y++;*/
-/*printf("y: %d\n", image->y);*/
-/*image->y = image->y + image->x;*/
-/*point_y--;*/
-/*}*/
-/*}*/
-
-void	print_point(t_coord *coord, t_pixel_to_image *image)
+void	print_point(t_coord *coord, t_pixel_to_image *img)
 {
-	int		x;
-	int		y;
 	char	**split_x;
 	int		zoom;
+	t_point	point;
+	t_point	point_iso;
 
-	zoom = 10;
-	x = 0;
-	y = 0;
-	while (coord->map[y])
+	zoom = 3;
+	point.x = 0;
+	point.y = 0;
+	while (coord->map[point.x])
 	{
-		split_x = ft_strsplit(coord->map[y], ' ');
-		while (split_x[x])
+		split_x = ft_strsplit(coord->map[point.y], ' ');
+		while (split_x[point.x])
 		{
-			image->x = ((x * zoom) - (y * zoom)) + 650;
-			image->y = ((x * zoom) + (y * zoom)) / 2 + 100;
-			ft_pixel_put_to_image(image);
-			x++;
+			point_iso.x = ((point.x * zoom) - (point.y * zoom)) + 650;
+			point_iso.y = ((point.x * zoom) + (point.y * zoom)) / 2 + 100;
+			if (point.x + 1 <= tab_len(split_x))
+				draw_x_or_y(point_iso.x, point_iso.y, ((point.x + 1) * zoom - (point.y * zoom)) + 500, ((point.x + 1) * zoom) + (point.y * zoom) + 500, img);
+			if (point.y + 1 <= coord->y_point)
+				draw_x_or_y(point_iso.x, point_iso.y, (point.x * zoom - ((point.y + 1) * zoom)) + 500, (point.x * zoom) + ((point.y + 1) * zoom) + 500, img);
+			point.x++;
 		}
 		tab_free(split_x);
-		x = 0;
-		y++;
+		point.x = 0;
+		point.y++;
 	}
 }
