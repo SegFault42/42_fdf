@@ -6,7 +6,7 @@
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/09 12:52:14 by rabougue          #+#    #+#             */
-/*   Updated: 2016/03/30 19:21:27 by rabougue         ###   ########.fr       */
+/*   Updated: 2016/04/04 19:04:41 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@
 
 # define WIDTH 1080
 # define HEIGHT 1080
+
+# define ORIGIN_X (WIDTH / 2)
+# define ORIGIN_Y (HEIGHT / 2)
 
 typedef struct		s_pixel_to_image
 {

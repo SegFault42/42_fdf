@@ -6,7 +6,7 @@
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/09 12:52:14 by rabougue          #+#    #+#             */
-/*   Updated: 2016/04/02 14:43:34 by rabougue         ###   ########.fr       */
+/*   Updated: 2016/04/04 20:05:23 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,11 @@
 # define BLUE 0x0000FF
 # define WHITE 0xFFFFFF
 
-# define WIDTH 1280
-# define HEIGHT 720
+# define WIDTH 2000 
+# define HEIGHT 1400 
+
+# define ORIGIN_X (WIDTH / 2)
+# define ORIGIN_Y (HEIGHT / 8)
 
 typedef struct			s_point
 {
@@ -42,6 +45,13 @@ typedef struct			s_coord
 	int					z_point;
 	char				**map;
 }						t_coord;
+
+typedef struct			s_context
+{
+	void				*mlx_ptr;
+	void				*win_ptr;
+	void				*img_ptr;
+}						t_context;
 
 typedef struct		s_pixel_to_image
 {

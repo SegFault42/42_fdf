@@ -30,7 +30,7 @@ void	print_segment_y(int x1, int y1, int x2, int y2, t_pixel_to_image *img)
 	int	dy;
 	int	e;
 
-	e = abs(2 - y1);
+	e = abs(y2 - y1);
 	dy = abs(e * 2);
 	dx = abs((x2 - x1) * 2);
 	point.x = x1;
@@ -62,5 +62,4 @@ void	draw_x_or_y(int x1, int y1, int x2, int y2, t_pixel_to_image *img)
 		print_segment_x(x1, y1, x2, y2, img);
 	else
 		print_segment_y(x1, y1, x2, y2, img);
-
 }

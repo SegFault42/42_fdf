@@ -6,7 +6,7 @@
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/25 18:02:10 by rabougue          #+#    #+#             */
-/*   Updated: 2016/03/30 19:38:12 by rabougue         ###   ########.fr       */
+/*   Updated: 2016/04/04 19:57:44 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,23 +43,29 @@ void	print_point(t_coord *coord, t_pixel_to_image *img)
 	int		zoom;
 	t_point	point;
 	t_point	point_iso;
+	t_point	p2;
 
-	zoom = 20;
+	zoom = 0;
 	point.x = 0;
 	point.y = 0;
 	while (coord->map[point.y])
 	{
 		split_x = ft_strsplit(coord->map[point.y], ' ');
-		while (split_x[point.x])
+		while (split_x[point.x] && split_x[point.x + 1])
 		{
-			point_iso.x = ((point.x* zoom) - (point.y * zoom));
-			point_iso.y = ((point.x* zoom) + (point.y * zoom)) / 2;
-			/*if (point.x + 1 <= tab_len(split_x))*/
-				/*[>draw_x_or_y(point_iso.x, point_iso.y, ((point.x + 1) * zoom - (point.y * zoom)) + 500, ((point.x + 1) * zoom) + (point.y * zoom) + 500, img);<]*/
-				/*draw_x_or_y(point_iso.x, point_iso.y, point.x, point.x, img);*/
-			/*if (point.y + 1 <= coord->y_point)*/
-				/*[>draw_x_or_y(point_iso.x, point_iso.y, (point.x * zoom - ((point.y + 1) * zoom)) + 500, (point.x * zoom) + ((point.y + 1) * zoom) + 500, img);<]*/
-				/*draw_x_or_y(point_iso.x, point_iso.y, point.x + 500, point.x + 500, img);*/
+			point_iso.x = ((point.x* zoom) - (point.y * zoom)) + ORIGIN_X;
+			point_iso.y = (((point.x* zoom) + (point.y * zoom)) / 2) + ORIGIN_Y  - (ft_atoi(split_x[point.x]) * 10);
+			p2.x = ((point.x + 1) * zoom) - (point.y * zoom) + ORIGIN_X;
+			p2.y = (((point.x + 1) * zoom) + (point.y * zoom) / 2) + ORIGIN_Y - (ft_atoi(split_x[point.x + 1]) * 10);
+			if (point_iso.x > p2.x)
+			{
+				ft_swap(&point_iso.x, &p2.x);
+				ft_swap(&point_iso.y, &p2.y);
+			}
+			if (point.x + 1 <= tab_len(split_x))
+				draw_x_or_y(point_iso.x, point_iso.y, p2.x,  p2.y, img);
+			if (point.y + 1 <= coord->y_point)
+				draw_x_or_y(point_iso.x, point_iso.y, p2.x,  p2.y, img);
 			ft_pixel_put_to_image(img, &point_iso);
 			point.x++;
 		}
