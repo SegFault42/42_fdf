@@ -50,8 +50,6 @@ typedef struct		s_pixel_to_image
 	int				sizeline;
 	int				endian;
 	int				bpp;
-	int				x;
-	int				y;
 }					t_pixel_to_image;
 
 int					check_arguments(int *argc, char **argv, int *fd);
@@ -59,7 +57,7 @@ void				open_map(int *argc, char **argv, int *fd);
 int					count_y(int *fd);
 int					count_x(int *fd);
 void				print_point(t_coord *coord, t_pixel_to_image *img);
-void				ft_pixel_put_to_image(t_pixel_to_image *image);
+void				ft_pixel_put_to_image(t_pixel_to_image *image, t_point *p);
 void				draw_x_or_y(int x1, int y1, int x2, int y2, t_pixel_to_image *img);
 void				count_coord(int *fd, t_coord *coord);
 void				stock_coord(char *file_name, t_coord *coord);

@@ -30,6 +30,7 @@ int	main(int argc, char **argv)
 	im.data = mlx_get_data_addr(img_ptr, &im.bpp, &im.sizeline, &im.endian);
 	im.img_color = mlx_get_color_value(mlx_ptr, WHITE);
 	print_point(&coord, &im);
+	ft_debug();
 	win_ptr = mlx_new_window(mlx_ptr, WIDTH, HEIGHT, "FDF");
 	mlx_put_image_to_window(mlx_ptr, win_ptr, img_ptr, 0, 0);
 	mlx_loop(mlx_ptr);

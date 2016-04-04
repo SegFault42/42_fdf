@@ -13,7 +13,7 @@ void	print_segment_x(int x1, int y1, int x2, int y2, t_pixel_to_image *img)
 	point.y = y1;
 	while (point.x <= x2)
 	{
-		ft_pixel_put_to_image(img);
+		ft_pixel_put_to_image(img, &point);
 		point.x++;
 		if ((e = e - dy) <= 0)
 		{
@@ -37,7 +37,7 @@ void	print_segment_y(int x1, int y1, int x2, int y2, t_pixel_to_image *img)
 	point.y = y1;
 	while (point.y != y2)
 	{
-		ft_pixel_put_to_image(img);
+		ft_pixel_put_to_image(img, &point);
 		if (point.y > y2)
 			point.y--;
 		else
@@ -48,7 +48,7 @@ void	print_segment_y(int x1, int y1, int x2, int y2, t_pixel_to_image *img)
 			e += dy;
 		}
 	}
-	ft_pixel_put_to_image(img);
+	ft_pixel_put_to_image(img, &point);
 }
 
 void	draw_x_or_y(int x1, int y1, int x2, int y2, t_pixel_to_image *img)
