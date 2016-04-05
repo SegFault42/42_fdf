@@ -3,7 +3,6 @@
 clear
 echo "\033[35mmake fclean\033[0m"
 make fclean
-cd ../ && make fclean
 echo "\033[41mAppuyer sur Entrée pour git status...\033[0m"
 read a
 clear
