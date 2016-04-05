@@ -1,5 +1,4 @@
 #!/zsh/sh
-
 clear
 echo "\033[35mmake fclean\033[0m"
 make fclean
