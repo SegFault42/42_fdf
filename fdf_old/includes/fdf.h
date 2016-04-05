@@ -6,7 +6,7 @@
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/09 12:52:14 by rabougue          #+#    #+#             */
-/*   Updated: 2016/04/04 20:05:23 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/04/05 17:20:57 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ typedef struct		s_pixel_to_image
 	int				bpp;
 }					t_pixel_to_image;
 
+void    			draw_line(t_pixel_to_image *img, t_point *p1, t_point *p2);
 int					check_arguments(int *argc, char **argv, int *fd);
 void				open_map(int *argc, char **argv, int *fd);
 int					count_y(int *fd);

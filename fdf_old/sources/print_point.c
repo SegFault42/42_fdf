@@ -6,7 +6,7 @@
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/25 18:02:10 by rabougue          #+#    #+#             */
-/*   Updated: 2016/04/04 19:57:44 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/04/05 17:21:52 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,66 @@ void	ft_pixel_put_to_image(t_pixel_to_image *img, t_point *p)
 		img->data[p->y * img->sizeline + p->x * img->bpp / 8 + 1] = g;
 		img->data[p->y * img->sizeline + p->x * img->bpp / 8 + 0] = r;
 		img->data[p->y * img->sizeline + p->x * img->bpp / 8 + 3] = 0x00;
+	}
+}
+
+void    draw_line(t_pixel_to_image *img, t_point *p1, t_point *p2)
+{
+	int dx;
+	int dy;
+	int e;
+	int x_incr;
+	int y_incr;
+	int i;
+	int c_dx;
+	int c_dy; 
+	int ex;
+	int ey; 
+
+
+	ex = abs(p2->x - p1->x);
+	ey = abs(p2->y - p1->y);
+	dx = ex * 2;
+	dy = ey * 2;
+	c_dx = ex;
+	c_dy = ey;
+	i = 0;
+	x_incr = 1;
+	y_incr = 1;
+
+	if (p1->x > p2->x)
+		x_incr = -1;
+	if (p1->y > p2->y)
+		y_incr = -1;
+	if (c_dx > c_dy)
+	{
+		while (i <= c_dx)
+		{
+			ft_pixel_put_to_image(img, p1);
+			i++;
+			p1->x += x_incr;
+			ex -= dy;
+			if (ex < 0)
+			{
+				p1->y += y_incr;
+				ex += dx;
+			}
+		}
+	}
+	if (c_dx < c_dy)
+	{
+		while (i <= c_dy)
+		{
+			ft_pixel_put_to_image(img, p1);
+			i++;
+			p1->y += y_incr;
+			ey -= dx;
+			if (ey < 0)
+			{
+				p1->x += x_incr;;
+				ey += dy;
+			}
+		}
 	}
 }
 
