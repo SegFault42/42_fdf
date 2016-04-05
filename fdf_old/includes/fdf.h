@@ -6,7 +6,7 @@
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/09 12:52:14 by rabougue          #+#    #+#             */
-/*   Updated: 2016/04/05 17:20:57 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/04/05 20:11:01 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # define WIDTH 2000 
 # define HEIGHT 1400 
 
-# define ORIGIN_X (WIDTH / 2)
+# define ORIGIN_X (WIDTH / 3)
 # define ORIGIN_Y (HEIGHT / 8)
 
 typedef struct			s_point

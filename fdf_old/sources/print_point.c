@@ -6,7 +6,7 @@
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/25 18:02:10 by rabougue          #+#    #+#             */
-/*   Updated: 2016/04/05 17:21:52 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/04/05 20:24:42 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,14 @@ void	ft_pixel_put_to_image(t_pixel_to_image *img, t_point *p)
 		img->data[p->y * img->sizeline + p->x * img->bpp / 8 + 2] = r;
 		img->data[p->y * img->sizeline + p->x * img->bpp / 8 + 1] = g;
 		img->data[p->y * img->sizeline + p->x * img->bpp / 8 + 0] = b;
-		img->data[p->y * img->sizeline + p->x * img->bpp / 8 + 3] = 0x00;
+		img->data[p->y * img->sizeline + p->x * img->bpp / 8 + 3] = 0x99;
 	}
 	else
 	{
 		img->data[p->y * img->sizeline + p->x * img->bpp / 8 + 2] = b;
 		img->data[p->y * img->sizeline + p->x * img->bpp / 8 + 1] = g;
 		img->data[p->y * img->sizeline + p->x * img->bpp / 8 + 0] = r;
-		img->data[p->y * img->sizeline + p->x * img->bpp / 8 + 3] = 0x00;
+		img->data[p->y * img->sizeline + p->x * img->bpp / 8 + 3] = 0x99;
 	}
 }
 
@@ -101,36 +101,55 @@ void	print_point(t_coord *coord, t_pixel_to_image *img)
 {
 	char	**split_x;
 	int		zoom;
-	t_point	point;
-	t_point	point_iso;
+	t_point	save;
+	t_point	p1;
 	t_point	p2;
+	int gap;
 
-	zoom = 0;
-	point.x = 0;
-	point.y = 0;
-	while (coord->map[point.y])
+	zoom = 3;
+	save.x = ORIGIN_X;
+	save.y = ORIGIN_Y;
+	int x = 0;
+	int y = 0;
+	p1.x = 0;
+	p1.y = 0;
+	gap = 5;
+	while (coord->map[y])
 	{
-		split_x = ft_strsplit(coord->map[point.y], ' ');
-		while (split_x[point.x] && split_x[point.x + 1])
+		split_x = ft_strsplit(coord->map[y], ' ');
+		while (split_x[x] && split_x[x + 1])
 		{
-			point_iso.x = ((point.x* zoom) - (point.y * zoom)) + ORIGIN_X;
-			point_iso.y = (((point.x* zoom) + (point.y * zoom)) / 2) + ORIGIN_Y  - (ft_atoi(split_x[point.x]) * 10);
-			p2.x = ((point.x + 1) * zoom) - (point.y * zoom) + ORIGIN_X;
-			p2.y = (((point.x + 1) * zoom) + (point.y * zoom) / 2) + ORIGIN_Y - (ft_atoi(split_x[point.x + 1]) * 10);
-			if (point_iso.x > p2.x)
-			{
-				ft_swap(&point_iso.x, &p2.x);
-				ft_swap(&point_iso.y, &p2.y);
-			}
-			if (point.x + 1 <= tab_len(split_x))
-				draw_x_or_y(point_iso.x, point_iso.y, p2.x,  p2.y, img);
-			if (point.y + 1 <= coord->y_point)
-				draw_x_or_y(point_iso.x, point_iso.y, p2.x,  p2.y, img);
-			ft_pixel_put_to_image(img, &point_iso);
-			point.x++;
+			p1.x = save.x;
+			p1.y = save.y;
+			p2.x = p1.x + gap;
+			p2.y = p1.y;
+			printf("x1: %d y1: %d, x2: %d y2: %d\n", p1.x, p1.y, p2.x, p2.y);
+			draw_line(img, &p1, &p2);
+			x++;
+			save.x = p2.x;;
 		}
 		tab_free(split_x);
-		point.x = 0;
-		point.y++;
+		x = 0;
+		y++;
+		save.y = p2.y + gap + 10;
+		save.x = ORIGIN_X;
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* point_iso.x = ((point.x* zoom) - (point.y * zoom)) + ORIGIN_X; */
+/* point_iso.y = (((point.x* zoom) + (point.y * zoom)) / 2) + ORIGIN_Y  - (ft_atoi(split_x[point.x]) * 10); */
+/* p2.x = ((point.x + 1) * zoom) - (point.y * zoom) + ORIGIN_X; */
+/* p2.y = (((point.x + 1) * zoom) + (point.y * zoom) / 2) + ORIGIN_Y - (ft_atoi(split_x[point.x + 1]) * 10); */
