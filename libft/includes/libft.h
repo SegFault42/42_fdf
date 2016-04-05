@@ -6,7 +6,7 @@
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 18:34:24 by rabougue          #+#    #+#             */
-/*   Updated: 2016/03/31 17:53:33 by rabougue         ###   ########.fr       */
+/*   Updated: 2016/04/05 23:02:11 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,6 @@ char				*ft_crypt(char *str);
 char				*ft_decrypt(char *str);
 void				ft_debug();
 int					get_next_line(int const fd, char **line);
-int					count_line_in_file(char *file_name);
 void				tab_free(char **tab);
 int					tab_len(char **tab);
 

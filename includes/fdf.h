@@ -6,7 +6,7 @@
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/09 12:52:14 by rabougue          #+#    #+#             */
-/*   Updated: 2016/04/05 20:11:01 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/04/05 23:01:58 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,12 @@ typedef struct			s_point
 {
 	int		x;
 	int		y;
-	int		z;
 }						t_point;
 
 typedef struct			s_coord
 {
 	int					x_point;
 	int					y_point;
-	int					z_point;
 	char				**map;
 }						t_coord;
 
@@ -73,7 +71,7 @@ void				draw_x_or_y(int x1, int y1, int x2, int y2, t_pixel_to_image *img);
 void				count_coord(int *fd, t_coord *coord);
 void				stock_coord(char *file_name, t_coord *coord);
 void				init_coord(char *file_name, t_coord *coord);
-int					count_line_in_file(char *file_name);
+void				count_line_in_file(char *file_name, t_coord *coord);
 
 
 #endif

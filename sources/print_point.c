@@ -6,7 +6,7 @@
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/25 18:02:10 by rabougue          #+#    #+#             */
-/*   Updated: 2016/04/05 21:57:17 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/04/05 23:54:51 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,16 +103,16 @@ void	draw_x(t_coord *coord, t_pixel_to_image *img, int gap)
 	int y;
 	t_point	p1;
 	t_point	p2;
-	char **split_x;
+	//char **split_x;
 
 	x = 0;
 	y = 0;
 	p1.x = ORIGIN_X;
 	p1.y = ORIGIN_Y;
-	while (coord->map[y])
+	while (y <= coord->y_point)
 	{
-		split_x = ft_strsplit(coord->map[y], ' ');
-		while (split_x[x] && split_x[x + 1])
+		//split_x = ft_strsplit(coord->map[y], ' ');
+		while (x < coord->x_point)
 		{
 			p2.x = p1.x + gap;
 			p2.y = p1.y;
@@ -121,10 +121,9 @@ void	draw_x(t_coord *coord, t_pixel_to_image *img, int gap)
 			x++;
 			p1.x = p2.x;;
 		}
-		tab_free(split_x);
 		x = 0;
 		y++;
-		p1.y = p2.y + gap + 5;
+		p1.y = p2.y + gap;
 		p1.x = ORIGIN_X;
 	}
 }
@@ -141,22 +140,22 @@ void	draw_y(t_coord *coord, t_pixel_to_image *img, int gap)
 	y = 0;
 	p1.x = ORIGIN_X;
 	p1.y = ORIGIN_Y;
-	while (coord->map[y])
+	//printf
+	printf("x max: %d y max: %d", coord->x_point, coord->y_point);
+	while(x <= coord->x_point)
 	{
-		split_x = ft_strsplit(coord->map[y], ' ');
-		while (split_x[x] && split_x[x + 1])
+		while (y < coord->y_point)
 		{
 			p2.x = p1.x;
-			p2.y = p1.y + gap;
+			p2.y = ORIGIN_Y + gap * coord->y_point;
 			draw_line(img, &p1, &p2);
-			x++;
 			p1.y = p2.y;
+			y++;
 		}
-		tab_free(split_x);
-		x = 0;
-		y++;
-		p1.x = p2.x + gap + 5;
+		y = 0;
+		p1.x = p2.x + gap;
 		p1.y = ORIGIN_Y;
+		x++;
 	}
 }
 
