@@ -5,39 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: zoom16/03/25 18:02:10 by rabougue          #+#    #+#             */
-/*   Updated: zoom16/03/30 15:38:45 by rabougue         ###   ########.fr       */
+/*   Created: 2016/03/25 18:02:10 by rabougue          #+#    #+#             */
+/*   Updated: 2016/04/05 20:24:42 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-int		count_x(int *fd)
-{
-	char	*line;
-	char	**ret;
-	int		i;
-
-	i = 0;
-	get_next_line(*fd, &line);
-	ret = ft_strsplit(line, ' ');
-	while (ret[i])
-		i++;
-	return (i);
-}
-
-int		count_y(int *fd)
-{
-	int		i;
-	char	*line;
-
-	i = 0;
-	while ((get_next_line(*fd, &line)) > 0)
-		i++;
-	return (i);
-}
-
-void	ft_pixel_put_to_image(t_pixel_to_image *img)
+void	ft_pixel_put_to_image(t_pixel_to_image *img, t_point *p)
 {
 	unsigned char	r;
 	unsigned char	g;
@@ -48,45 +23,133 @@ void	ft_pixel_put_to_image(t_pixel_to_image *img)
 	b = (img->img_color & 0xFF);
 	if (img->endian == 0)
 	{
-		img->data[img->y * img->sizeline + img->x * img->bpp / 8 + 2] = r;
-		img->data[img->y * img->sizeline + img->x * img->bpp / 8 + 1] = g;
-		img->data[img->y * img->sizeline + img->x * img->bpp / 8 + 0] = b;
-		img->data[img->y * img->sizeline + img->x * img->bpp / 8 + 3] = 0x00;
+		img->data[p->y * img->sizeline + p->x * img->bpp / 8 + 2] = r;
+		img->data[p->y * img->sizeline + p->x * img->bpp / 8 + 1] = g;
+		img->data[p->y * img->sizeline + p->x * img->bpp / 8 + 0] = b;
+		img->data[p->y * img->sizeline + p->x * img->bpp / 8 + 3] = 0x99;
 	}
 	else
 	{
-		img->data[img->y * img->sizeline + img->x * img->bpp / 8 + 2] = b;
-		img->data[img->y * img->sizeline + img->x * img->bpp / 8 + 1] = g;
-		img->data[img->y * img->sizeline + img->x * img->bpp / 8 + 0] = r;
-		img->data[img->y * img->sizeline + img->x * img->bpp / 8 + 3] = 0x00;
+		img->data[p->y * img->sizeline + p->x * img->bpp / 8 + 2] = b;
+		img->data[p->y * img->sizeline + p->x * img->bpp / 8 + 1] = g;
+		img->data[p->y * img->sizeline + p->x * img->bpp / 8 + 0] = r;
+		img->data[p->y * img->sizeline + p->x * img->bpp / 8 + 3] = 0x99;
 	}
 }
 
-void	print_point(int *fd, t_pixel_to_image *image)
+void    draw_line(t_pixel_to_image *img, t_point *p1, t_point *p2)
 {
+	int dx;
+	int dy;
+	int e;
+	int x_incr;
+	int y_incr;
 	int i;
-	int j;
-	int	point_y;
-	int	point_x;
-	int	zoom = 16;
+	int c_dx;
+	int c_dy; 
+	int ex;
+	int ey; 
 
+
+	ex = abs(p2->x - p1->x);
+	ey = abs(p2->y - p1->y);
+	dx = ex * 2;
+	dy = ey * 2;
+	c_dx = ex;
+	c_dy = ey;
 	i = 0;
-	j = 0;
-	point_x = count_x(fd);
-	point_y = count_y(fd);
-	while (j < point_y)
+	x_incr = 1;
+	y_incr = 1;
+
+	if (p1->x > p2->x)
+		x_incr = -1;
+	if (p1->y > p2->y)
+		y_incr = -1;
+	if (c_dx > c_dy)
 	{
-		while (i < point_x)
+		while (i <= c_dx)
 		{
-			image->x = (i * zoom) - (j * zoom);
-			image->y = (i * zoom) + (j * zoom);
-			if (i + 1 <= point_x)
-				draw_x_or_y(image->x, image->y, ((i + 1) * zoom) - (j * zoom) + 500, ((i + 1) * zoom) + (j * zoom) + 500, image);
-			if (j + 1 <= point_y)
-				draw_x_or_y(image->x, image->y, (i * zoom) - ((j + 1) * zoom) + 500, (i * zoom) + ((j + 1) * zoom) + 500, image);
+			ft_pixel_put_to_image(img, p1);
 			i++;
+			p1->x += x_incr;
+			ex -= dy;
+			if (ex < 0)
+			{
+				p1->y += y_incr;
+				ex += dx;
+			}
 		}
-		i = 0;
-		j++;
+	}
+	if (c_dx < c_dy)
+	{
+		while (i <= c_dy)
+		{
+			ft_pixel_put_to_image(img, p1);
+			i++;
+			p1->y += y_incr;
+			ey -= dx;
+			if (ey < 0)
+			{
+				p1->x += x_incr;;
+				ey += dy;
+			}
+		}
 	}
 }
+
+void	print_point(t_coord *coord, t_pixel_to_image *img)
+{
+	char	**split_x;
+	int		zoom;
+	t_point	save;
+	t_point	p1;
+	t_point	p2;
+	int gap;
+
+	zoom = 3;
+	save.x = ORIGIN_X;
+	save.y = ORIGIN_Y;
+	int x = 0;
+	int y = 0;
+	p1.x = 0;
+	p1.y = 0;
+	gap = 5;
+	while (coord->map[y])
+	{
+		split_x = ft_strsplit(coord->map[y], ' ');
+		while (split_x[x] && split_x[x + 1])
+		{
+			p1.x = save.x;
+			p1.y = save.y;
+			p2.x = p1.x + gap;
+			p2.y = p1.y;
+			printf("x1: %d y1: %d, x2: %d y2: %d\n", p1.x, p1.y, p2.x, p2.y);
+			draw_line(img, &p1, &p2);
+			x++;
+			save.x = p2.x;;
+		}
+		tab_free(split_x);
+		x = 0;
+		y++;
+		save.y = p2.y + gap + 10;
+		save.x = ORIGIN_X;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* point_iso.x = ((point.x* zoom) - (point.y * zoom)) + ORIGIN_X; */
+/* point_iso.y = (((point.x* zoom) + (point.y * zoom)) / 2) + ORIGIN_Y  - (ft_atoi(split_x[point.x]) * 10); */
+/* p2.x = ((point.x + 1) * zoom) - (point.y * zoom) + ORIGIN_X; */
+/* p2.y = (((point.x + 1) * zoom) + (point.y * zoom) / 2) + ORIGIN_Y - (ft_atoi(split_x[point.x + 1]) * 10); */
