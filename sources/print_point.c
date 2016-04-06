@@ -6,7 +6,7 @@
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/25 18:02:10 by rabougue          #+#    #+#             */
-/*   Updated: 2016/04/06 11:55:21 by rabougue         ###   ########.fr       */
+/*   Updated: 2016/04/06 13:42:13 by rabougue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,8 +114,8 @@ void	draw_x(t_coord *coord, t_pixel_to_image *img, int gap)
 		//split_x = ft_strsplit(coord->map[y], ' ');
 		while (x < coord->x_point)
 		{
-			p2.x = p1.x + gap;
-			p2.y = p1.y;
+			p2.x = ((x * gap) - (y * gap)) + ORIGIN_X; // old p2.x = p1.x + gap
+			p2.y = ((x * gap) + (y * gap)) / 2 + ORIGIN_Y ; // old p2.y = p1.y
 			//printf("x1: %d y1: %d, x2: %d y2: %d\n", p1.x, p1.y, p2.x, p2.y);
 			draw_line(img, &p1, &p2);
 			x++;
@@ -161,7 +161,7 @@ void	print_point(t_coord *coord, t_pixel_to_image *img)
 {
 	int gap;
 
-	gap = 50;
+	gap = 20;
 	draw_x(coord, img, gap);
 	draw_y(coord, img, gap);
 }
