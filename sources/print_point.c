@@ -6,7 +6,7 @@
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/25 18:02:10 by rabougue          #+#    #+#             */
-/*   Updated: 2016/04/06 19:06:13 by rabougue         ###   ########.fr       */
+/*   Updated: 2016/04/07 00:35:42 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,17 +115,18 @@ void	draw_x(t_coord *coord, t_pixel_to_image *img, int gap)
 		while (x < coord->x_point)
 		{
 			p2.x = ((x * gap) - (y * gap)) + ORIGIN_X;
-			p2.y = ((x * gap) + (y * gap)) / 2 + ORIGIN_Y - (ft_atoi(split_x[x]) * 3);
-			printf("%s\n", split_x[x]);
+			p2.y = ((x * gap) + (y * gap)) / 2 + ORIGIN_Y - (ft_atoi(split_x[x]) * 10);
 			draw_line(img, &p1, &p2);
 			x++;
+			//
+			p1.x = p2.x; 
+			p1.y = p2.y; 
 		}
-
-		tab_free(split_x);
 		x = 0;
+		p1.x = ((x * gap) - (y * gap)) + ORIGIN_X - gap;
+		p1.y = ((x * gap) + (y * gap)) / 2 + ORIGIN_Y + gap/2- ft_atoi(split_x[x]) * 10;
 		y++;
-		p1.y = ORIGIN_Y - ORIGIN_Y;
-		p1.x = ORIGIN_X - ORIGIN_X;
+		tab_free(split_x);
 	}
 }
 
@@ -147,15 +148,17 @@ void	draw_y(t_coord *coord, t_pixel_to_image *img, int gap)
 		{
 			split_x = ft_strsplit(coord->map[y], ' ');
 			p2.x = ((x * gap) - (y * gap)) + ORIGIN_X;
-			p2.y = ((x * gap) + (y * gap)) / 2 + ORIGIN_Y - (ft_atoi(split_x[x]) * 3);
+			p2.y = ((x * gap) + (y * gap)) / 2 + ORIGIN_Y - (ft_atoi(split_x[x]) * 10);
 			draw_line(img, &p1, &p2);
 			y++;
+			p1.x = p2.x; 
+			p1.y = p2.y; 
 			tab_free(split_x);
 		}
 		y = 0;
 		x++;
-		p1.y = 0;
-		p1.x = 1300;
+		p1.x = ((x * gap) - (y * gap)) + ORIGIN_X - gap;
+		p1.y = ((x * gap) + (y * gap)) / 2 + ORIGIN_Y + gap/2;
 	}
 }
 
@@ -163,7 +166,7 @@ void	print_point(t_coord *coord, t_pixel_to_image *img)
 {
 	int gap;
 
-	gap = 30;
+	gap = 5;
 	draw_x(coord, img, gap);
 	draw_y(coord, img, gap);
 }
