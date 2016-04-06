@@ -6,7 +6,7 @@
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/25 18:02:10 by rabougue          #+#    #+#             */
-/*   Updated: 2016/04/06 13:55:41 by rabougue         ###   ########.fr       */
+/*   Updated: 2016/04/06 19:06:13 by rabougue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,14 @@ void	ft_pixel_put_to_image(t_pixel_to_image *img, t_point *p)
 		img->data[p->y * img->sizeline + p->x * img->bpp / 8 + 2] = r;
 		img->data[p->y * img->sizeline + p->x * img->bpp / 8 + 1] = g;
 		img->data[p->y * img->sizeline + p->x * img->bpp / 8 + 0] = b;
-		img->data[p->y * img->sizeline + p->x * img->bpp / 8 + 3] = 0x99;
+		img->data[p->y * img->sizeline + p->x * img->bpp / 8 + 3] = 0x00;
 	}
 	else
 	{
 		img->data[p->y * img->sizeline + p->x * img->bpp / 8 + 2] = b;
 		img->data[p->y * img->sizeline + p->x * img->bpp / 8 + 1] = g;
 		img->data[p->y * img->sizeline + p->x * img->bpp / 8 + 0] = r;
-		img->data[p->y * img->sizeline + p->x * img->bpp / 8 + 3] = 0x99;
+		img->data[p->y * img->sizeline + p->x * img->bpp / 8 + 3] = 0x00;
 	}
 }
 
@@ -103,7 +103,7 @@ void	draw_x(t_coord *coord, t_pixel_to_image *img, int gap)
 	int y;
 	t_point	p1;
 	t_point	p2;
-	//char **split_x;
+	char **split_x;
 
 	x = 0;
 	y = 0;
@@ -111,20 +111,21 @@ void	draw_x(t_coord *coord, t_pixel_to_image *img, int gap)
 	p1.y = ORIGIN_Y;
 	while (y < coord->y_point)
 	{
-		//split_x = ft_strsplit(coord->map[y], ' ');
+		split_x = ft_strsplit(coord->map[y], ' ');
 		while (x < coord->x_point)
 		{
-			p2.x = ((x * gap) - (y * gap)) + ORIGIN_X; // old p2.x = p1.x + gap
-			p2.y = ((x * gap) + (y * gap)) / 2 + ORIGIN_Y ; // old p2.y = p1.y
-			//printf("x1: %d y1: %d, x2: %d y2: %d\n", p1.x, p1.y, p2.x, p2.y);
+			p2.x = ((x * gap) - (y * gap)) + ORIGIN_X;
+			p2.y = ((x * gap) + (y * gap)) / 2 + ORIGIN_Y - (ft_atoi(split_x[x]) * 3);
+			printf("%s\n", split_x[x]);
 			draw_line(img, &p1, &p2);
 			x++;
-			p1.x = p2.x;;
 		}
+
+		tab_free(split_x);
 		x = 0;
 		y++;
-		/*p1.y = p2.y + gap;*/
-		/*p1.x = ORIGIN_X;*/
+		p1.y = ORIGIN_Y - ORIGIN_Y;
+		p1.x = ORIGIN_X - ORIGIN_X;
 	}
 }
 
@@ -144,16 +145,17 @@ void	draw_y(t_coord *coord, t_pixel_to_image *img, int gap)
 	{
 		while (y < coord->y_point)
 		{
+			split_x = ft_strsplit(coord->map[y], ' ');
 			p2.x = ((x * gap) - (y * gap)) + ORIGIN_X;
-			p2.y = ((x * gap) + (y * gap)) / 2 + ORIGIN_Y ;
+			p2.y = ((x * gap) + (y * gap)) / 2 + ORIGIN_Y - (ft_atoi(split_x[x]) * 3);
 			draw_line(img, &p1, &p2);
-			p1.y = p2.y;
 			y++;
+			tab_free(split_x);
 		}
 		y = 0;
 		x++;
-		/*p1.x = p2.x + gap;*/
-		/*p1.y = ORIGIN_Y;*/
+		p1.y = 0;
+		p1.x = 1300;
 	}
 }
 
@@ -161,7 +163,7 @@ void	print_point(t_coord *coord, t_pixel_to_image *img)
 {
 	int gap;
 
-	gap = 50;
+	gap = 30;
 	draw_x(coord, img, gap);
 	draw_y(coord, img, gap);
 }
