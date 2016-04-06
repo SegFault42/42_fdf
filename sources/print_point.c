@@ -6,7 +6,7 @@
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/25 18:02:10 by rabougue          #+#    #+#             */
-/*   Updated: 2016/04/05 23:54:51 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/04/06 10:23:02 by rabougue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,6 +144,7 @@ void	draw_y(t_coord *coord, t_pixel_to_image *img, int gap)
 	printf("x max: %d y max: %d", coord->x_point, coord->y_point);
 	while(x <= coord->x_point)
 	{
+		printf("x = %d VS x_point = %d\n", x, coord->x_point);
 		while (y < coord->y_point)
 		{
 			p2.x = p1.x;
