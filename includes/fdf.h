@@ -6,7 +6,7 @@
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/09 12:52:14 by rabougue          #+#    #+#             */
-/*   Updated: 2016/04/05 23:01:58 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/04/07 12:28:05 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ typedef struct			s_coord
 {
 	int					x_point;
 	int					y_point;
-	char				**map;
+	int					**map;
 }						t_coord;
 
 typedef struct			s_context

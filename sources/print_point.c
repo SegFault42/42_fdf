@@ -6,7 +6,7 @@
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/25 18:02:10 by rabougue          #+#    #+#             */
-/*   Updated: 2016/04/05 23:54:51 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/04/07 16:47:07 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,28 +103,29 @@ void	draw_x(t_coord *coord, t_pixel_to_image *img, int gap)
 	int y;
 	t_point	p1;
 	t_point	p2;
-	//char **split_x;
 
 	x = 0;
 	y = 0;
-	p1.x = ORIGIN_X;
-	p1.y = ORIGIN_Y;
-	while (y <= coord->y_point)
+	p1.x = ((x * gap) - (y * gap)) + ORIGIN_X - gap;
+	p1.y = ((x * gap) + (y * gap)) / 2 + ORIGIN_Y + gap / 2;
+	while (y < coord->y_point)
 	{
-		//split_x = ft_strsplit(coord->map[y], ' ');
 		while (x < coord->x_point)
 		{
-			p2.x = p1.x + gap;
-			p2.y = p1.y;
-			//printf("x1: %d y1: %d, x2: %d y2: %d\n", p1.x, p1.y, p2.x, p2.y);
+			p2.x = ((x * gap) - (y * gap)) + ORIGIN_X;
+			p2.y = ((x * gap) + (y * gap)) / 2 + ORIGIN_Y - (coord->map[y][x] * 10);
 			draw_line(img, &p1, &p2);
 			x++;
-			p1.x = p2.x;;
+			p1.x = p2.x; 
+			p1.y = p2.y; 
 		}
 		x = 0;
+		p1.x = ((x * gap) - (y * gap)) + ORIGIN_X - gap;
+		if ((y + 1) < coord->y_point)
+			p1.y = ((x * gap) + (y * gap)) / 2 + ORIGIN_Y + gap / 2 - (coord->map[y + 1][x] * 10);
+		else
+			p1.y = ((x * gap) + (y * gap)) / 2 + ORIGIN_Y + gap / 2 ;
 		y++;
-		p1.y = p2.y + gap;
-		p1.x = ORIGIN_X;
 	}
 }
 
@@ -134,28 +135,29 @@ void	draw_y(t_coord *coord, t_pixel_to_image *img, int gap)
 	int y;
 	t_point	p1;
 	t_point	p2;
-	char **split_x;
 
 	x = 0;
 	y = 0;
-	p1.x = ORIGIN_X;
-	p1.y = ORIGIN_Y;
-	//printf
-	printf("x max: %d y max: %d", coord->x_point, coord->y_point);
-	while(x <= coord->x_point)
+	p1.x = ((x * gap) - (y * gap)) + ORIGIN_X - gap;
+	p1.y = ((x * gap) + (y * gap)) / 2 + ORIGIN_Y + gap / 2;
+	while(x < coord->x_point)
 	{
 		while (y < coord->y_point)
 		{
-			p2.x = p1.x;
-			p2.y = ORIGIN_Y + gap * coord->y_point;
+			p2.x = ((x * gap) - (y * gap)) + ORIGIN_X;
+			p2.y = ((x * gap) + (y * gap)) / 2 + ORIGIN_Y - (coord->map[y][x] * 10);
 			draw_line(img, &p1, &p2);
-			p1.y = p2.y;
 			y++;
+			p1.x = p2.x; 
+			p1.y = p2.y; 
 		}
 		y = 0;
-		p1.x = p2.x + gap;
-		p1.y = ORIGIN_Y;
 		x++;
+		p1.x = ((x * gap) - (y * gap)) + ORIGIN_X - gap;
+		if ((y + 1) < coord->y_point)
+			p1.y = ((x * gap) + (y * gap)) / 2 + ORIGIN_Y + gap / 2 - (coord->map[y + 1][x] * 10);
+		else
+			p1.y = ((x * gap) + (y * gap)) / 2 + ORIGIN_Y + gap / 2 ;
 	}
 }
 
@@ -163,12 +165,10 @@ void	print_point(t_coord *coord, t_pixel_to_image *img)
 {
 	int gap;
 
-	gap = 20;
+	gap = 60;
 	draw_x(coord, img, gap);
 	draw_y(coord, img, gap);
 }
-
-
 
 
 /* point_iso.x = ((point.x* zoom) - (point.y * zoom)) + ORIGIN_X; */
