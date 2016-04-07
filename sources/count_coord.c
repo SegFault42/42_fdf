@@ -6,7 +6,7 @@
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/31 13:32:47 by rabougue          #+#    #+#             */
-/*   Updated: 2016/04/07 13:40:36 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/04/07 19:35:17 by rabougue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,47 +14,36 @@
 
 void	init_coord(char *file_name, t_coord *coord)
 {
-
 	coord->map = NULL;
 	count_line_in_file(file_name, coord);
 }
-
-void		count_line_in_file(char *file_name, t_coord *coord)
+void	count_line_in_file(char *file_name, t_coord *coord)
 {
 	char	*line;
 	int		i;
 	int		fd;
-	int		passage;
+	int		x_len;
 	char	**split;
 
 	i = 0;
-	passage = 0;
 	fd = open(file_name, O_RDONLY);
 	while (get_next_line(fd, &line) > 0)
 	{
-		if (passage++ == 0)
+		split = ft_strsplit(line, ' ');
+		if (i++ == 0)
+			x_len = tab_len(split);
+		coord->x_point = tab_len(split);
+		tab_free(split);
+		if (x_len != coord->x_point)
 		{
-			split = ft_strsplit(line, ' ');
-			coord->x_point = tab_len(split);
-			tab_free(split);
+			ft_putendl("Map not well formatted !");
+			exit(EXIT_FAILURE);
 		}
-		i++;
 		free(line);
 	}
+	check_ret_gnl(&fd, line);
 	coord->y_point = i;
 	close(fd);
-}
-
-void	printtab(int *tab, int tab_size)
-{
-	int i;
-
-	i = 0;
-	while (i < tab_size)
-	{
-		printf("%d ", tab[i]);
-		i++;
-	}
 }
 
 void	stock_coord(char *file_name, t_coord *coord)

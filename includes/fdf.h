@@ -6,7 +6,7 @@
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/09 12:52:14 by rabougue          #+#    #+#             */
-/*   Updated: 2016/04/07 18:51:51 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/04/07 19:34:20 by rabougue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ void				count_coord(int *fd, t_coord *coord);
 void				stock_coord(char *file_name, t_coord *coord);
 void				init_coord(char *file_name, t_coord *coord);
 void				count_line_in_file(char *file_name, t_coord *coord);
+void				check_ret_gnl(int *fd, char *line);
 
 
 #endif
