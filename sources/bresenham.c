@@ -1,65 +1,126 @@
 #include "../includes/fdf.h"
 
-void	print_segment_x(int x1, int y1, int x2, int y2, t_pixel_to_image *img)
+void	first_case(t_bres *b, t_pixel_to_image *img, t_point *p1)
 {
-	t_point	point;
-	int dx, dy;
-	int e;
+	int	i;
 
-	e = abs(x2 - x1);
-	dx = abs(e * 2);
-	dy = abs((y2 - y1) * 2);
-	point.x = x1;
-	point.y = y1;
-	while (point.x <= x2)
+	i = 0;
+	while (i <= b->c_dx)
 	{
-		ft_pixel_put_to_image(img, &point);
-		point.x++;
-		if ((e = e - dy) <= 0)
+		ft_pixel_put_to_image(img, p1);
+		i++;
+		p1->x += b->x_incr;
+		b->ex -= b->dy;
+		if (b->ex < 0)
 		{
-			point.y++;
-			e = e + dx;
+			p1->y += b->y_incr;
+			b->ex += b->dx;
 		}
 	}
 }
 
-void	print_segment_y(int x1, int y1, int x2, int y2, t_pixel_to_image *img)
+void	second_case(t_bres *b, t_pixel_to_image *img, t_point *p1)
 {
-	t_point	point;
-	int	dx;
-	int	dy;
-	int	e;
+	int	i;
 
-	e = abs(y2 - y1);
-	dy = abs(e * 2);
-	dx = abs((x2 - x1) * 2);
-	point.x = x1;
-	point.y = y1;
-	while (point.y != y2)
+	i = 0;
+	while (i <= b->c_dy)
 	{
-		ft_pixel_put_to_image(img, &point);
-		if (point.y > y2)
-			point.y--;
+		ft_pixel_put_to_image(img, p1);
+		i++;
+		p1->y += b->y_incr;
+		b->ey -= b->dx;
+		if (b->ey < 0)
+		{
+			p1->x += b->x_incr;;
+			b->ey += b->dy;
+		}
+	}
+}
+
+void	draw_line(t_pixel_to_image *img, t_point *p1, t_point *p2)
+{
+	t_bres	b;
+
+	b.ex = abs(p2->x - p1->x);
+	b.ey = abs(p2->y - p1->y);
+	b.dx = b.ex * 2;
+	b.dy = b.ey * 2;
+	b.c_dx = b.ex;
+	b.c_dy = b.ey;
+	b.x_incr = 1;
+	b.y_incr = 1;
+
+	if (p1->x > p2->x)
+		b.x_incr = -1;
+	if (p1->y > p2->y)
+		b.y_incr = -1;
+	if (b.c_dx > b.c_dy)
+		first_case(&b, img, p1);
+	if (b.c_dx < b.c_dy)
+		second_case(&b, img, p1);
+}
+
+void	draw_x(t_coord *coord, t_pixel_to_image *img, int gap)
+{
+	int		x;
+	int		y;
+	t_point	p1;
+	t_point	p2;
+
+	x = 0;
+	y = 0;
+	p1.x = ((x * gap) - (y * gap)) + ORIGIN_X - gap;
+	p1.y = ((x * gap) + (y * gap)) / 2 + ORIGIN_Y + gap / 2;
+	while (y < coord->y_point)
+	{
+		while (x < coord->x_point)
+		{
+			p2.x = ((x * gap) - (y * gap)) + ORIGIN_X;
+			p2.y = ((x * gap) + (y * gap)) / 2 + ORIGIN_Y - (coord->map[y][x] * 1);
+			draw_line(img, &p1, &p2);
+			x++;
+			p1.x = p2.x;
+			p1.y = p2.y;
+		}
+		x = 0;
+		p1.x = ((x * gap) - (y * gap)) + ORIGIN_X - gap;
+		if ((y + 1) < coord->y_point)
+			p1.y = ((x * gap) + (y * gap)) / 2 + ORIGIN_Y + gap / 2 - (coord->map[y + 1][x] * 1);
 		else
-			point.y++;
-		if ((e -= dx) <= 0)
-		{
-			point.x++;
-			e += dy;
-		}
+			p1.y = ((x * gap) + (y * gap)) / 2 + ORIGIN_Y + gap / 2 ;
+		y++;
 	}
-	ft_pixel_put_to_image(img, &point);
 }
 
-void	draw_x_or_y(int x1, int y1, int x2, int y2, t_pixel_to_image *img)
+void	draw_y(t_coord *coord, t_pixel_to_image *img, int gap)
 {
-	int	dx;
-	int	dy;
+	int		x;
+	int		y;
+	t_point	p1;
+	t_point	p2;
 
-	dx = abs(x2 - x1) * 2;
-	dy = abs(y2 - y1) * 2;
-	if (dx > dy)
-		print_segment_x(x1, y1, x2, y2, img);
-	else
-		print_segment_y(x1, y1, x2, y2, img);
+	x = 0;
+	y = 0;
+	p1.x = ((x * gap) - (y * gap)) + ORIGIN_X - gap;
+	p1.y = ((x * gap) + (y * gap)) / 2 + ORIGIN_Y + gap / 2;
+	while(x < coord->x_point)
+	{
+		while (y < coord->y_point)
+		{
+			p2.x = ((x * gap) - (y * gap)) + ORIGIN_X;
+			p2.y = ((x * gap) + (y * gap)) / 2 + ORIGIN_Y - (coord->map[y][x] * 1);
+			draw_line(img, &p1, &p2);
+			y++;
+			p1.x = p2.x;
+			p1.y = p2.y;
+		}
+		y = 0;
+		x++;
+		p1.x = ((x * gap) - (y * gap)) + ORIGIN_X - gap;
+		if ((y + 1) < coord->y_point)
+			p1.y = ((x * gap) + (y * gap)) / 2 + ORIGIN_Y + gap / 2 - (coord->map[y + 1][x] * 10);
+		else
+			p1.y = ((x * gap) + (y * gap)) / 2 + ORIGIN_Y + gap / 2 ;
+	}
 }

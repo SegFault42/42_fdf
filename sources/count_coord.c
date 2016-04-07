@@ -17,6 +17,7 @@ void	init_coord(char *file_name, t_coord *coord)
 	coord->map = NULL;
 	count_line_in_file(file_name, coord);
 }
+
 void	count_line_in_file(char *file_name, t_coord *coord)
 {
 	char	*line;
