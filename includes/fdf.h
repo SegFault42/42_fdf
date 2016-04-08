@@ -6,7 +6,7 @@
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/09 12:52:14 by rabougue          #+#    #+#             */
-/*   Updated: 2016/04/08 16:53:10 by rabougue         ###   ########.fr       */
+/*   Updated: 2016/04/08 21:41:22 by rabougue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,26 +73,24 @@ typedef struct			s_pixel_to_image
 	int					bpp;
 }						t_pixel_to_image;
 
-void					draw_line(t_pixel_to_image *img, t_point *p1, t_point *p2);
-int						check_arguments(int *argc, char **argv, int *fd);
-void					open_map(int *argc, char **argv, int *fd);
-int						count_y(int *fd);
-int						count_x(int *fd);
-void					print_point(t_coord *coord, t_pixel_to_image *img);
-void					ft_pixel_put_to_image(t_pixel_to_image *image, t_point *p);
 void					draw_x_or_y(int x1, int y1, int x2, int y2, t_pixel_to_image *img);
-void					count_coord(int *fd, t_coord *coord);
-void					stock_coord(char *file_name, t_coord *coord);
-void					init_coord(char *file_name, t_coord *coord);
-void					count_line_in_file(char *file_name, t_coord *coord);
-void					check_ret_gnl(int *fd, char *line);
-void 					draw_x(t_coord *coord, t_pixel_to_image *img, int gap);
-void					draw_y(t_coord *coord, t_pixel_to_image *img, int gap);
+void					ft_pixel_put_to_image(t_pixel_to_image *image, t_point *p);
+void					draw_line(t_pixel_to_image *img, t_point *p1, t_point *p2);
 void					second_case(t_bres *b, t_pixel_to_image *img, t_point *p1);
 void					first_case(t_bres *b, t_pixel_to_image *img, t_point *p1);
+void 					draw_x(t_coord *coord, t_pixel_to_image *img, int gap);
+void					draw_y(t_coord *coord, t_pixel_to_image *img, int gap);
+void					count_line_in_file(char *file_name, t_coord *coord);
+void					print_point(t_coord *coord, t_pixel_to_image *img);
+int						check_arguments(int *argc, char **argv, int *fd);
+void					stock_coord(char *file_name, t_coord *coord);
+void					init_coord(char *file_name, t_coord *coord);
+void					open_map(int *argc, char **argv, int *fd);
 void					check_len_map(int x_len, t_coord *coord);
-int						key_hook(int keycode, void *param);
+int	key_hook(int keycode, t_context *cont, int gap, t_coord *coord, t_pixel_to_image *img);
+//int						key_hook(int keycode, t_context *cont);
+void					count_coord(int *fd, t_coord *coord);
+void					check_ret_gnl(int *fd, char *line);
 void					menu(t_context *c);
-
 
 #endif
