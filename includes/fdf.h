@@ -6,7 +6,7 @@
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/09 12:52:14 by rabougue          #+#    #+#             */
-/*   Updated: 2016/04/08 21:41:22 by rabougue         ###   ########.fr       */
+/*   Updated: 2016/04/08 22:43:24 by rabougue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void					first_case(t_bres *b, t_pixel_to_image *img, t_point *p1);
 void 					draw_x(t_coord *coord, t_pixel_to_image *img, int gap);
 void					draw_y(t_coord *coord, t_pixel_to_image *img, int gap);
 void					count_line_in_file(char *file_name, t_coord *coord);
-void					print_point(t_coord *coord, t_pixel_to_image *img);
+void					print_point(t_coord *coord, t_pixel_to_image *img, int gap);
 int						check_arguments(int *argc, char **argv, int *fd);
 void					stock_coord(char *file_name, t_coord *coord);
 void					init_coord(char *file_name, t_coord *coord);
