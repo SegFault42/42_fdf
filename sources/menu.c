@@ -1,20 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   key_hook.c                                         :+:      :+:    :+:   */
+/*   menu.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/04/08 12:57:03 by rabougue          #+#    #+#             */
-/*   Updated: 2016/04/08 14:52:27 by rabougue         ###   ########.fr       */
+/*   Created: 2016/04/08 14:57:22 by rabougue          #+#    #+#             */
+/*   Updated: 2016/04/08 15:05:02 by rabougue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-int	key_hook(int keycode, void *param)
+void	menu(t_context *c)
 {
-	if (keycode == 53)
-		exit(EXIT_SUCCESS);
-	return (0);
+	mlx_string_put(c->mlx_ptr, c->win_ptr, 0, 0, GREEN, "Menu");
 }

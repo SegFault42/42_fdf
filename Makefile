@@ -6,7 +6,7 @@
 #    By: rabougue <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/10 19:16:51 by rabougue          #+#    #+#              #
-#    Updated: 2016/04/06 13:45:58 by rabougue         ###   ########.fr        #
+#    Updated: 2016/04/08 15:04:17 by rabougue         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,9 +21,11 @@ NAME = fdf
 FLAG = -Wall -Wextra -Werror
 FRAMEWORK = -framework OpenGL -framework AppKit
 SRCS = ./sources/main.c ./sources/parsing.c ./sources/print_point.c \
-	   ./sources/bresenham.c ./sources/count_coord.c
+	   ./sources/bresenham.c ./sources/count_coord.c ./sources/key_hook.c \
+	   ./sources/menu.c
 
-OBJS = ./main.o ./parsing.o ./print_point.o ./bresenham.o ./count_coord.o
+OBJS = ./main.o ./parsing.o ./print_point.o ./bresenham.o ./count_coord.o \
+		./key_hook.o ./menu.o
 LFT = -L./libft/ -lft
 LMLX = -L./minilibx_macos/ -lmlx
 HEAD = -I ./includes/fdf.h
