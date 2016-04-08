@@ -6,17 +6,13 @@
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/25 18:01:14 by rabougue          #+#    #+#             */
-/*   Updated: 2016/04/07 19:33:42 by rabougue         ###   ########.fr       */
+/*   Updated: 2016/04/08 13:25:14 by rabougue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-/*
- ** Gerer si on ouvre un dossier au lieu d'un fichier
- */
-
-int	check_arguments(int *argc, char **argv, int *fd)
+int		check_arguments(int *argc, char **argv, int *fd)
 {
 	if (*argc != 2)
 	{
@@ -43,6 +39,15 @@ void	check_ret_gnl(int *fd, char *line)
 	if (get_next_line(*fd, &line) < 0)
 	{
 		ft_putendl("Not a valid file");
+		exit(EXIT_FAILURE);
+	}
+}
+
+void	check_len_map(int x_len, t_coord *coord)
+{
+	if (x_len != coord->x_point)
+	{
+		ft_putendl("Map not well formatted");
 		exit(EXIT_FAILURE);
 	}
 }

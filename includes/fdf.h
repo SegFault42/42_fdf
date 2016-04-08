@@ -6,7 +6,7 @@
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/09 12:52:14 by rabougue          #+#    #+#             */
-/*   Updated: 2016/04/07 19:34:20 by rabougue         ###   ########.fr       */
+/*   Updated: 2016/04/08 13:25:08 by rabougue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ void 					draw_x(t_coord *coord, t_pixel_to_image *img, int gap);
 void					draw_y(t_coord *coord, t_pixel_to_image *img, int gap);
 void					second_case(t_bres *b, t_pixel_to_image *img, t_point *p1);
 void					first_case(t_bres *b, t_pixel_to_image *img, t_point *p1);
+void					check_len_map(int x_len, t_coord *coord);
 
 
 

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   bresenham.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/04/08 12:31:59 by rabougue          #+#    #+#             */
+/*   Updated: 2016/04/08 12:36:15 by rabougue         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/fdf.h"
 
 void	first_case(t_bres *b, t_pixel_to_image *img, t_point *p1)
@@ -32,7 +44,7 @@ void	second_case(t_bres *b, t_pixel_to_image *img, t_point *p1)
 		b->ey -= b->dx;
 		if (b->ey < 0)
 		{
-			p1->x += b->x_incr;;
+			p1->x += b->x_incr;
 			b->ey += b->dy;
 		}
 	}
@@ -50,7 +62,6 @@ void	draw_line(t_pixel_to_image *img, t_point *p1, t_point *p2)
 	b.c_dy = b.ey;
 	b.x_incr = 1;
 	b.y_incr = 1;
-
 	if (p1->x > p2->x)
 		b.x_incr = -1;
 	if (p1->y > p2->y)
@@ -88,7 +99,7 @@ void	draw_x(t_coord *coord, t_pixel_to_image *img, int gap)
 		if ((y + 1) < coord->y_point)
 			p1.y = ((x * gap) + (y * gap)) / 2 + ORIGIN_Y + gap / 2 - (coord->map[y + 1][x] * 1);
 		else
-			p1.y = ((x * gap) + (y * gap)) / 2 + ORIGIN_Y + gap / 2 ;
+			p1.y = ((x * gap) + (y * gap)) / 2 + ORIGIN_Y + gap / 2;
 		y++;
 	}
 }
@@ -104,7 +115,7 @@ void	draw_y(t_coord *coord, t_pixel_to_image *img, int gap)
 	y = 0;
 	p1.x = ((x * gap) - (y * gap)) + ORIGIN_X - gap;
 	p1.y = ((x * gap) + (y * gap)) / 2 + ORIGIN_Y + gap / 2;
-	while(x < coord->x_point)
+	while (x < coord->x_point)
 	{
 		while (y < coord->y_point)
 		{
@@ -121,6 +132,6 @@ void	draw_y(t_coord *coord, t_pixel_to_image *img, int gap)
 		if ((y + 1) < coord->y_point)
 			p1.y = ((x * gap) + (y * gap)) / 2 + ORIGIN_Y + gap / 2 - (coord->map[y + 1][x] * 10);
 		else
-			p1.y = ((x * gap) + (y * gap)) / 2 + ORIGIN_Y + gap / 2 ;
+			p1.y = ((x * gap) + (y * gap)) / 2 + ORIGIN_Y + gap / 2;
 	}
 }

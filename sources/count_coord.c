@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   count_x_2.c                                        :+:      :+:    :+:   */
+/*   count_coord.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/31 13:32:47 by rabougue          #+#    #+#             */
-/*   Updated: 2016/04/07 19:35:17 by rabougue         ###   ########.fr       */
+/*   Updated: 2016/04/08 12:28:46 by rabougue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,7 @@ void	count_line_in_file(char *file_name, t_coord *coord)
 			x_len = tab_len(split);
 		coord->x_point = tab_len(split);
 		tab_free(split);
-		if (x_len != coord->x_point)
-		{
-			ft_putendl("Map not well formatted !");
-			exit(EXIT_FAILURE);
-		}
+		check_len_map(x_len, coord);
 		free(line);
 	}
 	check_ret_gnl(&fd, line);
