@@ -6,7 +6,7 @@
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/25 18:02:10 by rabougue          #+#    #+#             */
-/*   Updated: 2016/04/07 18:22:28 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/04/08 17:03:49 by rabougue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	print_point(t_coord *coord, t_pixel_to_image *img)
 {
 	int	gap;
 
-	gap = 30;
+	gap = 20;
 	draw_x(coord, img, gap);
 	draw_y(coord, img, gap);
 }

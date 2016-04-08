@@ -6,7 +6,7 @@
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/09 12:52:14 by rabougue          #+#    #+#             */
-/*   Updated: 2016/04/08 15:01:42 by rabougue         ###   ########.fr       */
+/*   Updated: 2016/04/08 16:53:10 by rabougue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 # define BLUE 0x0000FF
 # define WHITE 0xFFFFFF
 
-# define WIDTH 1280
-# define HEIGHT 720
+# define WIDTH 1920
+# define HEIGHT 1080
 
 # define ORIGIN_X (WIDTH / 3)
 # define ORIGIN_Y (HEIGHT / 8)
