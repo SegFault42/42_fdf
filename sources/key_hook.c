@@ -6,24 +6,34 @@
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/08 12:57:03 by rabougue          #+#    #+#             */
-/*   Updated: 2016/04/08 22:58:58 by rabougue         ###   ########.fr       */
+/*   Updated: 2016/04/09 16:52:43 by rabougue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-int	key_hook(int keycode, t_context *cont, int gap, t_coord *coord, t_pixel_to_image *img)
+int	key_hook(int keycode, void *param)
 {
-	int static x = 100;
-
+	int static	x = 0;
+	int static	gap = 1;
+	
 	if (keycode == 53)
 		exit(EXIT_SUCCESS);
+	if (keycode == 24)
+	{
+		/*mlx_destroy_image(((t_context *)param)->mlx_ptr, ((t_context *)param)->img_ptr);*/
+		mlx_clear_window(((t_context *)param)->mlx_ptr, ((t_context *)param)->win_ptr);
+		gap++;
+		print_point(((t_context *)param)->coord, ((t_context *)param)->pti, gap);
+		mlx_put_image_to_window(((t_context *)param)->mlx_ptr, ((t_context *)param)->win_ptr, ((t_context *)param)->img_ptr, 0, 0);
+	}
 	if (keycode == 27)
 	{
-		mlx_clear_window(cont->mlx_ptr, cont->win_ptr);
+		/*mlx_destroy_image(((t_context *)param)->mlx_ptr, ((t_context *)param)->img_ptr);*/
+		mlx_clear_window(((t_context *)param)->mlx_ptr, ((t_context *)param)->win_ptr);
 		gap--;
-		print_point(coord, img, gap);
-		mlx_put_image_to_window(cont->mlx_ptr, cont->win_ptr, cont->img_ptr, 0, 0);
+		print_point(((t_context *)param)->coord, ((t_context *)param)->pti, gap);
+		mlx_put_image_to_window(((t_context *)param)->mlx_ptr, ((t_context *)param)->win_ptr, ((t_context *)param)->img_ptr, 0, 0);
 	}
 	return (0);
 }

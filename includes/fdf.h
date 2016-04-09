@@ -6,7 +6,7 @@
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/09 12:52:14 by rabougue          #+#    #+#             */
-/*   Updated: 2016/04/08 22:43:24 by rabougue         ###   ########.fr       */
+/*   Updated: 2016/04/09 16:30:47 by rabougue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,6 @@ typedef struct			s_coord
 	int					**map;
 }						t_coord;
 
-typedef struct			s_context
-{
-	void				*mlx_ptr;
-	void				*win_ptr;
-	void				*img_ptr;
-}						t_context;
 
 typedef struct			s_pixel_to_image
 {
@@ -72,6 +66,15 @@ typedef struct			s_pixel_to_image
 	int					endian;
 	int					bpp;
 }						t_pixel_to_image;
+
+typedef struct			s_context
+{
+	void				*mlx_ptr;
+	void				*win_ptr;
+	void				*img_ptr;
+	t_pixel_to_image	*pti;
+	t_coord				*coord;
+}						t_context;
 
 void					draw_x_or_y(int x1, int y1, int x2, int y2, t_pixel_to_image *img);
 void					ft_pixel_put_to_image(t_pixel_to_image *image, t_point *p);
@@ -87,7 +90,7 @@ void					stock_coord(char *file_name, t_coord *coord);
 void					init_coord(char *file_name, t_coord *coord);
 void					open_map(int *argc, char **argv, int *fd);
 void					check_len_map(int x_len, t_coord *coord);
-int	key_hook(int keycode, t_context *cont, int gap, t_coord *coord, t_pixel_to_image *img);
+int						key_hook(int keycode, void *param);
 //int						key_hook(int keycode, t_context *cont);
 void					count_coord(int *fd, t_coord *coord);
 void					check_ret_gnl(int *fd, char *line);
