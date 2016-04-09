@@ -6,7 +6,7 @@
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/25 18:03:01 by rabougue          #+#    #+#             */
-/*   Updated: 2016/04/09 16:52:50 by rabougue         ###   ########.fr       */
+/*   Updated: 2016/04/09 19:24:53 by rabougue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	main(int argc, char **argv)
 	int					fd;
 	t_pixel_to_image	im;
 	t_coord				coord;
-	int gap = 1;
+	int gap = 10;
 
 	check_arguments(&argc, (&(*argv)), &fd);
 	stock_coord(argv[1], &coord);

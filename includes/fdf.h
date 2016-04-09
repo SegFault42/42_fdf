@@ -6,7 +6,7 @@
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/09 12:52:14 by rabougue          #+#    #+#             */
-/*   Updated: 2016/04/09 16:30:47 by rabougue         ###   ########.fr       */
+/*   Updated: 2016/04/09 18:05:33 by rabougue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # define GREEN 0x00FF00
 # define BLUE 0x0000FF
 # define WHITE 0xFFFFFF
+# define BLACK 0x000000
 
 # define WIDTH 1920
 # define HEIGHT 1080
@@ -95,5 +96,6 @@ int						key_hook(int keycode, void *param);
 void					count_coord(int *fd, t_coord *coord);
 void					check_ret_gnl(int *fd, char *line);
 void					menu(t_context *c);
+void	ft_clear_image(t_coord *coord);
 
 #endif

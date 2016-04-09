@@ -6,11 +6,23 @@
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/25 18:02:10 by rabougue          #+#    #+#             */
-/*   Updated: 2016/04/08 23:05:03 by rabougue         ###   ########.fr       */
+/*   Updated: 2016/04/09 17:52:44 by rabougue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
+
+void	ft_clear_image(t_coord *c)
+{
+	int i;
+
+	i = 0;
+	while (i <= c->x_point * HEIGHT)
+	{
+		c->map[i] = 0;
+		i++;
+	}
+}
 
 void	ft_pixel_put_to_image(t_pixel_to_image *img, t_point *p)
 {
