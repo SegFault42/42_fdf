@@ -6,7 +6,7 @@
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/09 12:52:14 by rabougue          #+#    #+#             */
-/*   Updated: 2016/04/09 22:27:45 by rabougue         ###   ########.fr       */
+/*   Updated: 2016/04/10 15:26:01 by rabougue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,12 @@
 # include <math.h>
 # include "../minilibx_macos/mlx.h"
 # include "../libft/includes/libft.h"
+
+# define KEY_ESCAP 53
+# define KEY_EQUAL 24
+# define KEY_MIN 27
+# define KEY_R 15
+# define KEY_SPACE 49
 
 # define RED 0xFF0000
 # define GREEN 0x00FF00

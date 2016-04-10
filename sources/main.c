@@ -6,7 +6,7 @@
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/25 18:03:01 by rabougue          #+#    #+#             */
-/*   Updated: 2016/04/09 23:28:09 by rabougue         ###   ########.fr       */
+/*   Updated: 2016/04/10 15:06:25 by rabougue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	main(int argc, char **argv)
 	print_point(&coord, &im, gap);
 	mlx_put_image_to_window(c.mlx_ptr, c.win_ptr, c.img_ptr, 0, 0);
 	menu(&c);
-	mlx_key_hook(c.win_ptr, key_hook, (void*)&c);
+	mlx_hook(c.win_ptr, 2, 3, key_hook, (void*)&c);
 	mlx_loop(c.mlx_ptr);
 	return (0);
 }
