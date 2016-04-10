@@ -29,7 +29,8 @@ int	main(int argc, char **argv)
 	im.img_color = mlx_get_color_value(c.mlx_ptr, RED);
 	c.pti = &im;
 	c.win_ptr = mlx_new_window(c.mlx_ptr, WIDTH, HEIGHT, "FDF");
-	
+	//rotate(&coord, 90);
+	//draw_verteces(&coord, &im);
 	print_point(&coord, &im, gap);
 	mlx_put_image_to_window(c.mlx_ptr, c.win_ptr, c.img_ptr, 0, 0);
 	/*menu(&c);*/

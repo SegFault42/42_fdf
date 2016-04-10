@@ -51,6 +51,7 @@ void	ft_pixel_put_to_image(t_pixel_to_image *img, t_point *p)
 
 void	print_point(t_coord *coord, t_pixel_to_image *img, int gap)
 {
-	draw_x(coord, img, gap);
-	draw_y(coord, img, gap);
+	join_x(coord, img);
+	//draw_x(coord, img, gap);
+	//draw_y(coord, img, gap);
 }

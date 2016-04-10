@@ -56,6 +56,8 @@ typedef struct			s_coord
 	int					x_point;
 	int					y_point;
 	int					**map;
+	int					total_points;
+	t_point				**verteces;
 }						t_coord;
 
 
@@ -77,7 +79,11 @@ typedef struct			s_context
 	t_coord				*coord;
 }						t_context;
 
+void					rotate(t_coord *coord, int angle);
+void					join_x(t_coord *coord, t_pixel_to_image *img);
 void					draw_x_or_y(int x1, int y1, int x2, int y2, t_pixel_to_image *img);
+void					translate(t_coord *coord, int x_axix, int y_axis);
+void					draw_verteces(t_coord *coord, t_pixel_to_image *img);
 void					ft_pixel_put_to_image(t_pixel_to_image *image, t_point *p);
 void					draw_line(t_pixel_to_image *img, t_point *p1, t_point *p2);
 void					second_case(t_bres *b, t_pixel_to_image *img, t_point *p1);

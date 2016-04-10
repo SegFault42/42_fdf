@@ -12,6 +12,82 @@
 
 #include "../includes/fdf.h"
 
+void matrix_mult(int mi[3][3], t_point *p)
+{
+	int i;
+	int j;
+	int newp[3];
+
+	i = 0;
+	j = 0;
+	while (i < 3)
+	{
+		newp[i] = (mi[i][0] * p->x) + (mi[i][1] * p->y) + (mi[i][2] * 1);
+		i++;
+	}
+	p->x = newp[0];
+	p->y = newp[1];
+}
+
+void	translate(t_coord *coord, int x_axis, int y_axis)
+{
+	int matrix[3][3];
+	int v;
+
+	matrix[0][0] = 1; 
+	matrix[0][1] = 0; 
+	matrix[0][2] = x_axis; 
+	matrix[1][0] = 0; 
+	matrix[1][1] = 1; 
+	matrix[1][2] = y_axis; 
+	matrix[2][0] = 0; 
+	matrix[2][1] = 0; 
+	matrix[2][2] = 1; 
+	v = 0;
+	while (v < coord->total_points)
+	{
+		matrix_mult(matrix, coord->verteces[v]);
+		v++;
+	}
+
+}
+
+void	rotate(t_coord *coord, int angle)
+{
+	int matrix[3][3];
+	int v;
+
+	matrix[0][0] = cos(angle); 
+	matrix[0][1] = -(sin(angle))+ 0.5; 
+	matrix[0][2] = 0; 
+	matrix[1][0] = sin(angle)+ 0.5; 
+	matrix[1][1] = cos(angle)+ 0.5; 
+	matrix[1][2] = 0; 
+	matrix[2][0] = 0; 
+	matrix[2][1] = 0; 
+	matrix[2][2] = 1; 
+	v = 0;
+	while (v < coord->total_points)
+	{
+		matrix_mult(matrix, coord->verteces[v]);
+		v++;
+	}
+	v = 0;
+	int w = 1;
+	while (v < coord->total_points)
+	{
+		printf("%d, %d ", coord->verteces[v]->x, coord->verteces[v]->y);
+		if (w == coord->x_point)
+		{
+			printf("\n");
+			w = 0;
+		}
+		w++;
+		v++;
+	}
+
+}
+
 void	first_case(t_bres *b, t_pixel_to_image *img, t_point *p1)
 {
 	int	i;
@@ -72,66 +148,38 @@ void	draw_line(t_pixel_to_image *img, t_point *p1, t_point *p2)
 		second_case(&b, img, p1);
 }
 
-void	draw_x(t_coord *coord, t_pixel_to_image *img, int gap)
+void	draw_verteces(t_coord *coord, t_pixel_to_image *img)
 {
-	int		x;
-	int		y;
-	t_point	p1;
-	t_point	p2;
+	int v;
 
-	x = 0;
-	y = 0;
-	p1.x = ((x * gap) - (y * gap)) + ORIGIN_X - gap;
-	p1.y = ((x * gap) + (y * gap)) / 2 + ORIGIN_Y + gap / 2;
-	while (y < coord->y_point)
+	v = 0;
+	while (v < coord->total_points)
 	{
-		while (x < coord->x_point)
-		{
-			p2.x = ((x * gap) - (y * gap)) + ORIGIN_X;
-			p2.y = ((x * gap) + (y * gap)) / 2 + ORIGIN_Y - (coord->map[y][x] * 10);
-			draw_line(img, &p1, &p2);
-			x++;
-			p1.x = p2.x;
-			p1.y = p2.y;
-		}
-		x = 0;
-		p1.x = ((x * gap) - (y * gap)) + ORIGIN_X - gap;
-		if ((y + 1) < coord->y_point)
-			p1.y = ((x * gap) + (y * gap)) / 2 + ORIGIN_Y + gap / 2 - (coord->map[y + 1][x] * 10);
-		else
-			p1.y = ((x * gap) + (y * gap)) / 2 + ORIGIN_Y + gap / 2;
-		y++;
+		ft_pixel_put_to_image(img, coord->verteces[v]);
+		v++;
 	}
 }
-
-void	draw_y(t_coord *coord, t_pixel_to_image *img, int gap)
+void	join_x(t_coord *coord, t_pixel_to_image *img)
 {
-	int		x;
-	int		y;
-	t_point	p1;
-	t_point	p2;
+	int v;
+	int x;
+	int y;
 
-	x = 0;
-	y = 0;
-	p1.x = ((x * gap) - (y * gap)) + ORIGIN_X - gap;
-	p1.y = ((x * gap) + (y * gap)) / 2 + ORIGIN_Y + gap / 2;
-	while (x < coord->x_point)
+	v = 0;
+	x = 1;
+	y = 1;
+	while (v < coord->total_points - 1)
 	{
-		while (y < coord->y_point)
+		if (x < coord->x_point)
+			draw_line(img, coord->verteces[v], coord->verteces[v + 1]);
+		if (y < coord->y_point  && x < coord->x_point )
+			draw_line(img, coord->verteces[v], coord->verteces[v + coord->x_point + 1]);
+		if (x == coord->x_point)
 		{
-			p2.x = ((x * gap) - (y * gap)) + ORIGIN_X;
-			p2.y = ((x * gap) + (y * gap)) / 2 + ORIGIN_Y - (coord->map[y][x] * 10);
-			draw_line(img, &p1, &p2);
+			x = 0;
 			y++;
-			p1.x = p2.x;
-			p1.y = p2.y;
 		}
-		y = 0;
 		x++;
-		p1.x = ((x * gap) - (y * gap)) + ORIGIN_X - gap;
-		if ((y + 1) < coord->y_point)
-			p1.y = ((x * gap) + (y * gap)) / 2 + ORIGIN_Y + gap / 2 - (coord->map[y + 1][x] * 10);
-		else
-			p1.y = ((x * gap) + (y * gap)) / 2 + ORIGIN_Y + gap / 2;
+		v++;
 	}
 }
