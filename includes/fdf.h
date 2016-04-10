@@ -6,7 +6,7 @@
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/09 12:52:14 by rabougue          #+#    #+#             */
-/*   Updated: 2016/04/10 15:26:01 by rabougue         ###   ########.fr       */
+/*   Updated: 2016/04/10 19:01:04 by rabougue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@
 # define WIDTH 1920
 # define HEIGHT 1080
 
-# define ORIGIN_X (WIDTH / 3)
-# define ORIGIN_Y (HEIGHT / 8)
+# define ORIGIN_X (WIDTH / 2)
+# define ORIGIN_Y (HEIGHT / 3)
 
 typedef	struct			s_bres
 {
@@ -88,10 +88,10 @@ void					ft_pixel_put_to_image(t_pixel_to_image *image, t_point *p);
 void					draw_line(t_pixel_to_image *img, t_point *p1, t_point *p2);
 void					second_case(t_bres *b, t_pixel_to_image *img, t_point *p1);
 void					first_case(t_bres *b, t_pixel_to_image *img, t_point *p1);
-void 					draw_x(t_coord *coord, t_pixel_to_image *img, int gap);
-void					draw_y(t_coord *coord, t_pixel_to_image *img, int gap);
+void 					draw_x(t_coord *coord, t_pixel_to_image *img, int gap, int level);
+void					draw_y(t_coord *coord, t_pixel_to_image *img, int gap, int level);
 void					count_line_in_file(char *file_name, t_coord *coord);
-void					print_point(t_coord *coord, t_pixel_to_image *img, int gap);
+void					print_point(t_coord *coord, t_pixel_to_image *img, int gap, int level);
 int						check_arguments(int *argc, char **argv, int *fd);
 void					stock_coord(char *file_name, t_coord *coord);
 void					init_coord(char *file_name, t_coord *coord);

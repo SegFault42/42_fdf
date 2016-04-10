@@ -6,7 +6,7 @@
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/08 12:31:59 by rabougue          #+#    #+#             */
-/*   Updated: 2016/04/09 22:27:44 by rabougue         ###   ########.fr       */
+/*   Updated: 2016/04/10 18:53:54 by rabougue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	draw_line(t_pixel_to_image *img, t_point *p1, t_point *p2)
 		second_case(&b, img, p1);
 }
 
-void	draw_x(t_coord *coord, t_pixel_to_image *img, int gap)
+void	draw_x(t_coord *coord, t_pixel_to_image *img, int gap, int level)
 {
 	int		x;
 	int		y;
@@ -88,7 +88,7 @@ void	draw_x(t_coord *coord, t_pixel_to_image *img, int gap)
 		while (x < coord->x_point)
 		{
 			p2.x = ((x * gap) - (y * gap)) + ORIGIN_X;
-			p2.y = ((x * gap) + (y * gap)) / 2 + ORIGIN_Y - (coord->map[y][x] * 10);
+			p2.y = ((x * gap) + (y * gap)) / 2 + ORIGIN_Y - (coord->map[y][x] * level);
 			draw_line(img, &p1, &p2);
 			x++;
 			p1.x = p2.x;
@@ -97,14 +97,14 @@ void	draw_x(t_coord *coord, t_pixel_to_image *img, int gap)
 		x = 0;
 		p1.x = ((x * gap) - (y * gap)) + ORIGIN_X - gap;
 		if ((y + 1) < coord->y_point)
-			p1.y = ((x * gap) + (y * gap)) / 2 + ORIGIN_Y + gap / 2 - (coord->map[y + 1][x] * 10);
+			p1.y = ((x * gap) + (y * gap)) / 2 + ORIGIN_Y + gap / 2 - (coord->map[y + 1][x] * level);
 		else
 			p1.y = ((x * gap) + (y * gap)) / 2 + ORIGIN_Y + gap / 2;
 		y++;
 	}
 }
 
-void	draw_y(t_coord *coord, t_pixel_to_image *img, int gap)
+void	draw_y(t_coord *coord, t_pixel_to_image *img, int gap, int level)
 {
 	int		x;
 	int		y;
@@ -120,7 +120,7 @@ void	draw_y(t_coord *coord, t_pixel_to_image *img, int gap)
 		while (y < coord->y_point)
 		{
 			p2.x = ((x * gap) - (y * gap)) + ORIGIN_X;
-			p2.y = ((x * gap) + (y * gap)) / 2 + ORIGIN_Y - (coord->map[y][x] * 10);
+			p2.y = ((x * gap) + (y * gap)) / 2 + ORIGIN_Y - (coord->map[y][x] * level);
 			draw_line(img, &p1, &p2);
 			y++;
 			p1.x = p2.x;
@@ -130,7 +130,7 @@ void	draw_y(t_coord *coord, t_pixel_to_image *img, int gap)
 		x++;
 		p1.x = ((x * gap) - (y * gap)) + ORIGIN_X - gap;
 		if ((y + 1) < coord->y_point)
-			p1.y = ((x * gap) + (y * gap)) / 2 + ORIGIN_Y + gap / 2 - (coord->map[y + 1][x] * 10);
+			p1.y = ((x * gap) + (y * gap)) / 2 + ORIGIN_Y + gap / 2 - (coord->map[y + 1][x] * level);
 		else
 			p1.y = ((x * gap) + (y * gap)) / 2 + ORIGIN_Y + gap / 2;
 	}
