@@ -6,7 +6,7 @@
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/09 12:52:14 by rabougue          #+#    #+#             */
-/*   Updated: 2016/04/10 19:11:19 by rabougue         ###   ########.fr       */
+/*   Updated: 2016/04/10 21:13:59 by rabougue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,7 @@
 # include <math.h>
 # include "../minilibx_macos/mlx.h"
 # include "../libft/includes/libft.h"
-
-# define KEY_ESCAP 53
-# define KEY_EQUAL 24
-# define KEY_MIN 27
-# define KEY_R 15
-# define KEY_SPACE 49
-# define KEY_NUM_PLUS 69
-# define KEY_NUM_MINUS 78
+# include "./keyboard.h"
 
 # define RED 0xFF0000
 # define GREEN 0x00FF00
