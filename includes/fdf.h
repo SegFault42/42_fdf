@@ -6,7 +6,7 @@
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/09 12:52:14 by rabougue          #+#    #+#             */
-/*   Updated: 2016/04/10 19:03:28 by rabougue         ###   ########.fr       */
+/*   Updated: 2016/04/10 19:11:19 by rabougue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@
 # define KEY_MIN 27
 # define KEY_R 15
 # define KEY_SPACE 49
+# define KEY_NUM_PLUS 69
+# define KEY_NUM_MINUS 78
 
 # define RED 0xFF0000
 # define GREEN 0x00FF00
