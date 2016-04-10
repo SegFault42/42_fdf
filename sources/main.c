@@ -15,11 +15,12 @@
 int	main(int argc, char **argv)
 {
 	t_context			c;
-	int					fd;
 	t_pixel_to_image	im;
 	t_coord				coord;
-	int gap = 10;
+	int					gap;
+	int					fd;
 
+	gap = 10;
 	check_arguments(&argc, (&(*argv)), &fd);
 	stock_coord(argv[1], &coord);
 	c.coord = &coord;
@@ -29,10 +30,10 @@ int	main(int argc, char **argv)
 	im.img_color = mlx_get_color_value(c.mlx_ptr, RED);
 	c.pti = &im;
 	c.win_ptr = mlx_new_window(c.mlx_ptr, WIDTH, HEIGHT, "FDF");
-	
+
 	print_point(&coord, &im, gap);
 	mlx_put_image_to_window(c.mlx_ptr, c.win_ptr, c.img_ptr, 0, 0);
-	/*menu(&c);*/
+	menu(&c);
 	mlx_key_hook(c.win_ptr, key_hook, (void*)&c);
 	mlx_loop(c.mlx_ptr);
 	return (0);

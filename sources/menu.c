@@ -14,6 +14,8 @@
 
 void	menu(t_context *c)
 {
-	mlx_string_put(c->mlx_ptr, c->win_ptr, 0, -5, GREEN, "Menu :");
-	mlx_string_put(c->mlx_ptr, c->win_ptr, 0, 10, GREEN, "Esc = Exit");
+	mlx_string_put(c->mlx_ptr, c->win_ptr, 15, 10, GREEN, "Esc = Exit");
+	mlx_string_put(c->mlx_ptr, c->win_ptr, 15, 25, GREEN, "+ = Zoom in");
+	mlx_string_put(c->mlx_ptr, c->win_ptr, 15, 40, GREEN, "- = Zoom out");
+	mlx_string_put(c->mlx_ptr, c->win_ptr, 15, 55, GREEN, "R = Reset");
 }
