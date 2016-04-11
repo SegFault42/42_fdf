@@ -64,35 +64,9 @@ void	translate(t_coord *coord, int x_axis, int y_axis)
 	matrix[2][1] = 0; 
 	matrix[2][2] = 1; 
 	v = 0;
-	int w = 1;
-	while (v < coord->total_points)
-	{
-		printf("%d, %d ", coord->verteces[v]->x, coord->verteces[v]->y);
-		if (w == coord->x_point)
-		{
-			printf("\n");
-			w = 0;
-		}
-		w++;
-		v++;
-	}
-	v = 0;
 	while (v < coord->total_points)
 	{
 		matrix_mult(matrix, coord->verteces[v]);
-		v++;
-	}
-	v = 0;
-	w = 1;
-	while (v < coord->total_points)
-	{
-		printf("%d, %d ", coord->verteces[v]->x, coord->verteces[v]->y);
-		if (w == coord->x_point)
-		{
-			printf("\n");
-			w = 0;
-		}
-		w++;
 		v++;
 	}
 }
@@ -180,26 +154,26 @@ void	second_case(t_bres *b, t_pixel_to_image *img, t_point *p1)
 	}
 }
 
-void	draw_line(t_pixel_to_image *img, t_point *p1, t_point *p2)
+void	draw_line(t_pixel_to_image *img, t_point p1, t_point p2)
 {
 	t_bres	b;
 
-	b.ex = abs(p2->x - p1->x);
-	b.ey = abs(p2->y - p1->y);
+	b.ex = abs(p2.x - p1.x);
+	b.ey = abs(p2.y - p1.y);
 	b.dx = b.ex * 2;
 	b.dy = b.ey * 2;
 	b.c_dx = b.ex;
 	b.c_dy = b.ey;
 	b.x_incr = 1;
 	b.y_incr = 1;
-	if (p1->x > p2->x)
+	if (p1.x > p2.x)
 		b.x_incr = -1;
-	if (p1->y > p2->y)
+	if (p1.y > p2.y)
 		b.y_incr = -1;
 	if (b.c_dx >= b.c_dy)
-		first_case(&b, img, p1);
+		first_case(&b, img, &p1);
 	else if (b.c_dx <= b.c_dy)
-		second_case(&b, img, p1);
+		second_case(&b, img, &p1);
 }
 
 void	draw_verteces(t_coord *coord, t_pixel_to_image *img)
@@ -220,20 +194,32 @@ void	join_x(t_coord *coord, t_pixel_to_image *img)
 	int y;
 
 	v = 0;
-	x = 1;
-	y = 1;
-	while (v < coord->total_points - 1)
+	x = 0;
+	y = 0;
+	while (y < coord->y_point - 1)
 	{
-		if (x < coord->x_point)
-			draw_line(img, coord->verteces[v], coord->verteces[v + 1]);
-		if (y < coord->y_point  && x < coord->x_point )
-			draw_line(img, coord->verteces[v], coord->verteces[v + coord->x_point + 1]);
-		if (x == coord->x_point)
+		while (x < coord->x_point)
 		{
-			x = 0;
-			y++;
+			draw_line(img, *(coord->verteces[v]), *(coord->verteces[v + coord->x_point]));
+			v++;
+			x++;
 		}
-		x++;
+		x = 0;
+		y++;
+	}
+	v = 0;
+	x = 0;
+	y = 0;
+	while (y < coord->y_point)
+	{
+		while (x < coord->x_point - 1)
+		{
+			draw_line(img, *(coord->verteces[v]), *(coord->verteces[v + 1]));
+			v++;
+			x++;
+		}
+		x = 0;
+		y++;
 		v++;
 	}
 }

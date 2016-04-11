@@ -56,7 +56,6 @@ typedef struct			s_coord
 {
 	int					x_point;
 	int					y_point;
-	int					**map;
 	int					total_points;
 	t_point				**verteces;
 }						t_coord;
@@ -87,16 +86,14 @@ void					draw_x_or_y(int x1, int y1, int x2, int y2, t_pixel_to_image *img);
 void					translate(t_coord *coord, int x_axix, int y_axis);
 void					draw_verteces(t_coord *coord, t_pixel_to_image *img);
 void					ft_pixel_put_to_image(t_pixel_to_image *image, t_point *p);
-void					draw_line(t_pixel_to_image *img, t_point *p1, t_point *p2);
+void					draw_line(t_pixel_to_image *img, t_point p1, t_point p2);
 void					second_case(t_bres *b, t_pixel_to_image *img, t_point *p1);
 void					first_case(t_bres *b, t_pixel_to_image *img, t_point *p1);
-void 					draw_x(t_coord *coord, t_pixel_to_image *img, int gap);
-void					draw_y(t_coord *coord, t_pixel_to_image *img, int gap);
 void					count_line_in_file(char *file_name, t_coord *coord);
 void					print_point(t_coord *coord, t_pixel_to_image *img, int gap);
 int						check_arguments(int *argc, char **argv, int *fd);
-void					stock_coord(char *file_name, t_coord *coord);
-void					init_coord(char *file_name, t_coord *coord);
+void					stock_coord(char *file_name, t_context *c);
+void					init_coord(char *file_name, t_context *coord);
 void					open_map(int *argc, char **argv, int *fd);
 void					check_len_map(int x_len, t_coord *coord);
 int						key_hook(int keycode, void *param);

@@ -12,24 +12,16 @@
 
 #include "../includes/fdf.h"
 
-void	ft_clear_image(t_coord *c)
-{
-	int i;
-
-	i = 0;
-	while (i <= c->x_point * HEIGHT)
-	{
-		c->map[i] = 0;
-		i++;
-	}
-}
-
 void	ft_pixel_put_to_image(t_pixel_to_image *img, t_point *p)
 {
 	unsigned char	r;
 	unsigned char	g;
 	unsigned char	b;
+	int i;
 
+	i = p->y * img->sizeline + p->x * img->bpp / 8;
+	if (i < 0 || i > img->sizeline * HEIGHT || p->x > WIDTH || p->x < 0)
+		return;
 	r = (img->img_color & 0xFF0000) >> 16;
 	g = (img->img_color & 0xFF00) >> 8;
 	b = (img->img_color & 0xFF);
@@ -52,6 +44,18 @@ void	ft_pixel_put_to_image(t_pixel_to_image *img, t_point *p)
 void	print_point(t_coord *coord, t_pixel_to_image *img, int gap)
 {
 	join_x(coord, img);
-	//draw_x(coord, img, gap);
-	//draw_y(coord, img, gap);
+	/* int v = 0; */
+	/* int w = 1; */
+	/* while (v < coord->total_points) */
+	/* { */
+	/* 	printf("%d, %d ", coord->verteces[v]->x, coord->verteces[v]->y); */
+	/* 	if (w == coord->x_point) */
+	/* 	{ */
+	/* 		printf("\n"); */
+	/* 		w = 0; */
+	/* 	} */
+	/* 	w++; */
+	/* 	v++; */
+	/* } */
+	/* exit(3); */
 }

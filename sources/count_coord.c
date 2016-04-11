@@ -12,13 +12,7 @@
 
 #include "../includes/fdf.h"
 
-void	init_coord(char *file_name, t_coord *coord)
-{
-	coord->map = NULL;
-	count_line_in_file(file_name, coord);
-}
-
-void	count_line_in_file(char *file_name, t_coord *coord)
+void	init_coord(char *file_name, t_context *c)
 {
 	char	*line;
 	int		i;
@@ -27,25 +21,26 @@ void	count_line_in_file(char *file_name, t_coord *coord)
 	char	**split;
 
 	i = 0;
+	c->coord = (t_coord *)malloc(sizeof(t_coord));
 	fd = open(file_name, O_RDONLY);
 	while (get_next_line(fd, &line) > 0)
 	{
 		split = ft_strsplit(line, ' ');
 		if (i++ == 0)
 			x_len = tab_len(split);
-		coord->x_point = tab_len(split);
+		c->coord->x_point = tab_len(split);
 		tab_free(split);
-		check_len_map(x_len, coord);
+		check_len_map(x_len, c->coord);
 		free(line);
 	}
 	check_ret_gnl(&fd, line);
-	coord->total_points = x_len * i;;
-	coord->y_point = i;
+	c->coord->total_points = x_len * i;;
+	c->coord->y_point = i;
 	close(fd);
 }
 
 
-void	stock_coord(char *file_name, t_coord *coord)
+void	stock_coord(char *file_name, t_context *c)
 {
 	int		fd;
 	char	*line;
@@ -61,17 +56,17 @@ void	stock_coord(char *file_name, t_coord *coord)
 	v = 0;
 	gap = 20;
 	c_height = 10;
-	init_coord(file_name, coord);
+	init_coord(file_name, c);
 	fd = open(file_name, O_RDONLY);
-	coord->verteces = (t_point **)malloc(sizeof(t_point *) * coord->total_points);
+	c->coord->verteces = (t_point **)malloc(sizeof(t_point *) * c->coord->total_points);
 	while (get_next_line(fd, &line) > 0)
 	{
 		split = ft_strsplit(line, ' ');
-		while (x < coord->x_point)
+		while (x < c->coord->x_point)
 		{
-			coord->verteces[v] = (t_point *)malloc(sizeof(t_point));
-			coord->verteces[v]->x = ((x * gap) - (y * gap)) + ORIGIN_X;
-			coord->verteces[v]->y = ((x * gap) + (y * gap)) / 2 + ORIGIN_Y - (ft_atoi(split[x]) * c_height);
+			c->coord->verteces[v] = (t_point *)malloc(sizeof(t_point));
+			c->coord->verteces[v]->x = ((x * gap) - (y * gap)) + ORIGIN_X;
+			c->coord->verteces[v]->y = ((x * gap) + (y * gap)) / 2 + ORIGIN_Y - (ft_atoi(split[x]) * c_height);
 			v++;
 			x++;
 		}
@@ -82,10 +77,10 @@ void	stock_coord(char *file_name, t_coord *coord)
 	}
 	/* v = 0; */
 	/* int w = 1; */
-	/* while (v < coord->total_points) */
+	/* while (v < c->coord->total_points) */
 	/* { */
-	/* 	printf("%d, %d ", coord->verteces[v]->x, coord->verteces[v]->y); */
-	/* 	if (w == coord->x_point) */
+	/* 	printf("%d, %d ", c->coord->verteces[v]->x, c->coord->verteces[v]->y); */
+	/* 	if (w == c->coord->x_point) */
 	/* 	{ */
 	/* 		printf("\n"); */
 	/* 		w = 0; */
@@ -93,5 +88,6 @@ void	stock_coord(char *file_name, t_coord *coord)
 	/* 	w++; */
 	/* 	v++; */
 	/* } */
+	/* exit(4); */
 	close(fd);
 }

@@ -43,7 +43,7 @@ $(NAME):
 	@gcc $(HEAD) -c $(SRCS)
 	@echo "\033[32mCompiling in .o done !\033[0m"
 	@echo "\033[33mCompiling fdf ...\033[0m"
-	@gcc -o $(NAME) $(FLAG) $(OBJS) $(LMLX) $(LFT) $(FRAMEWORK)
+	@gcc -g -o $(NAME) $(FLAG) $(OBJS) $(LMLX) $(LFT) $(FRAMEWORK)
 	@echo "\033[32mCompiling fdf done !\033[0m"
 
 mc: fclean all clean
