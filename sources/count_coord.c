@@ -6,7 +6,7 @@
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/31 13:32:47 by rabougue          #+#    #+#             */
-/*   Updated: 2016/04/08 12:28:46 by rabougue         ###   ########.fr       */
+/*   Updated: 2016/04/11 16:35:50 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,11 @@ void	stock_coord(char *file_name, t_coord *coord)
 	int		v;
 	int		gap;
 	int		c_height;
-	int orx = 200;
-	int ory = 200;
 
 	x = 0;
 	y = 0;
 	v = 0;
-	gap = 60;
+	gap = 20;
 	c_height = 10;
 	init_coord(file_name, coord);
 	fd = open(file_name, O_RDONLY);

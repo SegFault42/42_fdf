@@ -6,7 +6,7 @@
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/09 12:52:14 by rabougue          #+#    #+#             */
-/*   Updated: 2016/04/09 22:27:45 by rabougue         ###   ########.fr       */
+/*   Updated: 2016/04/11 16:14:18 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <math.h>
 # include "../minilibx_macos/mlx.h"
 # include "../libft/includes/libft.h"
+# include "../includes/keyboard.h"
 
 # define RED 0xFF0000
 # define GREEN 0x00FF00
@@ -29,8 +30,8 @@
 # define WIDTH 1920
 # define HEIGHT 1080
 
-# define ORIGIN_X (WIDTH / 3)
-# define ORIGIN_Y (HEIGHT / 8)
+# define ORIGIN_X (WIDTH / 2)
+# define ORIGIN_Y (HEIGHT / 3)
 
 typedef	struct			s_bres
 {
@@ -79,6 +80,7 @@ typedef struct			s_context
 	t_coord				*coord;
 }						t_context;
 
+void					scale(t_coord *coord, float x_axis, float y_axis);
 void					rotate(t_coord *coord, int angle);
 void					join_x(t_coord *coord, t_pixel_to_image *img);
 void					draw_x_or_y(int x1, int y1, int x2, int y2, t_pixel_to_image *img);
