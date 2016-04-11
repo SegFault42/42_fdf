@@ -6,7 +6,7 @@
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/09 12:52:14 by rabougue          #+#    #+#             */
-/*   Updated: 2016/04/11 23:40:56 by rabougue         ###   ########.fr       */
+/*   Updated: 2016/04/11 23:48:38 by rabougue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 # define HEIGHT 1080
 
 # define ORIGIN_X (WIDTH / 2)
-# define ORIGIN_Y 0//(HEIGHT / 3)
+# define ORIGIN_Y (HEIGHT / 3)
 
 
 typedef	struct			s_bres
