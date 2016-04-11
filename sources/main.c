@@ -6,7 +6,7 @@
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/25 18:03:01 by rabougue          #+#    #+#             */
-/*   Updated: 2016/04/11 18:34:15 by rabougue         ###   ########.fr       */
+/*   Updated: 2016/04/11 23:43:46 by rabougue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,11 @@ int	main(int argc, char **argv)
 	int					gap;
 	int					level;
 	int					fd;
+	int					iso;
 
-	gap = 0;
-	level = 0;
+	gap = 1;
+	level = 1;
+	iso = 1;
 	check_arguments(&argc, (&(*argv)), &fd);
 	stock_coord(argv[1], &coord);
 	c.coord = &coord;
@@ -33,7 +35,7 @@ int	main(int argc, char **argv)
 	c.pti = &im;
 	c.win_ptr = mlx_new_window(c.mlx_ptr, WIDTH, HEIGHT, "FDF");
 
-	print_point(&coord, &im, gap, level);
+	print_point(&coord, &im, gap, level, iso);
 	mlx_put_image_to_window(c.mlx_ptr, c.win_ptr, c.img_ptr, 0, 0);
 	menu(&c);
 	mlx_hook(c.win_ptr, 2, 3, key_hook, (void*)&c);
