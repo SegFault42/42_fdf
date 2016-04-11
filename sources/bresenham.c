@@ -6,7 +6,7 @@
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/08 12:31:59 by rabougue          #+#    #+#             */
-/*   Updated: 2016/04/10 18:53:54 by rabougue         ###   ########.fr       */
+/*   Updated: 2016/04/11 20:31:38 by rabougue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,11 @@ void	first_case(t_bres *b, t_pixel_to_image *img, t_point *p1)
 	i = 0;
 	while (i <= b->c_dx)
 	{
-		ft_pixel_put_to_image(img, p1);
+		if (p1->x < WIDTH && p1->y < HEIGHT)
+		{
+			if (p1->x >= 0 && p1->y >= 0)
+				ft_pixel_put_to_image(img, p1);
+		}
 		i++;
 		p1->x += b->x_incr;
 		b->ex -= b->dy;
@@ -38,7 +42,11 @@ void	second_case(t_bres *b, t_pixel_to_image *img, t_point *p1)
 	i = 0;
 	while (i <= b->c_dy)
 	{
-		ft_pixel_put_to_image(img, p1);
+		if (p1->x < WIDTH && p1->y < HEIGHT)
+		{
+			if (p1->x >= 0 && p1->y >= 0)
+				ft_pixel_put_to_image(img, p1);
+		}
 		i++;
 		p1->y += b->y_incr;
 		b->ey -= b->dx;
@@ -82,7 +90,7 @@ void	draw_x(t_coord *coord, t_pixel_to_image *img, int gap, int level)
 	x = 0;
 	y = 0;
 	p1.x = ((x * gap) - (y * gap)) + ORIGIN_X - gap;
-	p1.y = ((x * gap) + (y * gap)) / 2 + ORIGIN_Y + gap / 2;
+	p1.y = (((x * gap) + (y * gap)) / 2 + ORIGIN_Y + gap / 2) - (coord->map[y][x] * level);
 	while (y < coord->y_point)
 	{
 		while (x < coord->x_point)
@@ -114,7 +122,7 @@ void	draw_y(t_coord *coord, t_pixel_to_image *img, int gap, int level)
 	x = 0;
 	y = 0;
 	p1.x = ((x * gap) - (y * gap)) + ORIGIN_X - gap;
-	p1.y = ((x * gap) + (y * gap)) / 2 + ORIGIN_Y + gap / 2;
+	p1.y = (((x * gap) + (y * gap)) / 2 + ORIGIN_Y + gap / 2) - (coord->map[y][x] * level);
 	while (x < coord->x_point)
 	{
 		while (y < coord->y_point)

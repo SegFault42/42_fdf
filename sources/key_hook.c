@@ -6,7 +6,7 @@
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/08 12:57:03 by rabougue          #+#    #+#             */
-/*   Updated: 2016/04/10 22:38:35 by rabougue         ###   ########.fr       */
+/*   Updated: 2016/04/11 17:43:06 by rabougue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	key_hook(int keycode, void *param)
 {
-	int static	gap = 10;
-	int static	level = 10;
+	int static	gap = 1;
+	int static	level = 1;
 
 	if (gap <= 0 )
 	{
@@ -86,7 +86,9 @@ int	key_hook(int keycode, void *param)
 		mlx_put_image_to_window(((t_context *)param)->mlx_ptr, ((t_context *)param)->win_ptr, ((t_context *)param)->img_ptr, 0, 0);
 		menu(((t_context *)param));
 	}
-	if (keycode == KEY_SPACE) // clear
-		mlx_clear_window(((t_context *)param)->mlx_ptr, ((t_context *)param)->win_ptr);
+	if (keycode == KEY_RIGHT) // move right
+	{
+		
+	}
 	return (0);
 }

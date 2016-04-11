@@ -6,7 +6,7 @@
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/25 18:03:01 by rabougue          #+#    #+#             */
-/*   Updated: 2016/04/10 21:09:26 by rabougue         ###   ########.fr       */
+/*   Updated: 2016/04/11 18:34:15 by rabougue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ int	main(int argc, char **argv)
 	int					level;
 	int					fd;
 
-	gap = 10;
-	level = 10;
+	gap = 0;
+	level = 0;
 	check_arguments(&argc, (&(*argv)), &fd);
 	stock_coord(argv[1], &coord);
 	c.coord = &coord;

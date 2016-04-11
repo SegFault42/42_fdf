@@ -6,7 +6,7 @@
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/09 12:52:14 by rabougue          #+#    #+#             */
-/*   Updated: 2016/04/10 21:13:59 by rabougue         ###   ########.fr       */
+/*   Updated: 2016/04/11 19:10:50 by rabougue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 # define ORIGIN_X (WIDTH / 2)
 # define ORIGIN_Y (HEIGHT / 3)
 
+
 typedef	struct			s_bres
 {
 	int					dx;
@@ -44,7 +45,7 @@ typedef	struct			s_bres
 	int					c_dy;
 	int					ex;
 	int					ey;
-}						t_bres;
+}					t_bres;
 
 typedef struct			s_point
 {

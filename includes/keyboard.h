@@ -1,10 +1,19 @@
+# define KEY_ESC 53
+# define KEY_TAB 48
+# define KEY_CAPS 272
+# define KEY_SHIFT_LEFT 257
+
+
+
+
+
+
+
 # define KEY_LEFT 123
 # define KEY_RIGHT 124
 # define KEY_UP 126
 # define KEY_DOWN 125
 
-# define KEY_ESC 53
-# define KEY_TAB 48
 
 # define KEY_FN 279
 # define KEY_HOME 115
@@ -15,13 +24,12 @@
 
 # define KEY_BACKSPACE 51
 # define KEY_ENTER 36
-# define KEY_SHIFT_LEFT 258
-# define KEY_SHIFT_RIGHT 257
-# define KEY_CAPS 272
-# define KEY_CTRL_LEFT 256
-# define KEY_CTRL_RIGHT 257
+# define KEY_SHIFT_RIGHT 258
+# define KEY_CTRL_LEFT 269
+# define KEY_CTRL_RIGHT 256
 # define KEY_OPTION_LEFT 262
 # define KEY_OPTION_RIGHT 261
+
 # define KEY_F1 122
 # define KEY_F2 120
 # define KEY_F3 99
@@ -41,11 +49,13 @@
 # define KEY_F17 64
 # define KEY_F18 79
 # define KEY_F19 80
+
 # define KEY_NUM_CLEAR 71
 # define KEY_EQUAL 24
 # define KEY_MIN 27
 # define KEY_TILDE 50
 # define KEY_SPACE 49
+
 # define KEY_1 18
 # define KEY_2 19
 # define KEY_3 20
@@ -56,6 +66,7 @@
 # define KEY_8 28
 # define KEY_9 25
 # define KEY_0 29
+
 # define KEY_A 0
 # define KEY_B 11
 # define KEY_C 8
@@ -82,6 +93,7 @@
 # define KEY_X 7
 # define KEY_Y 16
 # define KEY_Z 6
+
 # define KEY_NUM_0 82
 # define KEY_NUM_1 83
 # define KEY_NUM_2 84
