@@ -6,7 +6,7 @@
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/09 12:52:14 by rabougue          #+#    #+#             */
-/*   Updated: 2016/04/11 23:48:38 by rabougue         ###   ########.fr       */
+/*   Updated: 2016/04/12 17:40:35 by rabougue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # define WHITE 0xFFFFFF
 # define BLACK 0x000000
 # define PURPLE 0x993299
+# define DARK_GREY 0x3b3b3b
 
 # define WIDTH 1920
 # define HEIGHT 1080
@@ -94,11 +95,10 @@ void					stock_coord(char *file_name, t_coord *coord);
 void					init_coord(char *file_name, t_coord *coord);
 void					open_map(int *argc, char **argv, int *fd);
 void					check_len_map(int x_len, t_coord *coord);
-int						key_hook(int keycode, void *param);
-//int						key_hook(int keycode, t_context *cont);
+int						key_hook(int keycode, void *param, t_pixel_to_image *img, t_point *p);
 void					count_coord(int *fd, t_coord *coord);
 void					check_ret_gnl(int *fd, char *line);
 void					menu(t_context *c);
-void	ft_clear_image(t_coord *coord);
+void					clear_image(void *param, t_pixel_to_image *img, t_point *p);
 
 #endif
