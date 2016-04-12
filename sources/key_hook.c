@@ -38,11 +38,11 @@ int	key_hook(int keycode, void *param, t_pixel_to_image *img, t_point *p)
 	int static	origin_x = WIDTH / 2;
 	int static	origin_y = HEIGHT / 3;
 
-	if (gap == 0 )
-	{
-		gap = 1;
-		level = 1;
-	}
+	/*if (gap == 0 )*/
+	/*{*/
+		/*gap = 1;*/
+		/*level = 1;*/
+	/*}*/
 	/*if (iso <= 3)*/
 	/*{*/
 		/*iso = 4;*/
@@ -66,10 +66,11 @@ int	key_hook(int keycode, void *param, t_pixel_to_image *img, t_point *p)
 		mlx_put_image_to_window(((t_context *)param)->mlx_ptr, ((t_context *)param)->win_ptr, ((t_context *)param)->img_ptr, 0, 0);
 		menu(((t_context *)param));
 	}
-	if (keycode == KEY_EQUAL) // zoom in
+	if (keycode == KEY_EQUAL && gap >= 0) // zoom in
 	{
 		level = gap;
 		clear_image(param, img, p);
+		/*gap *= 1.05;*/
 		gap++;
 		level++;
 		((t_context *)param)->pti->img_color = mlx_get_color_value(((t_context *)param)->mlx_ptr, GREEN);
@@ -77,10 +78,11 @@ int	key_hook(int keycode, void *param, t_pixel_to_image *img, t_point *p)
 		mlx_put_image_to_window(((t_context *)param)->mlx_ptr, ((t_context *)param)->win_ptr, ((t_context *)param)->img_ptr, 0, 0);
 		menu(((t_context *)param));
 	}
-	if (keycode == KEY_MIN) // zoom out
+	if (keycode == KEY_MIN && gap > 0) // zoom out
 	{
 		level = gap;
 		clear_image(param, img, p);
+		/*gap /= 1.05;*/
 		gap--;
 		level--;
 		((t_context *)param)->pti->img_color = mlx_get_color_value(((t_context *)param)->mlx_ptr, GREEN);
@@ -106,7 +108,7 @@ int	key_hook(int keycode, void *param, t_pixel_to_image *img, t_point *p)
 		mlx_put_image_to_window(((t_context *)param)->mlx_ptr, ((t_context *)param)->win_ptr, ((t_context *)param)->img_ptr, 0, 0);
 		menu(((t_context *)param));
 	}
-	if (keycode == KEY_T) //iso
+	if (keycode == KEY_T && iso >= 1) //iso ++
 	{
 		clear_image(param, img, p);
 		iso+=1;
@@ -115,8 +117,11 @@ int	key_hook(int keycode, void *param, t_pixel_to_image *img, t_point *p)
 		mlx_put_image_to_window(((t_context *)param)->mlx_ptr, ((t_context *)param)->win_ptr, ((t_context *)param)->img_ptr, 0, 0);
 		menu(((t_context *)param));
 	}
-	if (keycode == KEY_G) //iso
+	if (keycode == KEY_G && iso > 1) //iso--
 	{
+		if (iso == 2)
+			level = 3;
+		printf("%d\n", iso);
 		clear_image(param, img, p);
 		iso-=1;
 		((t_context *)param)->pti->img_color = mlx_get_color_value(((t_context *)param)->mlx_ptr, GREEN);

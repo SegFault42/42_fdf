@@ -18,7 +18,7 @@ YELLOW = \033[48;5;226m
 END = \033[0m
 
 NAME = fdf
-FLAG = -Wall -Wextra -Werror
+FLAG = -Wall -Wextra -Werror -Ofast
 FRAMEWORK = -framework OpenGL -framework AppKit
 SRCS = ./sources/main.c ./sources/parsing.c ./sources/print_point.c \
 	   ./sources/bresenham.c ./sources/count_coord.c ./sources/key_hook.c \
@@ -65,7 +65,7 @@ re: fclean all
 FDF : clean
 	@rm -f $(NAME)
 	@gcc $(HEAD) -c $(SRCS)
-	@gcc -o $(NAME) $(OBJS) $(LMLX) $(LFT) $(FRAMEWORK)
+	@gcc -o $(NAME) $(FLAG) $(OBJS) $(LMLX) $(LFT) $(FRAMEWORK)
 	@echo "\033[32mCompiled !\033[0m"
 	@make MARIO
 

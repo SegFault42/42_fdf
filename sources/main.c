@@ -39,9 +39,9 @@ int	main(int argc, char **argv)
 	c.pti = &im;
 	c.win_ptr = mlx_new_window(c.mlx_ptr, WIDTH, HEIGHT, "FDF");
 
-	print_point(&coord, &im, gap, level, iso, origin_x, origin_y);
-	mlx_put_image_to_window(c.mlx_ptr, c.win_ptr, c.img_ptr, 0, 0);
-	menu(&c);
+	/*print_point(&coord, &im, gap, level, iso, origin_x, origin_y);*/
+	/*mlx_put_image_to_window(c.mlx_ptr, c.win_ptr, c.img_ptr, 0, 0);*/
+	/*menu(&c);*/
 	mlx_hook(c.win_ptr, 2, 3, key_hook, (void*)&c);
 	mlx_loop(c.mlx_ptr);
 	return (0);
