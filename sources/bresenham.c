@@ -6,7 +6,7 @@
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/08 12:31:59 by rabougue          #+#    #+#             */
-/*   Updated: 2016/04/12 17:29:46 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/04/12 18:47:40 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,12 +116,9 @@ void	zoom(t_coord *coord, int gap, int c_height)
 	y = 0;
 	while (v < coord->total_points)
 	{
-		if (x != coord->x_point)
-		{
-			coord->verteces[v]->x = ((x * gap) - (y * gap)) + ORIGIN_X;
-			coord->verteces[v]->y = ((x * gap) + (y * gap)) / 2 + ORIGIN_Y - (coord->verteces[v]->h * c_height);
-		}
-		if (x == coord->x_point)
+		coord->verteces[v]->x = ((x * gap) - (y * gap)) + ORIGIN_X;
+		coord->verteces[v]->y = ((x * gap) + (y * gap)) / 2 + ORIGIN_Y - (coord->verteces[v]->h * c_height);
+		if (x == coord->x_point - 1)
 		{
 			x = 0;
 			y++;
@@ -160,7 +157,10 @@ void	first_case(t_bres *b, t_pixel_to_image *img, t_point *p1)
 	i = 0;
 	while (i <= b->c_dx)
 	{
-		ft_pixel_put_to_image(img, p1);
+
+		if (p1->x < WIDTH && p1->y < HEIGHT)
+			if (p1->x >= 0 && p1->y >= 0)
+				ft_pixel_put_to_image(img, p1);
 		i++;
 		p1->x += b->x_incr;
 		b->ex -= b->dy;
@@ -179,7 +179,9 @@ void	second_case(t_bres *b, t_pixel_to_image *img, t_point *p1)
 	i = 0;
 	while (i <= b->c_dy)
 	{
-		ft_pixel_put_to_image(img, p1);
+		if (p1->x < WIDTH && p1->y < HEIGHT)
+			if (p1->x >= 0 && p1->y >= 0)
+				ft_pixel_put_to_image(img, p1);
 		i++;
 		p1->y += b->y_incr;
 		b->ey -= b->dx;
@@ -224,6 +226,7 @@ void	draw_verteces(t_coord *coord, t_pixel_to_image *img)
 		v++;
 	}
 }
+
 void	join_x(t_coord *coord, t_pixel_to_image *img)
 {
 	int v;
