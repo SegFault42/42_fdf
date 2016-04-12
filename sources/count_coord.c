@@ -6,7 +6,7 @@
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/31 13:32:47 by rabougue          #+#    #+#             */
-/*   Updated: 2016/04/11 16:35:50 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/04/12 15:40:04 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,9 @@ void	stock_coord(char *file_name, t_context *c)
 		while (x < c->coord->x_point)
 		{
 			c->coord->verteces[v] = (t_point *)malloc(sizeof(t_point));
+			c->coord->verteces[v]->h = ft_atoi(split[x]);
 			c->coord->verteces[v]->x = ((x * gap) - (y * gap)) + ORIGIN_X;
-			c->coord->verteces[v]->y = ((x * gap) + (y * gap)) / 2 + ORIGIN_Y - (ft_atoi(split[x]) * c_height);
+			c->coord->verteces[v]->y = ((x * gap) + (y * gap)) / 2 + ORIGIN_Y - (c->coord->verteces[v]->h * c_height);
 			v++;
 			x++;
 		}

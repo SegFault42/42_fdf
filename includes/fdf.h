@@ -6,7 +6,7 @@
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/09 12:52:14 by rabougue          #+#    #+#             */
-/*   Updated: 2016/04/11 16:14:18 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/04/12 16:54:11 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ typedef struct			s_point
 {
 	int					x;
 	int					y;
+	int					h;
 }						t_point;
 
 typedef struct			s_coord
@@ -59,7 +60,6 @@ typedef struct			s_coord
 	int					total_points;
 	t_point				**verteces;
 }						t_coord;
-
 
 typedef struct			s_pixel_to_image
 {
@@ -79,6 +79,8 @@ typedef struct			s_context
 	t_coord				*coord;
 }						t_context;
 
+void					height(t_coord *coord, int n_y);
+void					zoom(t_coord *coord, int gap, int c_height);
 void					scale(t_coord *coord, float x_axis, float y_axis);
 void					rotate(t_coord *coord, int angle);
 void					join_x(t_coord *coord, t_pixel_to_image *img);
@@ -97,10 +99,8 @@ void					init_coord(char *file_name, t_context *coord);
 void					open_map(int *argc, char **argv, int *fd);
 void					check_len_map(int x_len, t_coord *coord);
 int						key_hook(int keycode, void *param);
-//int						key_hook(int keycode, t_context *cont);
 void					count_coord(int *fd, t_coord *coord);
 void					check_ret_gnl(int *fd, char *line);
 void					menu(t_context *c);
-void	ft_clear_image(t_coord *coord);
 
 #endif

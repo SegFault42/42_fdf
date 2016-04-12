@@ -6,7 +6,7 @@
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/08 12:31:59 by rabougue          #+#    #+#             */
-/*   Updated: 2016/04/11 17:21:06 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/04/12 17:29:46 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,44 @@ void	scale(t_coord *coord, float x_axis, float y_axis)
 	}
 }
 
+void	height(t_coord *coord, int n_y)
+{
+	int v;
+
+	v = 0;
+	while (v < coord->total_points)
+	{
+		coord->verteces[v]->y -= coord->verteces[v]->h * n_y;
+		v++;
+	}
+}
+
+void	zoom(t_coord *coord, int gap, int c_height)
+{
+	int v;
+	int x;
+	int y;
+
+	v = 0;
+	x = 0;
+	y = 0;
+	while (v < coord->total_points)
+	{
+		if (x != coord->x_point)
+		{
+			coord->verteces[v]->x = ((x * gap) - (y * gap)) + ORIGIN_X;
+			coord->verteces[v]->y = ((x * gap) + (y * gap)) / 2 + ORIGIN_Y - (coord->verteces[v]->h * c_height);
+		}
+		if (x == coord->x_point)
+		{
+			x = 0;
+			y++;
+		}
+		x++;
+		v++;
+	}
+}
+
 void	rotate(t_coord *coord, int angle)
 {
 	int matrix[3][3];
@@ -113,7 +151,6 @@ void	rotate(t_coord *coord, int angle)
 		matrix_mult(matrix, coord->verteces[v]);
 		v++;
 	}
-
 }
 
 void	first_case(t_bres *b, t_pixel_to_image *img, t_point *p1)
