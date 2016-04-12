@@ -6,7 +6,7 @@
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/09 12:52:14 by rabougue          #+#    #+#             */
-/*   Updated: 2016/04/12 17:40:35 by rabougue         ###   ########.fr       */
+/*   Updated: 2016/04/12 21:18:17 by rabougue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,10 +86,10 @@ void					ft_pixel_put_to_image(t_pixel_to_image *image, t_point *p);
 void					draw_line(t_pixel_to_image *img, t_point *p1, t_point *p2);
 void					second_case(t_bres *b, t_pixel_to_image *img, t_point *p1);
 void					first_case(t_bres *b, t_pixel_to_image *img, t_point *p1);
-void 					draw_x(t_coord *coord, t_pixel_to_image *img, int gap, int level, int iso);
-void					draw_y(t_coord *coord, t_pixel_to_image *img, int gap, int level, int iso);
+void 					draw_x(t_coord *coord, t_pixel_to_image *img, int gap, int level, int iso, int origin_x, int origin_y);
+void					draw_y(t_coord *coord, t_pixel_to_image *img, int gap, int level, int iso, int origin_x, int origin_y);
 void					count_line_in_file(char *file_name, t_coord *coord);
-void					print_point(t_coord *coord, t_pixel_to_image *img, int gap, int level, int iso);
+void					print_point(t_coord *coord, t_pixel_to_image *img, int gap, int level, int iso, int origin_x, int origin_y);
 int						check_arguments(int *argc, char **argv, int *fd);
 void					stock_coord(char *file_name, t_coord *coord);
 void					init_coord(char *file_name, t_coord *coord);
