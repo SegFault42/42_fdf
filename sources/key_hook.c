@@ -6,7 +6,7 @@
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/08 12:57:03 by rabougue          #+#    #+#             */
-/*   Updated: 2016/04/12 23:44:38 by rabougue         ###   ########.fr       */
+/*   Updated: 2016/04/13 17:00:47 by rabougue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,22 +38,15 @@ int	key_hook(int keycode, void *param, t_pixel_to_image *img, t_point *p)
 	int static	origin_x = WIDTH / 2;
 	int static	origin_y = HEIGHT / 3;
 
-	/*if (gap == 0 )*/
-	/*{*/
-		/*gap = 1;*/
-		/*level = 1;*/
-	/*}*/
-	/*if (iso <= 3)*/
-	/*{*/
-		/*iso = 4;*/
-	/*}*/
-	if (keycode == KEY_ESC) // quit
+	if (keycode == KEY_ESC)
 	{
 		mlx_destroy_image(((t_context *)param)->mlx_ptr, ((t_context *)param)->img_ptr);
 		mlx_destroy_window(((t_context *)param)->mlx_ptr, ((t_context *)param)->win_ptr);
 		exit(EXIT_SUCCESS);
 	}
-	if (keycode == KEY_SPACE) // clear image
+	if (keycode == KEY_SPACE)
+		clear_image(param, img, p);
+	if (keycode == KEY_F12)
 		clear_image(param, img, p);
 	if (keycode == KEY_R) // reset
 	{
@@ -90,7 +83,7 @@ int	key_hook(int keycode, void *param, t_pixel_to_image *img, t_point *p)
 		mlx_put_image_to_window(((t_context *)param)->mlx_ptr, ((t_context *)param)->win_ptr, ((t_context *)param)->img_ptr, 0, 0);
 		menu(((t_context *)param));
 	}
-	if (keycode == KEY_NUM_PLUS) // level plus
+	if (keycode == KEY_P) // level plus
 	{
 		clear_image(param, img, p);
 		level++;
@@ -99,7 +92,7 @@ int	key_hook(int keycode, void *param, t_pixel_to_image *img, t_point *p)
 		mlx_put_image_to_window(((t_context *)param)->mlx_ptr, ((t_context *)param)->win_ptr, ((t_context *)param)->img_ptr, 0, 0);
 		menu(((t_context *)param));
 	}
-	if (keycode == KEY_NUM_MINUS) // level min
+	if (keycode == KEY_O) // level min
 	{
 		clear_image(param, img, p);
 		level--;
