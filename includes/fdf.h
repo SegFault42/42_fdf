@@ -6,7 +6,7 @@
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/09 12:52:14 by rabougue          #+#    #+#             */
-/*   Updated: 2016/04/13 21:31:21 by rabougue         ###   ########.fr       */
+/*   Updated: 2016/04/13 21:39:21 by rabougue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,6 @@ int						key_hook(int keycode, void *param, t_pti *img, t_p *p);
 void					count_coord(int *fd, t_coord *coord);
 void					check_ret_gnl(int *fd, char *line);
 void					menu(t_c *c);
-void					clear_image(void *param, t_pti *img, t_p *p);
+void					clear_image(void *pa, t_pti *img, t_p *p);
 
 #endif
