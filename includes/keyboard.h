@@ -1,19 +1,27 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   keyboard.h                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/04/13 20:26:34 by rabougue          #+#    #+#             */
+/*   Updated: 2016/04/13 20:27:38 by rabougue         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef KEYBOARD_H
+# define KEYBOARD_H
+
 # define KEY_ESC 53
 # define KEY_TAB 48
 # define KEY_CAPS 272
 # define KEY_SHIFT_LEFT 257
 
-
-
-
-
-
-
 # define KEY_LEFT 123
 # define KEY_RIGHT 124
 # define KEY_UP 126
 # define KEY_DOWN 125
-
 
 # define KEY_FN 279
 # define KEY_HOME 115
@@ -106,3 +114,5 @@
 # define KEY_NUM_POINT 65
 # define KEY_NUM_MINUS 78
 # define KEY_NUM_PLUS 69
+
+#endif

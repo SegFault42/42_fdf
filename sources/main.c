@@ -6,7 +6,7 @@
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/25 18:03:01 by rabougue          #+#    #+#             */
-/*   Updated: 2016/04/13 19:01:52 by rabougue         ###   ########.fr       */
+/*   Updated: 2016/04/13 20:40:43 by rabougue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	main(int argc, char **argv)
 {
 	t_context			c;
-	t_pixel_to_image	im;
+	t_pti	im;
 	t_coord				coord;
 	int					fd;
 	int					width;

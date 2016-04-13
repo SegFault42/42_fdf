@@ -6,13 +6,13 @@
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/08 12:31:59 by rabougue          #+#    #+#             */
-/*   Updated: 2016/04/13 18:35:27 by rabougue         ###   ########.fr       */
+/*   Updated: 2016/04/13 20:40:29 by rabougue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-void	first_case(t_bres *b, t_pixel_to_image *img, t_point *p1)
+void	first_case(t_bres *b, t_pti *img, t_p *p1)
 {
 	int	i;
 
@@ -35,7 +35,7 @@ void	first_case(t_bres *b, t_pixel_to_image *img, t_point *p1)
 	}
 }
 
-void	second_case(t_bres *b, t_pixel_to_image *img, t_point *p1)
+void	second_case(t_bres *b, t_pti *img, t_p *p1)
 {
 	int	i;
 
@@ -58,7 +58,7 @@ void	second_case(t_bres *b, t_pixel_to_image *img, t_point *p1)
 	}
 }
 
-void	draw_line(t_pixel_to_image *img, t_point *p1, t_point *p2)
+void	draw_line(t_pti *img, t_p *p1, t_p *p2)
 {
 	t_bres	b;
 
@@ -80,12 +80,12 @@ void	draw_line(t_pixel_to_image *img, t_point *p1, t_point *p2)
 		second_case(&b, img, p1);
 }
 
-void	draw_x(t_coord *c, t_pixel_to_image *img, int gap, int level, int iso, int or_x, int or_y)
+void	draw_x(t_coord *c, t_pti *img, int gap, int level, int iso, int or_x, int or_y)
 {
 	int		x;
 	int		y;
-	t_point	p1;
-	t_point	p2;
+	t_p	p1;
+	t_p	p2;
 
 	x = 0;
 	y = 0;
@@ -112,12 +112,12 @@ void	draw_x(t_coord *c, t_pixel_to_image *img, int gap, int level, int iso, int 
 	}
 }
 
-void	draw_y(t_coord *c, t_pixel_to_image *img, int gap, int level, int iso, int or_x, int or_y)
+void	draw_y(t_coord *c, t_pti *img, int gap, int level, int iso, int or_x, int or_y)
 {
 	int		x;
 	int		y;
-	t_point	p1;
-	t_point	p2;
+	t_p	p1;
+	t_p	p2;
 
 	x = 0;
 	y = 0;

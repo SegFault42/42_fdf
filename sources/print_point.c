@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/25 18:02:10 by rabougue          #+#    #+#             */
-/*   Updated: 2016/04/13 19:07:57 by rabougue         ###   ########.fr       */
+/*   Created: 2016/04/13 20:41:05 by rabougue          #+#    #+#             */
+/*   Updated: 2016/04/13 20:41:08 by rabougue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-void	ft_pixel_put_to_image(t_pixel_to_image *img, t_point *p)
+void	ft_pixel_put_to_image(t_pti *img, t_p *p)
 {
 	unsigned char	r;
 	unsigned char	g;
@@ -37,7 +37,7 @@ void	ft_pixel_put_to_image(t_pixel_to_image *img, t_point *p)
 	}
 }
 
-void	print_point(t_coord *coord, t_pixel_to_image *img, int gap, int level, int iso, int or_x, int or_y)
+void	print_p(t_coord *coord, t_pti *img, int gap, int level, int iso, int or_x, int or_y)
 {
 	draw_x(coord, img, gap, level, iso, or_x, or_y);
 	draw_y(coord, img, gap, level, iso, or_x, or_y);
