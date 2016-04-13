@@ -6,7 +6,7 @@
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/09 12:52:14 by rabougue          #+#    #+#             */
-/*   Updated: 2016/04/13 21:39:21 by rabougue         ###   ########.fr       */
+/*   Updated: 2016/04/13 22:28:04 by rabougue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,15 @@ typedef struct			s_pti
 	int					bpp;
 }						t_pti;
 
+typedef struct			s_bonus
+{
+	int					gap;
+	int					level;
+	int					iso;
+	int					or_x;
+	int					or_y;
+}						t_bonus;
+
 typedef struct			s_c
 {
 	void				*mlx_ptr;
@@ -98,5 +107,6 @@ void					count_coord(int *fd, t_coord *coord);
 void					check_ret_gnl(int *fd, char *line);
 void					menu(t_c *c);
 void					clear_image(void *pa, t_pti *img, t_p *p);
+void					impr_img(void *pa, t_pti *img, t_p *p, t_bonus *bonus);
 
 #endif
