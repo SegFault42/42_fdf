@@ -6,13 +6,13 @@
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/08 14:57:22 by rabougue          #+#    #+#             */
-/*   Updated: 2016/04/13 20:25:06 by rabougue         ###   ########.fr       */
+/*   Updated: 2016/04/13 21:32:35 by rabougue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-void	menu(t_context *c)
+void	menu(t_c *c)
 {
 	mlx_string_put(c->mlx_ptr, c->win_ptr, 15, 10, GREEN, "Esc = Exit");
 	mlx_string_put(c->mlx_ptr, c->win_ptr, 15, 25, GREEN, "+   = Zoom in");

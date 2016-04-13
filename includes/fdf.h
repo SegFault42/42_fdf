@@ -6,7 +6,7 @@
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/09 12:52:14 by rabougue          #+#    #+#             */
-/*   Updated: 2016/04/13 20:40:11 by rabougue         ###   ########.fr       */
+/*   Updated: 2016/04/13 21:31:21 by rabougue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,14 +70,14 @@ typedef struct			s_pti
 	int					bpp;
 }						t_pti;
 
-typedef struct			s_context
+typedef struct			s_c
 {
 	void				*mlx_ptr;
 	void				*win_ptr;
 	void				*img_ptr;
 	t_pti				*pti;
 	t_coord				*coord;
-}						t_context;
+}						t_c;
 
 void					draw_x_or_y(int x1, int y1, int x2, int y2, t_pti *img);
 void					ft_pixel_put_to_image(t_pti *image, t_p *p);
@@ -96,7 +96,7 @@ void					check_len_map(int x_len, t_coord *coord);
 int						key_hook(int keycode, void *param, t_pti *img, t_p *p);
 void					count_coord(int *fd, t_coord *coord);
 void					check_ret_gnl(int *fd, char *line);
-void					menu(t_context *c);
+void					menu(t_c *c);
 void					clear_image(void *param, t_pti *img, t_p *p);
 
 #endif
