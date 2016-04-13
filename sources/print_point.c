@@ -6,7 +6,7 @@
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/25 18:02:10 by rabougue          #+#    #+#             */
-/*   Updated: 2016/04/12 21:18:55 by rabougue         ###   ########.fr       */
+/*   Updated: 2016/04/13 19:07:57 by rabougue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ void	ft_pixel_put_to_image(t_pixel_to_image *img, t_point *p)
 	}
 }
 
-void	print_point(t_coord *coord, t_pixel_to_image *img, int gap, int level, int iso, int origin_x, int origin_y)
+void	print_point(t_coord *coord, t_pixel_to_image *img, int gap, int level, int iso, int or_x, int or_y)
 {
-	draw_x(coord, img, gap, level, iso, origin_x, origin_y);
-	draw_y(coord, img, gap, level, iso, origin_x, origin_y);
+	draw_x(coord, img, gap, level, iso, or_x, or_y);
+	draw_y(coord, img, gap, level, iso, or_x, or_y);
 }

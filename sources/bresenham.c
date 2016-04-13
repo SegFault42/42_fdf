@@ -6,7 +6,7 @@
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/08 12:31:59 by rabougue          #+#    #+#             */
-/*   Updated: 2016/04/12 21:49:08 by rabougue         ###   ########.fr       */
+/*   Updated: 2016/04/13 18:35:27 by rabougue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	draw_line(t_pixel_to_image *img, t_point *p1, t_point *p2)
 		second_case(&b, img, p1);
 }
 
-void	draw_x(t_coord *coord, t_pixel_to_image *img, int gap, int level, int iso, int origin_x, int origin_y)
+void	draw_x(t_coord *c, t_pixel_to_image *img, int gap, int level, int iso, int or_x, int or_y)
 {
 	int		x;
 	int		y;
@@ -89,30 +89,30 @@ void	draw_x(t_coord *coord, t_pixel_to_image *img, int gap, int level, int iso, 
 
 	x = 0;
 	y = 0;
-	p1.x = ((x * gap) - (y * gap)) + origin_x - gap;
-	p1.y = (((x * gap) + (y * gap)) / iso + origin_y + gap / iso) - (coord->map[y][x] * level);
-	while (y < coord->y_point)
+	p1.x = ((x * gap) - (y * gap)) + or_x - gap;
+	p1.y = (((x * gap) + (y * gap)) / iso + or_y + gap / iso) - (c->map[y][x] * level);
+	while (y < c->y_point)
 	{
-		while (x < coord->x_point)
+		while (x < c->x_point)
 		{
-			p2.x = ((x * gap) - (y * gap)) + origin_x;
-			p2.y = ((x * gap) + (y * gap)) / iso + origin_y - (coord->map[y][x] * level);
+			p2.x = ((x * gap) - (y * gap)) + or_x;
+			p2.y = ((x * gap) + (y * gap)) / iso + or_y - (c->map[y][x] * level);
 			draw_line(img, &p1, &p2);
 			x++;
 			p1.x = p2.x;
 			p1.y = p2.y;
 		}
 		x = 0;
-		p1.x = ((x * gap) - (y * gap)) + origin_x - gap;
-		if ((y + 1) < coord->y_point)
-			p1.y = ((x * gap) + (y * gap)) / iso + origin_y + gap / iso - (coord->map[y + 1][x] * level);
+		p1.x = ((x * gap) - (y * gap)) + or_x - gap;
+		if ((y + 1) < c->y_point)
+			p1.y = ((x * gap) + (y * gap)) / iso + or_y + gap / iso - (c->map[y + 1][x] * level);
 		else
-			p1.y = ((x * gap) + (y * gap)) / iso + origin_y + gap / iso;
+			p1.y = ((x * gap) + (y * gap)) / iso + or_y + gap / iso;
 		y++;
 	}
 }
 
-void	draw_y(t_coord *coord, t_pixel_to_image *img, int gap, int level, int iso, int origin_x, int origin_y)
+void	draw_y(t_coord *c, t_pixel_to_image *img, int gap, int level, int iso, int or_x, int or_y)
 {
 	int		x;
 	int		y;
@@ -121,14 +121,14 @@ void	draw_y(t_coord *coord, t_pixel_to_image *img, int gap, int level, int iso, 
 
 	x = 0;
 	y = 0;
-	p1.x = ((x * gap) - (y * gap)) + origin_x - gap;
-	p1.y = (((x * gap) + (y * gap)) / iso + origin_y + gap / iso) - (coord->map[y][x] * level);
-	while (x < coord->x_point)
+	p1.x = ((x * gap) - (y * gap)) + or_x - gap;
+	p1.y = (((x * gap) + (y * gap)) / iso + or_y + gap / iso) - (c->map[y][x] * level);
+	while (x < c->x_point)
 	{
-		while (y < coord->y_point)
+		while (y < c->y_point)
 		{
-			p2.x = ((x * gap) - (y * gap)) + origin_x;
-			p2.y = ((x * gap) + (y * gap)) / iso + origin_y - (coord->map[y][x] * level);
+			p2.x = ((x * gap) - (y * gap)) + or_x;
+			p2.y = ((x * gap) + (y * gap)) / iso + or_y - (c->map[y][x] * level);
 			draw_line(img, &p1, &p2);
 			y++;
 			p1.x = p2.x;
@@ -136,10 +136,10 @@ void	draw_y(t_coord *coord, t_pixel_to_image *img, int gap, int level, int iso, 
 		}
 		y = 0;
 		x++;
-		p1.x = ((x * gap) - (y * gap)) + origin_x - gap;
-		if ((y + 1) < coord->y_point)
-			p1.y = ((x * gap) + (y * gap)) / iso + origin_y + gap / iso - (coord->map[y + 1][x] * level);
+		p1.x = ((x * gap) - (y * gap)) + or_x - gap;
+		if ((y + 1) < c->y_point)
+			p1.y = ((x * gap) + (y * gap)) / iso + or_y + gap / iso - (c->map[y + 1][x] * level);
 		else
-			p1.y = ((x * gap) + (y * gap)) / iso + origin_y + gap / iso;
+			p1.y = ((x * gap) + (y * gap)) / iso + or_y + gap / iso;
 	}
 }

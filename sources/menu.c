@@ -6,7 +6,7 @@
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/08 14:57:22 by rabougue          #+#    #+#             */
-/*   Updated: 2016/04/13 17:04:31 by rabougue         ###   ########.fr       */
+/*   Updated: 2016/04/13 17:55:19 by rabougue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,7 @@ void	menu(t_context *c)
 	mlx_string_put(c->mlx_ptr, c->win_ptr, 15, 115, GREEN, "<   = Move Left");
 	mlx_string_put(c->mlx_ptr, c->win_ptr, 15, 130, GREEN, "^   = Move Up");
 	mlx_string_put(c->mlx_ptr, c->win_ptr, 15, 145, GREEN, "v   = Move Down");
-	mlx_string_put(c->mlx_ptr, c->win_ptr, 15, 160, GREEN, "1  = Front view");
+	mlx_string_put(c->mlx_ptr, c->win_ptr, 15, 160, GREEN, "T  = Rotate Up");
+	mlx_string_put(c->mlx_ptr, c->win_ptr, 15, 175, GREEN, "G  = Rotate Down");
+	mlx_string_put(c->mlx_ptr, c->win_ptr, 15, 190, GREEN, "1  = Front view");
 }

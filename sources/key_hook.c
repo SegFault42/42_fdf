@@ -6,11 +6,18 @@
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/08 12:57:03 by rabougue          #+#    #+#             */
-/*   Updated: 2016/04/13 17:00:47 by rabougue         ###   ########.fr       */
+/*   Updated: 2016/04/13 19:03:34 by rabougue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
+
+void		impr_img(void *param, t_pixel_to_image *img, t_point *p, int gap, int level, int iso, int or_x, int or_y)
+{
+		((t_context *)param)->pti->img_color = mlx_get_color_value(((t_context *)param)->mlx_ptr, GREEN);
+		print_point(((t_context *)param)->coord, ((t_context *)param)->pti, gap, level, iso, or_x, or_y);
+		mlx_put_image_to_window(((t_context *)param)->mlx_ptr, ((t_context *)param)->win_ptr, ((t_context *)param)->img_ptr, 0, 0);
+}
 
 void	clear_image(void *param, t_pixel_to_image *img, t_point *p)
 {
@@ -30,13 +37,13 @@ void	clear_image(void *param, t_pixel_to_image *img, t_point *p)
 		mlx_put_image_to_window(((t_context *)param)->mlx_ptr, ((t_context *)param)->win_ptr, ((t_context *)param)->img_ptr, 0, 0);
 }
 
-int	key_hook(int keycode, void *param, t_pixel_to_image *img, t_point *p)
+int		key_hook(int keycode, void *param, t_pixel_to_image *img, t_point *p)
 {
 	int static	gap = 20;
 	int static	level = 20;
 	int static	iso = 2;
-	int static	origin_x = WIDTH / 2;
-	int static	origin_y = HEIGHT / 3;
+	int static	or_x = WIDTH / 2;
+	int static	or_y = HEIGHT / 3;
 
 	if (keycode == KEY_ESC)
 	{
@@ -48,131 +55,126 @@ int	key_hook(int keycode, void *param, t_pixel_to_image *img, t_point *p)
 		clear_image(param, img, p);
 	if (keycode == KEY_F12)
 		clear_image(param, img, p);
-	if (keycode == KEY_R) // reset
+	if (keycode == KEY_R)
 	{
 		clear_image(param, img, p);
 		gap = 20;
 		level = 20;
 		iso = 2;
-		((t_context *)param)->pti->img_color = mlx_get_color_value(((t_context *)param)->mlx_ptr, GREEN);
-		print_point(((t_context *)param)->coord, ((t_context *)param)->pti, gap, level, iso, origin_x, origin_y);
-		mlx_put_image_to_window(((t_context *)param)->mlx_ptr, ((t_context *)param)->win_ptr, ((t_context *)param)->img_ptr, 0, 0);
+		impr_img(param, img, p, gap, level, iso, or_x, or_y);
 		menu(((t_context *)param));
 	}
-	if (keycode == KEY_EQUAL && gap >= 0) // zoom in
+	if (keycode == KEY_EQUAL && gap >= 0)
 	{
 		level = gap;
 		clear_image(param, img, p);
-		/*gap *= 1.05;*/
 		gap++;
 		level++;
 		((t_context *)param)->pti->img_color = mlx_get_color_value(((t_context *)param)->mlx_ptr, GREEN);
-		print_point(((t_context *)param)->coord, ((t_context *)param)->pti, gap, level, iso, origin_x, origin_y);
+		print_point(((t_context *)param)->coord, ((t_context *)param)->pti, gap, level, iso, or_x, or_y);
 		mlx_put_image_to_window(((t_context *)param)->mlx_ptr, ((t_context *)param)->win_ptr, ((t_context *)param)->img_ptr, 0, 0);
 		menu(((t_context *)param));
 	}
-	if (keycode == KEY_MIN && gap > 0) // zoom out
+	if (keycode == KEY_MIN && gap > 0)
 	{
 		level = gap;
 		clear_image(param, img, p);
-		/*gap /= 1.05;*/
 		gap--;
 		level--;
 		((t_context *)param)->pti->img_color = mlx_get_color_value(((t_context *)param)->mlx_ptr, GREEN);
-		print_point(((t_context *)param)->coord, ((t_context *)param)->pti, gap, level, iso, origin_x, origin_y);
+		print_point(((t_context *)param)->coord, ((t_context *)param)->pti, gap, level, iso, or_x, or_y);
 		mlx_put_image_to_window(((t_context *)param)->mlx_ptr, ((t_context *)param)->win_ptr, ((t_context *)param)->img_ptr, 0, 0);
 		menu(((t_context *)param));
 	}
-	if (keycode == KEY_P) // level plus
+	if (keycode == KEY_P)
 	{
 		clear_image(param, img, p);
 		level++;
 		((t_context *)param)->pti->img_color = mlx_get_color_value(((t_context *)param)->mlx_ptr, GREEN);
-		print_point(((t_context *)param)->coord, ((t_context *)param)->pti, gap, level, iso, origin_x, origin_y);
+		print_point(((t_context *)param)->coord, ((t_context *)param)->pti, gap, level, iso, or_x, or_y);
 		mlx_put_image_to_window(((t_context *)param)->mlx_ptr, ((t_context *)param)->win_ptr, ((t_context *)param)->img_ptr, 0, 0);
 		menu(((t_context *)param));
 	}
-	if (keycode == KEY_O) // level min
+	if (keycode == KEY_O)
 	{
 		clear_image(param, img, p);
 		level--;
 		((t_context *)param)->pti->img_color = mlx_get_color_value(((t_context *)param)->mlx_ptr, GREEN);
-		print_point(((t_context *)param)->coord, ((t_context *)param)->pti, gap, level, iso, origin_x, origin_y);
+		print_point(((t_context *)param)->coord, ((t_context *)param)->pti, gap, level, iso, or_x, or_y);
 		mlx_put_image_to_window(((t_context *)param)->mlx_ptr, ((t_context *)param)->win_ptr, ((t_context *)param)->img_ptr, 0, 0);
 		menu(((t_context *)param));
 	}
-	if (keycode == KEY_T && iso >= 1) //iso ++
+	if (keycode == KEY_T && iso >= 1)
 	{
 		clear_image(param, img, p);
 		iso+=1;
 		((t_context *)param)->pti->img_color = mlx_get_color_value(((t_context *)param)->mlx_ptr, GREEN);
-		print_point(((t_context *)param)->coord, ((t_context *)param)->pti, gap, level, iso, origin_x, origin_y);
+		print_point(((t_context *)param)->coord, ((t_context *)param)->pti, gap, level, iso, or_x, or_y);
 		mlx_put_image_to_window(((t_context *)param)->mlx_ptr, ((t_context *)param)->win_ptr, ((t_context *)param)->img_ptr, 0, 0);
 		menu(((t_context *)param));
 	}
-	if (keycode == KEY_G && iso > 1) //iso--
+	if (keycode == KEY_G && iso > 1)
 	{
 		if (iso == 2)
 			level = 3;
-		printf("%d\n", iso);
 		clear_image(param, img, p);
 		iso-=1;
 		((t_context *)param)->pti->img_color = mlx_get_color_value(((t_context *)param)->mlx_ptr, GREEN);
-		print_point(((t_context *)param)->coord, ((t_context *)param)->pti, gap, level, iso, origin_x, origin_y);
+		print_point(((t_context *)param)->coord, ((t_context *)param)->pti, gap, level, iso, or_x, or_y);
 		mlx_put_image_to_window(((t_context *)param)->mlx_ptr, ((t_context *)param)->win_ptr, ((t_context *)param)->img_ptr, 0, 0);
 		menu(((t_context *)param));
 	}
-	if (keycode == KEY_1) // vue de face
+	if (keycode == KEY_1)
 	{
 		clear_image(param, img, p);
 		iso = 50000;
 		((t_context *)param)->pti->img_color = mlx_get_color_value(((t_context *)param)->mlx_ptr, GREEN);
-		print_point(((t_context *)param)->coord, ((t_context *)param)->pti, gap, level, iso, origin_x, origin_y);
+		print_point(((t_context *)param)->coord, ((t_context *)param)->pti, gap, level, iso, or_x, or_y);
 		mlx_put_image_to_window(((t_context *)param)->mlx_ptr, ((t_context *)param)->win_ptr, ((t_context *)param)->img_ptr, 0, 0);
 		menu(((t_context *)param));
 	}
-	if (keycode == KEY_2) // vue de dessus
+	if (keycode == KEY_2)
 	{
 		clear_image(param, img, p);
 		iso = 1;
 		((t_context *)param)->pti->img_color = mlx_get_color_value(((t_context *)param)->mlx_ptr, GREEN);
-		print_point(((t_context *)param)->coord, ((t_context *)param)->pti, gap, level, iso, origin_x, origin_y);
+		print_point(((t_context *)param)->coord, ((t_context *)param)->pti, gap, level, iso, or_x, or_y);
 		mlx_put_image_to_window(((t_context *)param)->mlx_ptr, ((t_context *)param)->win_ptr, ((t_context *)param)->img_ptr, 0, 0);
 		menu(((t_context *)param));
 	}
-	if (keycode == KEY_LEFT) // deplacement gauche
+	if (keycode == KEY_LEFT)
 	{
 		clear_image(param, img, p);
-		origin_x-=10;
+		or_x-= 10;
 		((t_context *)param)->pti->img_color = mlx_get_color_value(((t_context *)param)->mlx_ptr, GREEN);
-		print_point(((t_context *)param)->coord, ((t_context *)param)->pti, gap, level, iso, origin_x, origin_y);
+		print_point(((t_context *)param)->coord, ((t_context *)param)->pti, gap, level, iso, or_x, or_y);
 		mlx_put_image_to_window(((t_context *)param)->mlx_ptr, ((t_context *)param)->win_ptr, ((t_context *)param)->img_ptr, 0, 0);
 		menu(((t_context *)param));
 	}
-	if (keycode == KEY_RIGHT) // deplacement droite
+	if (keycode == KEY_RIGHT)
 	{
 		clear_image(param, img, p);
-		origin_x+=10;
+		or_x+= 10;
 		((t_context *)param)->pti->img_color = mlx_get_color_value(((t_context *)param)->mlx_ptr, GREEN);
-		print_point(((t_context *)param)->coord, ((t_context *)param)->pti, gap, level, iso, origin_x, origin_y);
+		print_point(((t_context *)param)->coord, ((t_context *)param)->pti, gap, level, iso, or_x, or_y);
 		mlx_put_image_to_window(((t_context *)param)->mlx_ptr, ((t_context *)param)->win_ptr, ((t_context *)param)->img_ptr, 0, 0);
 		menu(((t_context *)param));
 	}
-	if (keycode == KEY_UP) // deplacement haut
+	if (keycode == KEY_UP)
 	{
 		clear_image(param, img, p);
-		origin_y-=10;
+		or_y-= 10;
 		((t_context *)param)->pti->img_color = mlx_get_color_value(((t_context *)param)->mlx_ptr, GREEN);
-		print_point(((t_context *)param)->coord, ((t_context *)param)->pti, gap, level, iso, origin_x, origin_y);
+		print_point(((t_context *)param)->coord, ((t_context *)param)->pti, gap, level, iso, or_x, or_y);
 		mlx_put_image_to_window(((t_context *)param)->mlx_ptr, ((t_context *)param)->win_ptr, ((t_context *)param)->img_ptr, 0, 0);
 		menu(((t_context *)param));
 	}
-	if (keycode == KEY_DOWN) // deplacement bas
+	if (keycode == KEY_DOWN)
 	{
 		clear_image(param, img, p);
-		origin_y+=10;
+		or_y+= 10;
 		((t_context *)param)->pti->img_color = mlx_get_color_value(((t_context *)param)->mlx_ptr, GREEN);
-		print_point(((t_context *)param)->coord, ((t_context *)param)->pti, gap, level, iso, origin_x, origin_y);
+		print_point(((t_context *)param)->coord, ((t_context *)param)->pti, gap, level, iso, or_x, or_y);
 		mlx_put_image_to_window(((t_context *)param)->mlx_ptr, ((t_context *)param)->win_ptr, ((t_context *)param)->img_ptr, 0, 0);
 		menu(((t_context *)param));
 	}
