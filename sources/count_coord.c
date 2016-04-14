@@ -6,7 +6,7 @@
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/31 13:32:47 by rabougue          #+#    #+#             */
-/*   Updated: 2016/04/13 23:59:36 by rabougue         ###   ########.fr       */
+/*   Updated: 2016/04/14 15:46:04 by rabougue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,8 @@ void	count_line_in_file(char *file_name, t_coord *coord)
 	close(fd);
 }
 
-void	stock_coord(char *file_name, t_coord *coord)
+void	stock_coord(char *file_name, t_coord *coord, t_xpm *xpm)
 {
-	int		fd;
 	char	*line;
 	int		i;
 	int		j;
@@ -54,9 +53,9 @@ void	stock_coord(char *file_name, t_coord *coord)
 	i = 0;
 	j = 0;
 	init_coord(file_name, coord);
-	fd = open(file_name, O_RDONLY);
+	xpm->fd = open(file_name, O_RDONLY);
 	coord->map = (int **)malloc(sizeof(int *) * coord->y_point);
-	while (get_next_line(fd, &line) > 0)
+	while (get_next_line(xpm->fd, &line) > 0)
 	{
 		split = ft_strsplit(line, ' ');
 		coord->map[i] = (int *)malloc(sizeof(int) * coord->x_point);
@@ -70,5 +69,5 @@ void	stock_coord(char *file_name, t_coord *coord)
 		j = 0;
 		i++;
 	}
-	close(fd);
+	close(xpm->fd);
 }

@@ -6,7 +6,7 @@
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/25 18:03:01 by rabougue          #+#    #+#             */
-/*   Updated: 2016/04/14 15:22:31 by rabougue         ###   ########.fr       */
+/*   Updated: 2016/04/14 15:45:16 by rabougue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	main(int argc, char **argv)
 	t_xpm	xpm;
 
 	check_arguments(&argc, (&(*argv)), &xpm.fd);
-	stock_coord(argv[1], &coord);
+	stock_coord(argv[1], &coord, &xpm);
 	c.coord = &coord;
 	c.mlx_ptr = mlx_init();
 	c.img_ptr = mlx_new_image(c.mlx_ptr, WIDTH, HEIGHT);

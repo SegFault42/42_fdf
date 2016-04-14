@@ -6,7 +6,7 @@
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/09 12:52:14 by rabougue          #+#    #+#             */
-/*   Updated: 2016/04/14 15:20:35 by rabougue         ###   ########.fr       */
+/*   Updated: 2016/04/14 15:44:09 by rabougue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ void					draw_y(t_coord *c, t_pti *img, t_bonus bonus);
 void					count_line_in_file(char *file_name, t_coord *coord);
 void					print_p(t_coord *coord, t_pti *img, t_bonus bonus);
 int						check_arguments(int *argc, char **argv, int *fd);
-void					stock_coord(char *file_name, t_coord *coord);
+void					stock_coord(char *file_name, t_coord *coord, t_xpm *xpm);
 void					init_coord(char *file_name, t_coord *coord);
 void					open_map(int *argc, char **argv, int *fd);
 void					check_len_map(int x_len, t_coord *coord);
