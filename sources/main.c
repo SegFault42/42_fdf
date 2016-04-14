@@ -6,7 +6,7 @@
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/25 18:03:01 by rabougue          #+#    #+#             */
-/*   Updated: 2016/04/13 21:32:23 by rabougue         ###   ########.fr       */
+/*   Updated: 2016/04/14 04:01:49 by rabougue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,21 @@
 
 int	main(int argc, char **argv)
 {
-	t_c			c;
-	t_pti	im;
+	t_c					c;
+	t_pti				im;
 	t_coord				coord;
+	t_bonus				*bonus;
 	int					fd;
 	int					width;
 	int					height;
 	void				*xpm;
+
+	bonus = (t_bonus *)malloc(sizeof(t_bonus));
+	bonus->gap = 20;
+	bonus->level = 20;
+	bonus->iso = 2;
+	bonus->or_x = WIDTH / 2;
+	bonus->or_y = HEIGHT / 3;
 
 	check_arguments(&argc, (&(*argv)), &fd);
 	stock_coord(argv[1], &coord);

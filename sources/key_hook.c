@@ -6,7 +6,7 @@
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/08 12:57:03 by rabougue          #+#    #+#             */
-/*   Updated: 2016/04/13 22:28:08 by rabougue         ###   ########.fr       */
+/*   Updated: 2016/04/14 04:01:36 by rabougue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,9 @@ void	impr_img(void *pa, t_pti *img, t_p *p, t_bonus *bonus)
 {
 	((t_c *)pa)->pti->img_color = mlx_get_color_value(((t_c *)pa)->mlx_ptr,
 GREEN);
-	print_p(((t_c *)pa)->coord, ((t_c *)pa)->pti, bonus->gap, bonus->level,
-bonus->iso, bonus->or_x, bonus->or_y);
+	/*printf("gap = %d\nlevel = %d\niso = %d\nor_x = %d\nor_y = %d\n",*/
+/*bonus.gap, bonus.level, bonus.iso, bonus.or_x, bonus.or_y);*/
+	print_p(((t_c *)pa)->coord, ((t_c *)pa)->pti, *bonus);
 	mlx_put_image_to_window(((t_c *)pa)->mlx_ptr, ((t_c *)pa)->win_ptr,
 ((t_c *)pa)->img_ptr, 0, 0);
 }
@@ -46,13 +47,13 @@ void	clear_image(void *pa, t_pti *img, t_p *p)
 
 int		key_hook(int keycode, void *pa, t_pti *img, t_p *p)
 {
+	t_bonus		bonus;
 
-	int static	gap = 20;
-	int static	level = 20;
-	int static	iso = 2;
-	int static	or_x = WIDTH / 2;
-	int static	or_y = HEIGHT / 3;
-
+	bonus.gap = 20;
+	bonus.level = 20;
+	bonus.iso = 2;
+	bonus.or_x = WIDTH / 2;
+	bonus.or_y = HEIGHT / 3;
 	if (keycode == KEY_ESC)
 	{
 		mlx_destroy_image(((t_c *)pa)->mlx_ptr, ((t_c *)pa)->img_ptr);
@@ -66,101 +67,103 @@ int		key_hook(int keycode, void *pa, t_pti *img, t_p *p)
 	if (keycode == KEY_R)
 	{
 		clear_image(pa, img, p);
-		gap = 20;
-		level = 20;
-		iso = 2;
-		impr_img(pa, img, p, gap, level, iso, or_x, or_y);
+		bonus.gap = 20;
+		bonus.level = 20;
+		bonus.iso = 2;
+		bonus.or_x = 640;
+		bonus.iso = 240;
+		impr_img(pa, img, p, &bonus);
 		menu(((t_c *)pa));
 	}
-	if (keycode == KEY_EQUAL && gap >= 0)
+	if (keycode == KEY_EQUAL && bonus.gap >= 0)
 	{
-		level = gap;
+		bonus.level = bonus.gap;
 		clear_image(pa, img, p);
-		gap++;
-		level++;
-		impr_img(pa, img, p, gap, level, iso, or_x, or_y);
+		bonus.gap++;
+		bonus.level++;
+		impr_img(pa, img, p, &bonus);
 		menu(((t_c *)pa));
 	}
-	if (keycode == KEY_MIN && gap > 0)
+	if (keycode == KEY_MIN && bonus.gap > 0)
 	{
-		level = gap;
+		bonus.level = bonus.gap;
 		clear_image(pa, img, p);
-		gap--;
-		level--;
-		impr_img(pa, img, p, gap, level, iso, or_x, or_y);
+		bonus.gap--;
+		bonus.level--;
+		impr_img(pa, img, p, &bonus);
 		menu(((t_c *)pa));
 	}
 	if (keycode == KEY_P)
 	{
 		clear_image(pa, img, p);
-		level++;
-		impr_img(pa, img, p, gap, level, iso, or_x, or_y);
+		bonus.level++;
+		impr_img(pa, img, p, &bonus);
 		menu(((t_c *)pa));
 	}
 	if (keycode == KEY_O)
 	{
 		clear_image(pa, img, p);
-		level--;
-		impr_img(pa, img, p, gap, level, iso, or_x, or_y);
+		bonus.level--;
+		impr_img(pa, img, p, &bonus);
 		menu(((t_c *)pa));
 	}
-	if (keycode == KEY_T && iso >= 1)
+	if (keycode == KEY_T && bonus.iso >= 1)
 	{
 		clear_image(pa, img, p);
-		iso += 1;
-		impr_img(pa, img, p, gap, level, iso, or_x, or_y);
+		bonus.iso += 1;
+		impr_img(pa, img, p, &bonus);
 		menu(((t_c *)pa));
 	}
-	if (keycode == KEY_G && iso > 1)
+	if (keycode == KEY_G && bonus.iso > 1)
 	{
-		if (iso == 2)
-			level = 3;
+		if (bonus.iso == 2)
+			bonus.level = 3;
 		clear_image(pa, img, p);
-		iso -= 1;
-		impr_img(pa, img, p, gap, level, iso, or_x, or_y);
+		bonus.iso -= 1;
+		impr_img(pa, img, p, &bonus);
 		menu(((t_c *)pa));
 	}
 	if (keycode == KEY_1)
 	{
 		clear_image(pa, img, p);
-		iso = 50000;
-		impr_img(pa, img, p, gap, level, iso, or_x, or_y);
+		bonus.iso = 50000;
+		impr_img(pa, img, p, &bonus);
 		menu(((t_c *)pa));
 	}
 	if (keycode == KEY_2)
 	{
 		clear_image(pa, img, p);
-		iso = 1;
-		level = 3;
-		impr_img(pa, img, p, gap, level, iso, or_x, or_y);
+		bonus.iso = 1;
+		bonus.level = 3;
+		impr_img(pa, img, p, &bonus);
 		menu(((t_c *)pa));
 	}
 	if (keycode == KEY_LEFT)
 	{
 		clear_image(pa, img, p);
-		or_x -= 10;
-		impr_img(pa, img, p, gap, level, iso, or_x, or_y);
+		bonus.or_x -= 10;
+		impr_img(pa, img, p, &bonus);
 		menu(((t_c *)pa));
 	}
 	if (keycode == KEY_RIGHT)
 	{
 		clear_image(pa, img, p);
-		or_x += 10;
-		impr_img(pa, img, p, gap, level, iso, or_x, or_y);
+		bonus.or_x += 10;
+		impr_img(pa, img, p, &bonus);
 		menu(((t_c *)pa));
 	}
 	if (keycode == KEY_UP)
 	{
 		clear_image(pa, img, p);
-		or_y -= 10;
-		impr_img(pa, img, p, gap, level, iso, or_x, or_y);
+		bonus.or_y -= 10;
+		impr_img(pa, img, p, &bonus);
 		menu(((t_c *)pa));
 	}
 	if (keycode == KEY_DOWN)
 	{
 		clear_image(pa, img, p);
-		or_y += 10;
-		impr_img(pa, img, p, gap, level, iso, or_x, or_y);
+		bonus.or_y += 10;
+		impr_img(pa, img, p, &bonus);
 		menu(((t_c *)pa));
 	}
 	return (0);
