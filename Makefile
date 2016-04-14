@@ -6,7 +6,7 @@
 #    By: rabougue <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/10 19:16:51 by rabougue          #+#    #+#              #
-#    Updated: 2016/04/14 20:39:45 by rabougue         ###   ########.fr        #
+#    Updated: 2016/04/15 01:00:45 by rabougue         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,10 +22,10 @@ FLAG = -Wall -Wextra -Werror -Ofast
 FRAMEWORK = -framework OpenGL -framework AppKit
 SRCS = ./sources/main.c ./sources/parsing.c ./sources/print_point.c \
 	   ./sources/bresenham.c ./sources/count_coord.c ./sources/key_hook.c \
-	   ./sources/menu.c ./sources/event.c
+	   ./sources/menu.c ./sources/event.c ./sources/norme.c
 
 OBJS = ./main.o ./parsing.o ./print_point.o ./bresenham.o ./count_coord.o \
-		./key_hook.o ./menu.o ./event.o
+		./key_hook.o ./menu.o ./event.o ./norme.o
 LFT = -L./libft/ -lft
 LMLX = -L./minilibx_macos/ -lmlx
 HEAD = -I ./includes/fdf.h

@@ -6,7 +6,7 @@
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/09 12:52:14 by rabougue          #+#    #+#             */
-/*   Updated: 2016/04/14 20:37:24 by rabougue         ###   ########.fr       */
+/*   Updated: 2016/04/15 01:02:44 by rabougue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,18 @@ typedef struct			s_p
 	int					y;
 }						t_p;
 
+typedef struct			s_xy
+{
+	int					x;
+	int					y;
+}						t_xy;
+
 typedef struct			s_coord
 {
 	int					x_point;
 	int					y_point;
 	int					**map;
+	t_xy				*xy;
 }						t_coord;
 
 typedef struct			s_pti
@@ -95,6 +102,7 @@ typedef struct			s_c
 	t_pti				*pti;
 	t_coord				*coord;
 	t_bonus				*bonus;
+	t_xy				*xy;
 }						t_c;
 
 void					draw_x_or_y(int x1, int y1, int x2, int y2, t_pti *img);
@@ -104,11 +112,11 @@ void					second_case(t_bres *b, t_pti *img, t_p *p1);
 void					first_case(t_bres *b, t_pti *img, t_p *p1);
 void					draw_x(t_coord *c, t_pti *img, t_bonus bonus);
 void					draw_y(t_coord *c, t_pti *img, t_bonus bonus);
-void					count_line_in_file(char *file_name, t_coord *coord);
+void					count_line_in_file(char *file, t_coord *coord);
 void					print_p(t_coord *coord, t_pti *img, t_bonus bonus);
 int						check_arguments(int *argc, char **argv, int *fd);
-void					stock_coord(char *file_name, t_coord *coord, t_xpm *xpm);
-void					init_coord(char *file_name, t_coord *coord);
+void					stock_coord(char *file, t_coord *coord, t_xpm *xpm);
+void					init_coord(char *file, t_coord *coord);
 void					open_map(int *argc, char **argv, int *fd);
 void					check_len_map(int x_len, t_coord *coord);
 int						key_hook(int keycode, void *param, t_pti *img, t_p *p);
@@ -122,5 +130,8 @@ void					level(int keycode, void *pa, t_pti *img, t_p *p);
 void					other(int keycode, void *pa, t_pti *img, t_p *p);
 void					rotation(int keycode, void *pa, t_pti *img, t_p *p);
 void					view(int keycode, void *pa, t_pti *img, t_p *p);
+void					split_draw_y_2(t_p *p1, t_p *p2, t_xy *xy);
+void					split_draw_x_2(t_p *p1, t_p *p2, t_xy *xy);
+void					split_draw(t_p *p2, t_xy *xy, t_bonus *b, t_coord c);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/08 12:31:59 by rabougue          #+#    #+#             */
-/*   Updated: 2016/04/14 19:20:02 by rabougue         ###   ########.fr       */
+/*   Updated: 2016/04/15 01:02:46 by rabougue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,74 +80,58 @@ void	draw_line(t_pti *img, t_p *p1, t_p *p2)
 		second_case(&b, img, p1);
 }
 
-void	draw_x(t_coord *c, t_pti *img, t_bonus bonus)
+void	draw_x(t_coord *c, t_pti *img, t_bonus b)
 {
-	int		x;
-	int		y;
 	t_p		p1;
 	t_p		p2;
+	t_xy	xy;
 
-	x = 0;
-	y = 0;
-	p1.x = ((x * bonus.gap) - (y * bonus.gap)) + bonus.or_x - bonus.gap;
-	p1.y = (((x * bonus.gap) + (y * bonus.gap)) / bonus.iso + bonus.or_y
-			+ bonus.gap / bonus.iso) - (c->map[y][x] * bonus.level);
-	while (y < c->y_point)
+	xy.x = 0;
+	xy.y = 0;
+	p1.x = ((xy.x * b.gap) - (xy.y * b.gap)) + b.or_x - b.gap;
+	p1.y = (((xy.x * b.gap) + (xy.y * b.gap)) / b.iso + b.or_y
+			+ b.gap / b.iso) - (c->map[xy.y][xy.x] * b.level);
+	while (xy.y < c->y_point)
 	{
-		while (x < c->x_point)
+		while (xy.x < c->x_point)
 		{
-			p2.x = ((x * bonus.gap) - (y * bonus.gap)) + bonus.or_x;
-			p2.y = ((x * bonus.gap) + (y * bonus.gap)) / bonus.iso + bonus.or_y
-				- (c->map[y][x] * bonus.level);
+			split_draw(&p2, &xy, &b, *c);
 			draw_line(img, &p1, &p2);
-			x++;
-			p1.x = p2.x;
-			p1.y = p2.y;
+			split_draw_x_2(&p1, &p2, &xy);
 		}
-		x = 0;
-		p1.x = ((x * bonus.gap) - (y * bonus.gap)) + bonus.or_x - bonus.gap;
-		if ((y + 1) < c->y_point)
-			p1.y = ((x * bonus.gap) + (y * bonus.gap)) / bonus.iso + bonus.or_y
-				+ bonus.gap / bonus.iso - (c->map[y + 1][x] * bonus.level);
-		else
-			p1.y = ((x * bonus.gap) + (y * bonus.gap)) / bonus.iso + bonus.or_y
-				+ bonus.gap / bonus.iso;
-		y++;
+		xy.x = 0;
+		p1.x = ((xy.x * b.gap) - (xy.y * b.gap)) + b.or_x - b.gap;
+		((xy.y + 1) < c->y_point) ? p1.y = ((xy.x * b.gap) + (xy.y * b.gap)) / b
+.iso + b.or_y + b.gap / b.iso - (c->map[xy.y + 1][xy.x] * b.level) :
+	(p1.y = ((xy.x * b.gap) + (xy.y * b.gap)) / b.iso + b.or_y + b.gap / b.iso);
+		xy.y++;
 	}
 }
 
-void	draw_y(t_coord *c, t_pti *img, t_bonus bonus)
+void	draw_y(t_coord *c, t_pti *img, t_bonus b)
 {
-	int		x;
-	int		y;
 	t_p		p1;
 	t_p		p2;
+	t_xy	xy;
 
-	x = 0;
-	y = 0;
-	p1.x = ((x * bonus.gap) - (y * bonus.gap)) + bonus.or_x - bonus.gap;
-	p1.y = (((x * bonus.gap) + (y * bonus.gap)) / bonus.iso + bonus.or_y +
-			bonus.gap / bonus.iso) - (c->map[y][x] * bonus.level);
-	while (x < c->x_point)
+	xy.x = 0;
+	xy.y = 0;
+	p1.x = ((xy.x * b.gap) - (xy.y * b.gap)) + b.or_x - b.gap;
+	p1.y = (((xy.x * b.gap) + (xy.y * b.gap)) / b.iso + b.or_y +
+			b.gap / b.iso) - (c->map[xy.y][xy.x] * b.level);
+	while (xy.x < c->x_point)
 	{
-		while (y < c->y_point)
+		while (xy.y < c->y_point)
 		{
-			p2.x = ((x * bonus.gap) - (y * bonus.gap)) + bonus.or_x;
-			p2.y = ((x * bonus.gap) + (y * bonus.gap)) / bonus.iso + bonus.or_y
-				- (c->map[y][x] * bonus.level);
+			split_draw(&p2, &xy, &b, *c);
 			draw_line(img, &p1, &p2);
-			y++;
-			p1.x = p2.x;
-			p1.y = p2.y;
+			split_draw_y_2(&p1, &p2, &xy);
 		}
-		y = 0;
-		x++;
-		p1.x = ((x * bonus.gap) - (y * bonus.gap)) + bonus.or_x - bonus.gap;
-		if ((y + 1) < c->y_point)
-			p1.y = ((x * bonus.gap) + (y * bonus.gap)) / bonus.iso + bonus.or_y
-				+ bonus.gap / bonus.iso - (c->map[y + 1][x] * bonus.level);
-		else
-			p1.y = ((x * bonus.gap) + (y * bonus.gap)) / bonus.iso + bonus.or_y
-				+ bonus.gap / bonus.iso;
+		xy.y = 0;
+		xy.x++;
+		p1.x = ((xy.x * b.gap) - (xy.y * b.gap)) + b.or_x - b.gap;
+		((xy.y + 1) < c->y_point) ? p1.y = ((xy.x * b.gap) + (xy.y * b.gap)) / b
+.iso + b.or_y + b.gap / b.iso - (c->map[xy.y + 1][xy.x] * b.level) :
+	(p1.y = ((xy.x * b.gap) + (xy.y * b.gap)) / b.iso + b.or_y + b.gap / b.iso);
 	}
 }
