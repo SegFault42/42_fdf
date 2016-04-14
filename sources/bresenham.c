@@ -6,7 +6,7 @@
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/08 12:31:59 by rabougue          #+#    #+#             */
-/*   Updated: 2016/04/14 02:55:07 by rabougue         ###   ########.fr       */
+/*   Updated: 2016/04/14 14:36:58 by rabougue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,13 +90,15 @@ void	draw_x(t_coord *c, t_pti *img, t_bonus bonus)
 	x = 0;
 	y = 0;
 	p1.x = ((x * bonus.gap) - (y * bonus.gap)) + bonus.or_x - bonus.gap;
-	p1.y = (((x * bonus.gap) + (y * bonus.gap)) / bonus.iso + bonus.or_y + bonus.gap / bonus.iso) - (c->map[y][x] * bonus.level);
+	p1.y = (((x * bonus.gap) + (y * bonus.gap)) / bonus.iso + bonus.or_y
+			+ bonus.gap / bonus.iso) - (c->map[y][x] * bonus.level);
 	while (y < c->y_point)
 	{
 		while (x < c->x_point)
 		{
 			p2.x = ((x * bonus.gap) - (y * bonus.gap)) + bonus.or_x;
-			p2.y = ((x * bonus.gap) + (y * bonus.gap)) / bonus.iso + bonus.or_y - (c->map[y][x] * bonus.level);
+			p2.y = ((x * bonus.gap) + (y * bonus.gap)) / bonus.iso + bonus.or_y
+				- (c->map[y][x] * bonus.level);
 			draw_line(img, &p1, &p2);
 			x++;
 			p1.x = p2.x;
@@ -105,9 +107,11 @@ void	draw_x(t_coord *c, t_pti *img, t_bonus bonus)
 		x = 0;
 		p1.x = ((x * bonus.gap) - (y * bonus.gap)) + bonus.or_x - bonus.gap;
 		if ((y + 1) < c->y_point)
-			p1.y = ((x * bonus.gap) + (y * bonus.gap)) / bonus.iso + bonus.or_y + bonus.gap / bonus.iso - (c->map[y + 1][x] * bonus.level);
+			p1.y = ((x * bonus.gap) + (y * bonus.gap)) / bonus.iso + bonus.or_y
+				+ bonus.gap / bonus.iso - (c->map[y + 1][x] * bonus.level);
 		else
-			p1.y = ((x * bonus.gap) + (y * bonus.gap)) / bonus.iso + bonus.or_y + bonus.gap / bonus.iso;
+			p1.y = ((x * bonus.gap) + (y * bonus.gap)) / bonus.iso + bonus.or_y
+				+ bonus.gap / bonus.iso;
 		y++;
 	}
 }
@@ -122,13 +126,15 @@ void	draw_y(t_coord *c, t_pti *img, t_bonus bonus)
 	x = 0;
 	y = 0;
 	p1.x = ((x * bonus.gap) - (y * bonus.gap)) + bonus.or_x - bonus.gap;
-	p1.y = (((x * bonus.gap) + (y * bonus.gap)) / bonus.iso + bonus.or_y + bonus.gap / bonus.iso) - (c->map[y][x] * bonus.level);
+	p1.y = (((x * bonus.gap) + (y * bonus.gap)) / bonus.iso + bonus.or_y +
+			bonus.gap / bonus.iso) - (c->map[y][x] * bonus.level);
 	while (x < c->x_point)
 	{
 		while (y < c->y_point)
 		{
 			p2.x = ((x * bonus.gap) - (y * bonus.gap)) + bonus.or_x;
-			p2.y = ((x * bonus.gap) + (y * bonus.gap)) / bonus.iso + bonus.or_y - (c->map[y][x] * bonus.level);
+			p2.y = ((x * bonus.gap) + (y * bonus.gap)) / bonus.iso + bonus.or_y
+				- (c->map[y][x] * bonus.level);
 			draw_line(img, &p1, &p2);
 			y++;
 			p1.x = p2.x;
@@ -138,8 +144,10 @@ void	draw_y(t_coord *c, t_pti *img, t_bonus bonus)
 		x++;
 		p1.x = ((x * bonus.gap) - (y * bonus.gap)) + bonus.or_x - bonus.gap;
 		if ((y + 1) < c->y_point)
-			p1.y = ((x * bonus.gap) + (y * bonus.gap)) / bonus.iso + bonus.or_y + bonus.gap / bonus.iso - (c->map[y + 1][x] * bonus.level);
+			p1.y = ((x * bonus.gap) + (y * bonus.gap)) / bonus.iso + bonus.or_y
+				+ bonus.gap / bonus.iso - (c->map[y + 1][x] * bonus.level);
 		else
-			p1.y = ((x * bonus.gap) + (y * bonus.gap)) / bonus.iso + bonus.or_y + bonus.gap / bonus.iso;
+			p1.y = ((x * bonus.gap) + (y * bonus.gap)) / bonus.iso + bonus.or_y
+				+ bonus.gap / bonus.iso;
 	}
 }

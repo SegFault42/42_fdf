@@ -6,7 +6,7 @@
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/25 18:03:01 by rabougue          #+#    #+#             */
-/*   Updated: 2016/04/14 04:01:49 by rabougue         ###   ########.fr       */
+/*   Updated: 2016/04/14 14:39:27 by rabougue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,11 @@
 
 int	main(int argc, char **argv)
 {
-	t_c					c;
-	t_pti				im;
-	t_coord				coord;
-	t_bonus				*bonus;
-	int					fd;
-	int					width;
-	int					height;
-	void				*xpm;
+	t_c		c;
+	t_pti	im;
+	t_coord	coord;
+	t_bonus	*bonus;
+	t_xpm	xpm;
 
 	bonus = (t_bonus *)malloc(sizeof(t_bonus));
 	bonus->gap = 20;
@@ -29,8 +26,7 @@ int	main(int argc, char **argv)
 	bonus->iso = 2;
 	bonus->or_x = WIDTH / 2;
 	bonus->or_y = HEIGHT / 3;
-
-	check_arguments(&argc, (&(*argv)), &fd);
+	check_arguments(&argc, (&(*argv)), &xpm.fd);
 	stock_coord(argv[1], &coord);
 	c.coord = &coord;
 	c.mlx_ptr = mlx_init();
@@ -38,8 +34,8 @@ int	main(int argc, char **argv)
 	im.data = mlx_get_data_addr(c.img_ptr, &im.bpp, &im.sizeline, &im.endian);
 	c.pti = &im;
 	c.win_ptr = mlx_new_window(c.mlx_ptr, WIDTH, HEIGHT, "FDF");
-	xpm = mlx_xpm_file_to_image(c.mlx_ptr, "pics/splash.xpm", &width, &height);
-	mlx_put_image_to_window(c.mlx_ptr, c.win_ptr, xpm, 0, 0);
+	xpm.xpm = mlx_xpm_file_to_image(c.mlx_ptr, "pics/s.xpm", &xpm.w, &xpm.h);
+	mlx_put_image_to_window(c.mlx_ptr, c.win_ptr, xpm.xpm, 0, 0);
 	mlx_hook(c.win_ptr, 2, 3, key_hook, (void*)&c);
 	mlx_loop(c.mlx_ptr);
 	return (0);

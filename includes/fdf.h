@@ -6,7 +6,7 @@
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/09 12:52:14 by rabougue          #+#    #+#             */
-/*   Updated: 2016/04/14 03:58:28 by rabougue         ###   ########.fr       */
+/*   Updated: 2016/04/14 14:39:23 by rabougue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,14 @@ typedef struct		s_bonus
 	int					or_x;
 	int					or_y;
 }						t_bonus;
+
+typedef struct		s_xpm
+{
+	int 			w;
+	int				h;
+	int				fd;
+	void			*xpm;
+}					t_xpm;
 
 typedef struct			s_c
 {

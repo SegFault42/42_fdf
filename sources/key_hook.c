@@ -6,7 +6,7 @@
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/08 12:57:03 by rabougue          #+#    #+#             */
-/*   Updated: 2016/04/14 04:01:36 by rabougue         ###   ########.fr       */
+/*   Updated: 2016/04/14 14:37:20 by rabougue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ void	impr_img(void *pa, t_pti *img, t_p *p, t_bonus *bonus)
 {
 	((t_c *)pa)->pti->img_color = mlx_get_color_value(((t_c *)pa)->mlx_ptr,
 GREEN);
-	/*printf("gap = %d\nlevel = %d\niso = %d\nor_x = %d\nor_y = %d\n",*/
-/*bonus.gap, bonus.level, bonus.iso, bonus.or_x, bonus.or_y);*/
 	print_p(((t_c *)pa)->coord, ((t_c *)pa)->pti, *bonus);
 	mlx_put_image_to_window(((t_c *)pa)->mlx_ptr, ((t_c *)pa)->win_ptr,
 ((t_c *)pa)->img_ptr, 0, 0);
