@@ -6,7 +6,7 @@
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/09 12:52:14 by rabougue          #+#    #+#             */
-/*   Updated: 2016/04/14 15:44:09 by rabougue         ###   ########.fr       */
+/*   Updated: 2016/04/14 20:37:24 by rabougue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@
 # define PURPLE 0x993299
 # define DARK_GREY 0x3b3b3b
 
-# define WIDTH 1280
-# define HEIGHT 720
+# define WIDTH 1920
+# define HEIGHT 1080
 
 # define ORIGIN_X (WIDTH / 2)
 # define ORIGIN_Y (HEIGHT / 3)
@@ -94,6 +94,7 @@ typedef struct			s_c
 	void				*img_ptr;
 	t_pti				*pti;
 	t_coord				*coord;
+	t_bonus				*bonus;
 }						t_c;
 
 void					draw_x_or_y(int x1, int y1, int x2, int y2, t_pti *img);
@@ -116,5 +117,10 @@ void					check_ret_gnl(int *fd, char *line);
 void					menu(t_c *c);
 void					clear_image(void *pa, t_pti *img, t_p *p);
 void					impr_img(void *pa, t_pti *img, t_p *p, t_bonus *bonus);
+void					zoom(int keycode, void *pa, t_pti *img, t_p *p);
+void					level(int keycode, void *pa, t_pti *img, t_p *p);
+void					other(int keycode, void *pa, t_pti *img, t_p *p);
+void					rotation(int keycode, void *pa, t_pti *img, t_p *p);
+void					view(int keycode, void *pa, t_pti *img, t_p *p);
 
 #endif

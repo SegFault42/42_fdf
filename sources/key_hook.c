@@ -6,7 +6,7 @@
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/08 12:57:03 by rabougue          #+#    #+#             */
-/*   Updated: 2016/04/14 14:37:20 by rabougue         ###   ########.fr       */
+/*   Updated: 2016/04/14 20:46:18 by rabougue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ GREEN);
 	print_p(((t_c *)pa)->coord, ((t_c *)pa)->pti, *bonus);
 	mlx_put_image_to_window(((t_c *)pa)->mlx_ptr, ((t_c *)pa)->win_ptr,
 ((t_c *)pa)->img_ptr, 0, 0);
+	menu(((t_c *)pa));
 }
 
 void	clear_image(void *pa, t_pti *img, t_p *p)
@@ -43,126 +44,44 @@ void	clear_image(void *pa, t_pti *img, t_p *p)
 ((t_c *)pa)->img_ptr, 0, 0);
 }
 
-int		key_hook(int keycode, void *pa, t_pti *img, t_p *p)
+void	move(int keycode, void *pa, t_pti *img, t_p *p)
 {
-	t_bonus		bonus;
-
-	bonus.gap = 20;
-	bonus.level = 20;
-	bonus.iso = 2;
-	bonus.or_x = WIDTH / 2;
-	bonus.or_y = HEIGHT / 3;
-	if (keycode == KEY_ESC)
-	{
-		mlx_destroy_image(((t_c *)pa)->mlx_ptr, ((t_c *)pa)->img_ptr);
-		mlx_destroy_window(((t_c *)pa)->mlx_ptr, ((t_c *)pa)->win_ptr);
-		exit(EXIT_SUCCESS);
-	}
-	if (keycode == KEY_SPACE)
-		clear_image(pa, img, p);
-	if (keycode == KEY_F12)
-		clear_image(pa, img, p);
-	if (keycode == KEY_R)
-	{
-		clear_image(pa, img, p);
-		bonus.gap = 20;
-		bonus.level = 20;
-		bonus.iso = 2;
-		bonus.or_x = 640;
-		bonus.iso = 240;
-		impr_img(pa, img, p, &bonus);
-		menu(((t_c *)pa));
-	}
-	if (keycode == KEY_EQUAL && bonus.gap >= 0)
-	{
-		bonus.level = bonus.gap;
-		clear_image(pa, img, p);
-		bonus.gap++;
-		bonus.level++;
-		impr_img(pa, img, p, &bonus);
-		menu(((t_c *)pa));
-	}
-	if (keycode == KEY_MIN && bonus.gap > 0)
-	{
-		bonus.level = bonus.gap;
-		clear_image(pa, img, p);
-		bonus.gap--;
-		bonus.level--;
-		impr_img(pa, img, p, &bonus);
-		menu(((t_c *)pa));
-	}
-	if (keycode == KEY_P)
-	{
-		clear_image(pa, img, p);
-		bonus.level++;
-		impr_img(pa, img, p, &bonus);
-		menu(((t_c *)pa));
-	}
-	if (keycode == KEY_O)
-	{
-		clear_image(pa, img, p);
-		bonus.level--;
-		impr_img(pa, img, p, &bonus);
-		menu(((t_c *)pa));
-	}
-	if (keycode == KEY_T && bonus.iso >= 1)
-	{
-		clear_image(pa, img, p);
-		bonus.iso += 1;
-		impr_img(pa, img, p, &bonus);
-		menu(((t_c *)pa));
-	}
-	if (keycode == KEY_G && bonus.iso > 1)
-	{
-		if (bonus.iso == 2)
-			bonus.level = 3;
-		clear_image(pa, img, p);
-		bonus.iso -= 1;
-		impr_img(pa, img, p, &bonus);
-		menu(((t_c *)pa));
-	}
-	if (keycode == KEY_1)
-	{
-		clear_image(pa, img, p);
-		bonus.iso = 50000;
-		impr_img(pa, img, p, &bonus);
-		menu(((t_c *)pa));
-	}
-	if (keycode == KEY_2)
-	{
-		clear_image(pa, img, p);
-		bonus.iso = 1;
-		bonus.level = 3;
-		impr_img(pa, img, p, &bonus);
-		menu(((t_c *)pa));
-	}
 	if (keycode == KEY_LEFT)
 	{
 		clear_image(pa, img, p);
-		bonus.or_x -= 10;
-		impr_img(pa, img, p, &bonus);
-		menu(((t_c *)pa));
+		((t_c *)pa)->bonus->or_x -= 10;
+		impr_img(pa, img, p, ((t_c *)pa)->bonus);
 	}
 	if (keycode == KEY_RIGHT)
 	{
 		clear_image(pa, img, p);
-		bonus.or_x += 10;
-		impr_img(pa, img, p, &bonus);
-		menu(((t_c *)pa));
+		((t_c *)pa)->bonus->or_x += 10;
+		impr_img(pa, img, p, ((t_c *)pa)->bonus);
 	}
 	if (keycode == KEY_UP)
 	{
 		clear_image(pa, img, p);
-		bonus.or_y -= 10;
-		impr_img(pa, img, p, &bonus);
-		menu(((t_c *)pa));
+		((t_c *)pa)->bonus->or_y -= 10;
+		impr_img(pa, img, p, ((t_c *)pa)->bonus);
 	}
 	if (keycode == KEY_DOWN)
 	{
 		clear_image(pa, img, p);
-		bonus.or_y += 10;
-		impr_img(pa, img, p, &bonus);
-		menu(((t_c *)pa));
+		((t_c *)pa)->bonus->or_y += 10;
+		impr_img(pa, img, p, ((t_c *)pa)->bonus);
 	}
+}
+
+int		key_hook(int keycode, void *pa, t_pti *img, t_p *p)
+{
+	static t_bonus	bonus = {20, 20, 2, WIDTH / 2, HEIGHT / 3};
+
+	((t_c *)pa)->bonus = &bonus;
+	move(keycode, pa, img, p);
+	zoom(keycode, pa, img, p);
+	level(keycode, pa, img, p);
+	other(keycode, pa, img, p);
+	rotation(keycode, pa, img, p);
+	view(keycode, pa, img, p);
 	return (0);
 }
