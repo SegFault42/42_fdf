@@ -12,47 +12,47 @@
 
 #include "../includes/fdf.h"
 
-void	zoom(int keycode, void *pa, t_pti *img, t_p *p)
+void	zoom(int keycode, void *pa, t_pti *img)
 {
 	if (keycode == KEY_EQUAL && ((t_c *)pa)->bonus->gap >= 0)
 	{
 		((t_c *)pa)->bonus->level = ((t_c *)pa)->bonus->gap;
-		clear_image(pa, img, p);
+		clear_image(pa, img);
 		((t_c *)pa)->bonus->gap++;
 		((t_c *)pa)->bonus->level++;
-		impr_img(pa, img, p, ((t_c *)pa)->bonus);
+		impr_img(pa, ((t_c *)pa)->bonus);
 		menu(((t_c *)pa));
 	}
 	if (keycode == KEY_MIN && ((t_c *)pa)->bonus->gap > 0)
 	{
 		((t_c *)pa)->bonus->level = ((t_c *)pa)->bonus->gap;
-		clear_image(pa, img, p);
+		clear_image(pa, img);
 		((t_c *)pa)->bonus->gap--;
 		((t_c *)pa)->bonus->level--;
-		impr_img(pa, img, p, ((t_c *)pa)->bonus);
+		impr_img(pa, ((t_c *)pa)->bonus);
 		menu(((t_c *)pa));
 	}
 }
 
-void	level(int keycode, void *pa, t_pti *img, t_p *p)
+void	level(int keycode, void *pa, t_pti *img)
 {
 	if (keycode == KEY_P)
 	{
-		clear_image(pa, img, p);
+		clear_image(pa, img);
 		((t_c *)pa)->bonus->level++;
-		impr_img(pa, img, p, ((t_c *)pa)->bonus);
+		impr_img(pa, ((t_c *)pa)->bonus);
 		menu(((t_c *)pa));
 	}
 	if (keycode == KEY_O)
 	{
-		clear_image(pa, img, p);
+		clear_image(pa, img);
 		((t_c *)pa)->bonus->level--;
-		impr_img(pa, img, p, ((t_c *)pa)->bonus);
+		impr_img(pa, ((t_c *)pa)->bonus);
 		menu(((t_c *)pa));
 	}
 }
 
-void	other(int keycode, void *pa, t_pti *img, t_p *p)
+void	other(int keycode, void *pa, t_pti *img)
 {
 	if (keycode == KEY_ESC)
 	{
@@ -61,56 +61,56 @@ void	other(int keycode, void *pa, t_pti *img, t_p *p)
 		exit(EXIT_SUCCESS);
 	}
 	if (keycode == KEY_SPACE)
-		clear_image(pa, img, p);
+		clear_image(pa, img);
 	if (keycode == KEY_R)
 	{
-		clear_image(pa, img, p);
+		clear_image(pa, img);
 		((t_c *)pa)->bonus->gap = 20;
 		((t_c *)pa)->bonus->level = 20;
 		((t_c *)pa)->bonus->iso = 2;
 		((t_c *)pa)->bonus->or_x = WIDTH / 2;
 		((t_c *)pa)->bonus->or_y = HEIGHT / 2;
-		impr_img(pa, img, p, ((t_c *)pa)->bonus);
+		impr_img(pa, ((t_c *)pa)->bonus);
 		menu(((t_c *)pa));
 	}
 }
 
-void	rotation(int keycode, void *pa, t_pti *img, t_p *p)
+void	rotation(int keycode, void *pa, t_pti *img)
 {
 	if (keycode == KEY_T && ((t_c *)pa)->bonus->iso >= 1)
 	{
-		clear_image(pa, img, p);
+		clear_image(pa, img);
 		((t_c *)pa)->bonus->iso += 1;
-		impr_img(pa, img, p, ((t_c *)pa)->bonus);
+		impr_img(pa, ((t_c *)pa)->bonus);
 		menu(((t_c *)pa));
 	}
 	if (keycode == KEY_G && ((t_c *)pa)->bonus->iso > 1)
 	{
-		clear_image(pa, img, p);
+		clear_image(pa, img);
 		((t_c *)pa)->bonus->iso -= 1;
-		impr_img(pa, img, p, ((t_c *)pa)->bonus);
+		impr_img(pa, ((t_c *)pa)->bonus);
 		menu(((t_c *)pa));
 	}
 }
 
-void	view(int keycode, void *pa, t_pti *img, t_p *p)
+void	view(int keycode, void *pa, t_pti *img)
 {
 	if (keycode == KEY_1)
 	{
-		clear_image(pa, img, p);
+		clear_image(pa, img);
 		((t_c *)pa)->bonus->iso = 50000;
 		((t_c *)pa)->bonus->or_x = WIDTH / 2;
 		((t_c *)pa)->bonus->or_y = HEIGHT / 2;
-		impr_img(pa, img, p, ((t_c *)pa)->bonus);
+		impr_img(pa, ((t_c *)pa)->bonus);
 		menu(((t_c *)pa));
 	}
 	if (keycode == KEY_2)
 	{
-		clear_image(pa, img, p);
+		clear_image(pa, img);
 		((t_c *)pa)->bonus->iso = 1;
 		((t_c *)pa)->bonus->or_x = WIDTH / 2;
 		((t_c *)pa)->bonus->or_y = HEIGHT / 3;
-		impr_img(pa, img, p, ((t_c *)pa)->bonus);
+		impr_img(pa, ((t_c *)pa)->bonus);
 		menu(((t_c *)pa));
 	}
 }

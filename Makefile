@@ -40,10 +40,10 @@ $(NAME):
 	@make -s -C ./minilibx_macos/
 	@echo "\033[32mCompiling mlx.a done !\033[0m"
 	@echo "\033[33mCompiling in .o ...\033[0m"
-	@gcc $(HEAD) -c $(SRCS)
+	@gcc $(FLAG) $(HEAD) -c $(SRCS)
 	@echo "\033[32mCompiling in .o done !\033[0m"
 	@echo "\033[33mCompiling fdf ...\033[0m"
-	@gcc -o $(NAME) $(FLAG) $(OBJS) $(LMLX) $(LFT) $(FRAMEWORK)
+	@gcc $(FLAG) -o $(NAME)  $(OBJS) $(LMLX) $(LFT) $(FRAMEWORK)
 	@echo "\033[32mCompiling fdf done !\033[0m"
 
 mc: fclean all clean

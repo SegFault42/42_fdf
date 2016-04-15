@@ -12,7 +12,7 @@
 
 #include "../includes/fdf.h"
 
-void	impr_img(void *pa, t_pti *img, t_p *p, t_bonus *bonus)
+void	impr_img(void *pa, t_bonus *bonus)
 {
 	((t_c *)pa)->pti->img_color = mlx_get_color_value(((t_c *)pa)->mlx_ptr,
 GREEN);
@@ -22,7 +22,7 @@ GREEN);
 	menu(((t_c *)pa));
 }
 
-void	clear_image(void *pa, t_pti *img, t_p *p)
+void	clear_image(void *pa, t_pti *img)
 {
 	int		i;
 	int		j;
@@ -44,44 +44,44 @@ void	clear_image(void *pa, t_pti *img, t_p *p)
 ((t_c *)pa)->img_ptr, 0, 0);
 }
 
-void	move(int keycode, void *pa, t_pti *img, t_p *p)
+void	move(int keycode, void *pa, t_pti *img)
 {
 	if (keycode == KEY_LEFT)
 	{
-		clear_image(pa, img, p);
+		clear_image(pa, img);
 		((t_c *)pa)->bonus->or_x -= 10;
-		impr_img(pa, img, p, ((t_c *)pa)->bonus);
+		impr_img(pa, ((t_c *)pa)->bonus);
 	}
 	if (keycode == KEY_RIGHT)
 	{
-		clear_image(pa, img, p);
+		clear_image(pa, img);
 		((t_c *)pa)->bonus->or_x += 10;
-		impr_img(pa, img, p, ((t_c *)pa)->bonus);
+		impr_img(pa, ((t_c *)pa)->bonus);
 	}
 	if (keycode == KEY_UP)
 	{
-		clear_image(pa, img, p);
+		clear_image(pa, img);
 		((t_c *)pa)->bonus->or_y -= 10;
-		impr_img(pa, img, p, ((t_c *)pa)->bonus);
+		impr_img(pa, ((t_c *)pa)->bonus);
 	}
 	if (keycode == KEY_DOWN)
 	{
-		clear_image(pa, img, p);
+		clear_image(pa, img);
 		((t_c *)pa)->bonus->or_y += 10;
-		impr_img(pa, img, p, ((t_c *)pa)->bonus);
+		impr_img(pa, ((t_c *)pa)->bonus);
 	}
 }
 
-int		key_hook(int keycode, void *pa, t_pti *img, t_p *p)
+int		key_hook(int keycode, void *pa, t_pti *img)
 {
 	static t_bonus	bonus = {20, 20, 2, WIDTH / 2, HEIGHT / 3};
 
 	((t_c *)pa)->bonus = &bonus;
-	move(keycode, pa, img, p);
-	zoom(keycode, pa, img, p);
-	level(keycode, pa, img, p);
-	other(keycode, pa, img, p);
-	rotation(keycode, pa, img, p);
-	view(keycode, pa, img, p);
+	move(keycode, pa, img);
+	zoom(keycode, pa, img);
+	level(keycode, pa, img);
+	other(keycode, pa, img);
+	rotation(keycode, pa, img);
+	view(keycode, pa, img);
 	return (0);
 }

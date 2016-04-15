@@ -21,11 +21,11 @@ int		check_arguments(int *argc, char **argv, int *fd)
 		ft_putendl(" <filename>");
 		exit(1);
 	}
-	open_map(argc, &(*argv), fd);
+	open_map(&(*argv), fd);
 	return (EXIT_SUCCESS);
 }
 
-void	open_map(int *argc, char **argv, int *fd)
+void	open_map(char **argv, int *fd)
 {
 	if ((*fd = open(argv[1], O_RDONLY)) == -1)
 	{

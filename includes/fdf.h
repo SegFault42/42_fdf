@@ -29,8 +29,8 @@
 # define PURPLE 0x993299
 # define DARK_GREY 0x3b3b3b
 
-# define WIDTH 1920
-# define HEIGHT 1080
+# define WIDTH 1280
+# define HEIGHT 720
 
 # define ORIGIN_X (WIDTH / 2)
 # define ORIGIN_Y (HEIGHT / 3)
@@ -105,33 +105,32 @@ typedef struct			s_c
 	t_xy				*xy;
 }						t_c;
 
-void					draw_x_or_y(int x1, int y1, int x2, int y2, t_pti *img);
-void					ft_pixel_put_to_image(t_pti *image, t_p *p);
-void					draw_line(t_pti *img, t_p *p1, t_p *p2);
-void					second_case(t_bres *b, t_pti *img, t_p *p1);
-void					first_case(t_bres *b, t_pti *img, t_p *p1);
-void					draw_x(t_coord *c, t_pti *img, t_bonus bonus);
-void					draw_y(t_coord *c, t_pti *img, t_bonus bonus);
-void					count_line_in_file(char *file, t_coord *coord);
+void					split_draw(t_p *p2, t_xy *xy, t_bonus *b, t_coord c);
+void					stock_coord(char *file, t_coord *coord, t_xpm *xpm);
 void					print_p(t_coord *coord, t_pti *img, t_bonus bonus);
 int						check_arguments(int *argc, char **argv, int *fd);
-void					stock_coord(char *file, t_coord *coord, t_xpm *xpm);
-void					init_coord(char *file, t_coord *coord);
-void					open_map(int *argc, char **argv, int *fd);
-void					check_len_map(int x_len, t_coord *coord);
-int						key_hook(int keycode, void *param, t_pti *img, t_p *p);
-void					count_coord(int *fd, t_coord *coord);
-void					check_ret_gnl(int *fd, char *line);
-void					menu(t_c *c);
-void					clear_image(void *pa, t_pti *img, t_p *p);
-void					impr_img(void *pa, t_pti *img, t_p *p, t_bonus *bonus);
-void					zoom(int keycode, void *pa, t_pti *img, t_p *p);
-void					level(int keycode, void *pa, t_pti *img, t_p *p);
-void					other(int keycode, void *pa, t_pti *img, t_p *p);
-void					rotation(int keycode, void *pa, t_pti *img, t_p *p);
-void					view(int keycode, void *pa, t_pti *img, t_p *p);
+int						key_hook(int keycode, void *param, t_pti *img);
+void					count_line_in_file(char *file, t_coord *coord);
+void					draw_x(t_coord *c, t_pti *img, t_bonus bonus);
+void					draw_y(t_coord *c, t_pti *img, t_bonus bonus);
+void					rotation(int keycode, void *pa, t_pti *img);
+void					ft_pixel_put_to_image(t_pti *image, t_p *p);
+void					second_case(t_bres *b, t_pti *img, t_p *p1);
 void					split_draw_y_2(t_p *p1, t_p *p2, t_xy *xy);
 void					split_draw_x_2(t_p *p1, t_p *p2, t_xy *xy);
-void					split_draw(t_p *p2, t_xy *xy, t_bonus *b, t_coord c);
+void					first_case(t_bres *b, t_pti *img, t_p *p1);
+void					level(int keycode, void *pa, t_pti *img);
+void					other(int keycode, void *pa, t_pti *img);
+void					check_len_map(int x_len, t_coord *coord);
+void					zoom(int keycode, void *pa, t_pti *img);
+void					view(int keycode, void *pa, t_pti *img);
+void					draw_line(t_pti *img, t_p *p1, t_p *p2);
+void					init_coord(char *file, t_coord *coord);
+void					count_coord(int *fd, t_coord *coord);
+void					impr_img(void *pa, t_bonus *bonus);
+void					check_ret_gnl(int *fd, char *line);
+void					clear_image(void *pa, t_pti *img);
+void					open_map(char **argv, int *fd);
+void					menu(t_c *c);
 
 #endif
