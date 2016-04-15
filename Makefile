@@ -6,7 +6,7 @@
 #    By: rabougue <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/10 19:16:51 by rabougue          #+#    #+#              #
-#    Updated: 2016/04/15 01:00:45 by rabougue         ###   ########.fr        #
+#    Updated: 2016/04/15 18:26:08 by rabougue         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,19 +20,17 @@ END = \033[0m
 NAME = fdf
 FLAG = -Wall -Wextra -Werror -Ofast
 FRAMEWORK = -framework OpenGL -framework AppKit
-SRCS = ./sources/main.c ./sources/parsing.c ./sources/print_point.c \
-	   ./sources/bresenham.c ./sources/count_coord.c ./sources/key_hook.c \
-	   ./sources/menu.c ./sources/event.c ./sources/norme.c
-
 OBJS = ./main.o ./parsing.o ./print_point.o ./bresenham.o ./count_coord.o \
 		./key_hook.o ./menu.o ./event.o ./norme.o
 LFT = -L./libft/ -lft
 LMLX = -L./minilibx_macos/ -lmlx
 HEAD = -I ./includes/fdf.h
 
+VPATH = sources/
+
 all: $(NAME)
 
-$(NAME):
+$(NAME): $(OBJS)
 	@echo "\033[33mCompiling libft.a ...\033[0m"
 	@make -s -C ./libft/
 	@echo "\033[32mCompiling libft.a done !\033[0m"
@@ -40,13 +38,13 @@ $(NAME):
 	@make -s -C ./minilibx_macos/
 	@echo "\033[32mCompiling mlx.a done !\033[0m"
 	@echo "\033[33mCompiling in .o ...\033[0m"
-	@gcc $(FLAG) $(HEAD) -c $(SRCS)
 	@echo "\033[32mCompiling in .o done !\033[0m"
 	@echo "\033[33mCompiling fdf ...\033[0m"
-	@gcc $(FLAG) -o $(NAME)  $(OBJS) $(LMLX) $(LFT) $(FRAMEWORK)
+	@gcc $(FLAG) -o $(NAME) $(OBJS) $(LMLX) $(LFT) $(FRAMEWORK)
 	@echo "\033[32mCompiling fdf done !\033[0m"
 
-mc: fclean all clean
+%.o : %.c 
+		@gcc -c $(FLAG) $(HEAD) $< -o $@
 
 clean:
 	@echo "\033[31mdeleting all .o ...\033[0m"

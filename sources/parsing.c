@@ -6,7 +6,7 @@
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/25 18:01:14 by rabougue          #+#    #+#             */
-/*   Updated: 2016/04/13 21:32:39 by rabougue         ###   ########.fr       */
+/*   Updated: 2016/04/15 17:08:21 by rabougue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int		check_arguments(int *argc, char **argv, int *fd)
 		ft_putstr("Usage : ");
 		ft_putstr(argv[0]);
 		ft_putendl(" <filename>");
-		exit(1);
+		exit(EXIT_FAILURE);
 	}
 	open_map(&(*argv), fd);
 	return (EXIT_SUCCESS);
@@ -30,7 +30,12 @@ void	open_map(char **argv, int *fd)
 	if ((*fd = open(argv[1], O_RDONLY)) == -1)
 	{
 		perror("Error ");
-		exit(1);
+		exit(EXIT_FAILURE);
+	}
+	if (ft_strncmp(argv[1], "/dev", 4) == 0)
+	{
+		ft_putendl("Map not well formatted");
+		exit(EXIT_FAILURE);
 	}
 }
 

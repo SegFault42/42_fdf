@@ -6,7 +6,7 @@
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/08 12:57:03 by rabougue          #+#    #+#             */
-/*   Updated: 2016/04/15 00:10:14 by rabougue         ###   ########.fr       */
+/*   Updated: 2016/04/15 22:41:03 by rabougue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ void	clear_image(void *pa, t_pti *img)
 &img->endian);
 	while (i < (HEIGHT * img->sizeline))
 	{
-		data[i + 2] = 59;
-		data[i + 1] = 59;
-		data[i + 0] = 59;
+		data[i + 2] = 58;
+		data[i + 1] = 58;
+		data[i + 0] = 58;
 		data[i + 3] = 0;
 		i += 4;
 	}

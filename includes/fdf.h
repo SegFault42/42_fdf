@@ -6,7 +6,7 @@
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/09 12:52:14 by rabougue          #+#    #+#             */
-/*   Updated: 2016/04/15 01:02:44 by rabougue         ###   ########.fr       */
+/*   Updated: 2016/04/15 21:04:31 by rabougue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include <stdio.h>
 # include <stdlib.h>
-# include <errno.h>
 # include <math.h>
 # include "../minilibx_macos/mlx.h"
 # include "../libft/includes/libft.h"
@@ -122,6 +121,7 @@ void					first_case(t_bres *b, t_pti *img, t_p *p1);
 void					level(int keycode, void *pa, t_pti *img);
 void					other(int keycode, void *pa, t_pti *img);
 void					check_len_map(int x_len, t_coord *coord);
+void					move(int keycode, void *pa, t_pti *img);
 void					zoom(int keycode, void *pa, t_pti *img);
 void					view(int keycode, void *pa, t_pti *img);
 void					draw_line(t_pti *img, t_p *p1, t_p *p2);
@@ -131,6 +131,7 @@ void					impr_img(void *pa, t_bonus *bonus);
 void					check_ret_gnl(int *fd, char *line);
 void					clear_image(void *pa, t_pti *img);
 void					open_map(char **argv, int *fd);
+void					menu2(t_c *c);
 void					menu(t_c *c);
 
 #endif
