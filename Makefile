@@ -6,7 +6,7 @@
 #    By: rabougue <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/10 19:16:51 by rabougue          #+#    #+#              #
-#    Updated: 2016/04/15 18:26:08 by rabougue         ###   ########.fr        #
+#    Updated: 2016/04/15 23:34:31 by rabougue         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,7 @@ $(NAME): $(OBJS)
 	@echo "\033[33mCompiling fdf ...\033[0m"
 	@gcc $(FLAG) -o $(NAME) $(OBJS) $(LMLX) $(LFT) $(FRAMEWORK)
 	@echo "\033[32mCompiling fdf done !\033[0m"
+	@make MARIO
 
 %.o : %.c 
 		@gcc -c $(FLAG) $(HEAD) $< -o $@
