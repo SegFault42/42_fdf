@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_strcmp_ext.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/01 13:56:26 by rabougue          #+#    #+#             */
-/*   Updated: 2016/05/04 09:16:24 by rabougue         ###   ########.fr       */
+/*   Created: 2016/05/09 12:55:16 by rabougue          #+#    #+#             */
+/*   Updated: 2016/05/09 14:47:01 by rabougue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/libft.h"
+#include <stdio.h>
 
-char	*ft_strchr(const char *s, int c)
+int	ft_strcmp_ext(char *str, char *ext)
 {
-	int		i;
-	char	*s1;
+	int	i;
+	int	j;
 
-	i = 0;
-	s1 = (char*)s;
-	while (s[i] != '\0')
+	j = 0;
+	i = ft_strlen(str) - ft_strlen(ext);
+	while (str[i] == ext[j] && str[i] != '\0')
 	{
-		if (s[i] == c)
-			return (s1 + i);
 		i++;
+		j++;
 	}
-	if (s[i] == c)
-		return (s1 + i);
-	return (NULL);
+	if (str[i] == '\0')
+		return (0);
+	else
+		return (1);
 }
