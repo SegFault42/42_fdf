@@ -6,7 +6,7 @@
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/31 13:32:47 by rabougue          #+#    #+#             */
-/*   Updated: 2016/04/15 01:03:14 by rabougue         ###   ########.fr       */
+/*   Updated: 2016/06/23 23:42:24 by rabougue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,16 @@ void	stock_coord(char *file, t_coord *coord, t_xpm *xpm)
 		free(line);
 		j = 0;
 		i++;
+	}
+	error(coord, xpm);
+}
+
+void	error(t_coord *coord, t_xpm *xpm)
+{
+	if (coord->y_point == 0)
+	{
+		ft_putendl("Map not well formatted");
+		exit(1);
 	}
 	close(xpm->fd);
 }
