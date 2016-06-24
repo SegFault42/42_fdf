@@ -6,7 +6,7 @@
 #    By: rabougue <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/10 19:16:51 by rabougue          #+#    #+#              #
-#    Updated: 2016/05/09 15:01:55 by rabougue         ###   ########.fr        #
+#    Updated: 2016/06/24 17:59:01 by rabougue         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ HEAD = ./includes/
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
+$(NAME): $(OBJS) $(OBJS)
 #	@echo "\033[33mCompiling in .o ...\033[0m"
 	@gcc -Wall -Wextra -Werror -c $(SRC) -I $(HEAD)
 #	@echo "\033[33mCreating library ...\033[0m"

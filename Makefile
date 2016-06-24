@@ -6,7 +6,7 @@
 #    By: rabougue <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/10 19:16:51 by rabougue          #+#    #+#              #
-#    Updated: 2016/04/15 23:34:31 by rabougue         ###   ########.fr        #
+#    Updated: 2016/06/24 17:54:59 by rabougue         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,12 +25,13 @@ OBJS = ./main.o ./parsing.o ./print_point.o ./bresenham.o ./count_coord.o \
 LFT = -L./libft/ -lft
 LMLX = -L./minilibx_macos/ -lmlx
 HEAD = -I ./includes/fdf.h
+INCLUDE = ./includes/fdf.h
 
 VPATH = sources/
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
+$(NAME): $(OBJS) $(INCLUDE) Makefile
 	@echo "\033[33mCompiling libft.a ...\033[0m"
 	@make -s -C ./libft/
 	@echo "\033[32mCompiling libft.a done !\033[0m"

@@ -6,7 +6,7 @@
 /*   By: rabougue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/09 12:52:14 by rabougue          #+#    #+#             */
-/*   Updated: 2016/06/23 23:49:08 by rabougue         ###   ########.fr       */
+/*   Updated: 2016/06/24 17:57:36 by rabougue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,7 @@ void					impr_img(void *pa, t_bonus *bonus);
 void					check_ret_gnl(int *fd, char *line);
 void					clear_image(void *pa, t_pti *img);
 void					open_map(char **argv, int *fd);
-void				error(t_coord *coord, t_xpm *xpm);
+void					error(t_coord *coord, t_xpm *xpm);
 void					menu2(t_c *c);
 void					menu(t_c *c);
 
